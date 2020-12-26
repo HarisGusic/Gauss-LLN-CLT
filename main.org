@@ -1,0 +1,17 @@
+
+* Upute
+  - U formi tutorijala/predavanja
+  - Da približi tematiku nekome ko bi se htio baviti time
+  - Možda će biti uključeno u materijale
+  - Neka kodovi prate ono što je u radu, komentari
+  - Izbjegavajte korištenje prvog lica
+  - Za sve navoditi primjere iz prakse
+
+  - Kombinacije raspodjela. Zbir normalno raspodijeljenih varijabli je normalno raspodijeljen.
+
+* Bilješke
+  - CLT: Konvolucija pulse-like signala samog sa sobom mnogo puta, nastaje
+    Gaussov signal [[https://www.sciencedirect.com/topics/engineering/central-limit-theorem][ref]]
+  - Možda navesti osobinu da suma ima raspodjelu koja je konvolucija raspodjela
+    ulaznih varijabli.
+  - Dodati primjer sa binomnim koeficijentima (Možda)
