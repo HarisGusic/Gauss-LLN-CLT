@@ -1,3 +1,37 @@
+#+TITLE: Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih brojeva i centralna granična teorema
+
+#+LATEX_HEADER: \usepackage{bm}
+
+* Normalna raspodjela
+
+  U prirodi se najčešće susreće normalna raspodjela, koja je opisana funkcijom
+  gustine raspodjele vjerovatnoće:
+	$$p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+
+  Slučajna varijabla je normalno raspodijeljena ako ima funkciju gustine
+  raspodjele vjerovatnoće (pdf) oblika:
+  
+
+** Multivarijablilna normalna raspodjela
+
+   Normalna raspodjela se može generalizirati i za vektore slučajnih varijabli.
+   Za slučajni vektor $\bm X \in \mathbb R^n$ se kaže da je normalno
+   raspodijeljen ako je njegova funkcija gustine raspodjele:
+
+   $$p_{\bm X}(\bm x) = $$
+
+** Raspodjela sume slučajnih varijabli
+   
+   Neka su date dvije *nezavisne* slučajne varijable sa odgovarajućim pdf $p_X(x)$ i
+   $p_Y(y)$. Tada slučajna varijabla $Z = X + Y$ ima pdf:
+	 $$p_Z(z) = \int_{-\infty}^{\infty} p_X(x) p_Y(z-x) \ \text dx
+					 = \int_{-\infty}^{\infty} p_Y(y) p_X(z-y) \ \text dy$$
+   Može se primijetiti da se pdf sume širi, što je intuitivno, jer zbir dvije
+   veličine ima širi opseg vrijednosti od sabiraka.
+  
+*** TODO Nacrtati grafik koji prikazuje nalaženje raspodjele sume varijabli.
+
+* Centralni granični teorem
 
 * Upute
   - U formi tutorijala/predavanja
@@ -10,8 +44,35 @@
   - Kombinacije raspodjela. Zbir normalno raspodijeljenih varijabli je normalno raspodijeljen.
 
 * Bilješke
+  - [[https://www.sciencedirect.com/topics/mathematics/central-limit-theorem][Izvor info]]
   - CLT: Konvolucija pulse-like signala samog sa sobom mnogo puta, nastaje
     Gaussov signal [[https://www.sciencedirect.com/topics/engineering/central-limit-theorem][ref]]
   - Možda navesti osobinu da suma ima raspodjelu koja je konvolucija raspodjela
     ulaznih varijabli.
   - Dodati primjer sa binomnim koeficijentima (Možda)
+  - Tendencija ka Gaussovoj raspodjeli se dešava nezavisno od oblika raspodjele
+    populacije. Parametri granične raspodjele zavise samo od $\mu$ i $\sigma$
+    (TODO provjeriti).
+  - Možda spomenuti Levy i druge CLT
+  - Spomenuti osobinu razvoja karakteristične funkcije u Taylora oko nule
+  - Svaki podvektor Gaussovog vektora je ponovo Gaussov vektor, pg. 224
+  - [[https://www.sciencedirect.com/topics/engineering/moving-average-filter][Primjene CLT u signal processingu]]
+  - [[https://books.google.co.uk/books?hl=hr&lr=&id=v7kTwafIiPsC&oi=fnd&pg=PR3&dq=central+limit+theorem&ots=q-nTqkBCa4&sig=gg-sEEb9GPJQ09f50T9uCbv4Hgk#v=onepage&q=central%20limit%20theorem&f=false][Historija CLT]]
+  - [[https://projecteuclid.org/euclid.dmj/1077475030][CLT for dependent variables]]
+  - Additional sources (CLT): [[https://rd.springer.com/article/10.1007/BF01240790][a]] [[https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php][b]] [[https://projecteuclid.org/euclid.dmj/1077475030][c]]
+  - Law of large numbers and CLT connection: limit of gaussian to dirac delta (check)
+** Sadržaj
+   - Gaussova raspodjela
+   - Multivarijabilna
+   - CLT
+   - Multivar. CLT
+   - Zakon velikih brojeva
+   - Slabi zakon
+   - Strogi zakon
+    
+
+** Uslovi CLT
+   
+   - Nijedna varijabla u sumi ne odudara previše od ostalih
+   - Varijable su razumno nezavisne
+   - Varijable imaju konačnu varijansu
