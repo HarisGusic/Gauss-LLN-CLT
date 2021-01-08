@@ -13,14 +13,11 @@ def cov_elipsa(mean, cov, N=50):
     a = cov[0][0]; b = cov[0][1]; c = cov[1][1]
     A = (a+c) / 2
     B = sqrt((a-c)**2/4 + b**2)
-    l1 = A + B
-    l2 = A - B
+    l1 = A + B; l2 = A - B
     if isclose(b, 0) and a >= c: theta = 0
     elif isclose(b, 0) and a < c: theta = pi/2
     else: theta = arctan2(l1 - a, b)
     t = linspace(0, 2*pi, 50)
     x = sqrt(l1) * cos(theta) * cos(t) - sqrt(l2) * sin(theta) * sin(t) + mean[0]
     y = sqrt(l1) * sin(theta) * cos(t) + sqrt(l2) * cos(theta) * sin(t) + mean[1]
-    dx = max(x) - min(x)
-    dy = max(y) - min(y)
-    return x, y, dx, dy
+    return x, y

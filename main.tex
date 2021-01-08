@@ -1,6 +1,8 @@
 \documentclass[11pt]{article}
+\usepackage[margin=3cm]{geometry} 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[croatian]{babel} 
 \usepackage{graphicx}
 \usepackage{grffile}
 \usepackage{longtable}
@@ -10,9 +12,11 @@
 \usepackage{amsmath}
 \usepackage{textcomp}
 \usepackage{amssymb}
-\usepackage{capt-of}
-\usepackage{hyperref}
+\usepackage[unicode]{hyperref}
 \usepackage{bm}
+\usepackage{caption} 
+\usepackage{subcaption} 
+\usepackage{float}
 
 \newtheorem{theorem}{Teorem}[section]
 \newtheorem{corollary}{Posljedica}
@@ -22,11 +26,13 @@
 \makeatletter
 \def\input@path{{contents/}}
 \makeatother
-\graphicspath{img/}
+\graphicspath{{img/}{_build/img/}}
 
 \date{\today}
 \title{Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih
 brojeva i centralna granična teorema}
+
+%%% BEGIN DOCUMENT %%%
 
 \begin{document}
 
