@@ -1,0 +1,92 @@
+
+U prirodi se najčešće susreće normalna raspodjela, koja je opisana funkcijom
+gustine raspodjele vjerovatnoće:
+
+$$p_X(x) = \mathcal{N}(\mu,\sigma^2)
+	= \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+
+Slučajna varijabla je normalno raspodijeljena ako ima funkciju gustine
+raspodjele vjerovatnoće (pdf) oblika:
+
+\subsection{Multivarijabilna normalna raspodjela}
+
+Normalna raspodjela se može generalizirati i za vektore slučajnih varijabli.
+Za slučajni vektor $\bm X \in \mathbb{R}^k$ se kaže da je normalno
+raspodijeljen ako je njegova funkcija gustine raspodjele:
+
+$$p_{\bm X}(\bm x) = \mathcal{N}(\bm\mu,\bm C_{\bm X\bm X}) =
+	\frac{1}{\sqrt{(2\pi)^k \det \bm C_{\bm X \bm X}}}
+	e^{
+		-\frac{1}{2}(\bm x - \bm\mu_{\bm X})^\text T
+		\bm C_{\bm X \bm X}^{-1}
+		(\bm x - \bm\mu_{\bm X})
+ 	 }$$
+
+Jedini uslov koji se postavlja na parametre ove raspodjele jeste da matrica
+$\bm C_{\bm X\bm X}$ bude ispravna kovarijantna matrica, tj. da bude simetrična
+i pozitivno semi-definitna.
+
+\begin{theorem}
+	\label{th:lin-tr-gauss}
+	Neka je $\bm X \in \mathbb{R}^n$ normalno raspodijeljen slučajni vektor sa
+	srednjom vrijednosti $\bm\mu_{\bm X}$ i kovarijantnom matricom $\bm C_{\bm
+	X\bm X}$. Neka je $\bm A \in \mathbb{R}^{m\times n}$, $\bm b \in
+	\mathbb{R}^n$, pri čemu je $m\le n$. Tada je vektor $\bm Y = \bm A \bm X + \bm
+	b$ također normalno raspodijeljen sa srednjom vrijednosti $\bm\mu_{\bm Y} =
+	\bm A\bm\mu_{\bm X} + \bm b$ i kovarijantnom matricom $\bm C_{\bm Y\bm Y} =
+	\bm A \bm C_{\bm X\bm X} \bm A^\mathrm T$.
+
+\end{theorem}
+
+Jednostavnije rečeno, svaka linearna transformacija Gaussovog vektora uz
+eventualnu translaciju, ponovo daje Gaussov vektor.
+
+\begin{corollary}
+	Svaki podvektor normalno raspodijeljenog slučajnog vektora $\bm X$ je također
+	normalno raspodijeljen. Drugim riječima, sve marginalne pdf slučajnog
+	vektora $\bm X$ su također normalne raspodjele.
+\end{corollary}
+
+Ovo je lako pokazati. Naime, neki podvektor $\bm Y = [X_{i_1}\ X_{i_2}\
+	 \cdots\ X_{i_m}]^\text T$ vektora $\bm X$ se može dobiti formiranjem matrice
+$\bm A$ koja u $j$ - tom redu sadrži jedinicu na poziciji $i_j$, dok su
+ostali elementi jednaki nuli. Za vektor $\bm b$ se uzima nul-vektor.
+Parametri raspodjele novodobijenog vektora se jednostavno određuju primjenom
+teorema \ref{th:lin-tr-gauss}.
+
+\begin{exmp}
+	Neka je data normalna raspodjela $p_{\bm X}(\bm x) = p_{X_1,X_2}(x_1, x_2) =
+	\mathcal{N}(\bm\mu, \bm \Sigma)$. Odrediti marginalne pdf $p_{X_1}(x)$ i
+	$p_{X_2}(x)$.
+\end{exmp}
+
+Neka je:
+
+\begin{eqnarray}
+	\bm\mu = \left[\begin{array}{c}
+		\mu_1 \\ \mu_2
+	\end{array}\right],\ 
+	\bm\Sigma = \left[\begin{array}{cc}
+	  \sigma_1^2 & \sigma_{12} \\ \sigma_{12} & \sigma_2^2
+	\end{array}\right]
+\end{eqnarray}
+
+Slučajne varijable $X_1$ i $X_2$ se mogu zapisati na sljedeći način:
+\newcommand*{\vecrow}[2]{\left[\begin{array}{cc}#1&#2\end{array}\right]}
+\newcommand*{\veccol}[2]{\left[\begin{array}{c}#1\\#2\end{array}\right]}
+\begin{eqnarray}
+	X_1 = \vecrow{1}{0} \veccol{X_1}{X_2} = \bm A_1 \bm X,
+	\\
+	X_2 = \vecrow{0}{1} \veccol{X_1}{X_2} = \bm A_2 \bm X,
+\end{eqnarray}
+
+Primjenom teoreme \ref{th:lin-tr-gauss} se zaključuje da će $p_{X_1}$ i
+$p_{X_2}$ također biti normalne raspodjele:
+
+\begin{align*}
+	p_{X_1} &= \mathcal{N}(\bm A_1\bm\mu, \bm A_1 \bm\Sigma \bm A_1^\mathrm T)
+		= \mathcal{N}(\mu_1, \sigma_1^2) \\
+	p_{X_2} &= \mathcal{N}(\bm A_2\bm\mu, \bm A_2 \bm\Sigma \bm A_2^\mathrm T)
+		= \mathcal{N}(\mu_2, \sigma_2^2)
+\end{align*}
+
