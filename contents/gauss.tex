@@ -1,3 +1,5 @@
+\newcommand*{\vecrow}[2]{\left[\begin{array}{cc}#1&#2\end{array}\right]}
+\newcommand*{\veccol}[2]{\left[\begin{array}{c}#1\\#2\end{array}\right]}
 
 U prirodi se najčešće susreće normalna raspodjela, koja je opisana funkcijom
 gustine raspodjele vjerovatnoće:
@@ -5,8 +7,25 @@ gustine raspodjele vjerovatnoće:
 $$p_X(x) = \mathcal{N}(\mu,\sigma^2)
 	= \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
 
-Slučajna varijabla je normalno raspodijeljena ako ima funkciju gustine
-raspodjele vjerovatnoće (pdf) oblika:
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.28\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{gauss_uni_std.pdf}
+    \caption{$\mu=0,\ \sigma^2=1$}
+  \end{subfigure}
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{gauss_uni_deltamean.pdf}
+    \caption{$\mu=-2,\ \sigma^2=1$}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{img/gauss_uni_deltavar.pdf}
+    \caption{$\mu=-2,\ \sigma^2=4$}
+	\end{subfigure}
+	\caption{Primjeri normalnih raspodjela sa različitim parametrima}
+\end{figure}
 
 \subsection{Multivarijabilna normalna raspodjela}
 
@@ -47,12 +66,13 @@ eventualnu translaciju, ponovo daje Gaussov vektor.
 	vektora $\bm X$ su također normalne raspodjele.
 \end{corollary}
 
-Ovo je lako pokazati. Naime, neki podvektor $\bm Y = [X_{i_1}\ X_{i_2}\
-	 \cdots\ X_{i_m}]^\text T$ vektora $\bm X$ se može dobiti formiranjem matrice
-$\bm A$ koja u $j$ - tom redu sadrži jedinicu na poziciji $i_j$, dok su
-ostali elementi jednaki nuli. Za vektor $\bm b$ se uzima nul-vektor.
-Parametri raspodjele novodobijenog vektora se jednostavno određuju primjenom
-teorema \ref{th:lin-tr-gauss}.
+Ovo je lako pokazati. Naime, neki podvektor $\bm Y = [X_{i_1}\ X_{i_2}\ \cdots\
+X_{i_m}]^\text T$ vektora $\bm X$ se može dobiti formiranjem matrice $\bm A$
+koja u $j$ - tom redu sadrži jedinicu na poziciji $i_j$, dok su ostali elementi
+jednaki nuli. Za vektor $\bm b$ se uzima nul-vektor.  Parametri raspodjele
+novodobijenog vektora se jednostavno određuju primjenom teorema
+\ref{th:lin-tr-gauss}. Ovaj princip će biti ilustrovan na vektoru dvije slučajne
+varijable kroz sljedeći primjer.
 
 \begin{exmp}
 	Neka je data normalna raspodjela $p_{\bm X}(\bm x) = p_{X_1,X_2}(x_1, x_2) =
@@ -62,7 +82,7 @@ teorema \ref{th:lin-tr-gauss}.
 
 Neka je:
 
-\begin{eqnarray}
+\begin{eqnarray} \label{eq:kovarijansa-2d}
 	\bm\mu = \left[\begin{array}{c}
 		\mu_1 \\ \mu_2
 	\end{array}\right],\ 
@@ -72,8 +92,6 @@ Neka je:
 \end{eqnarray}
 
 Slučajne varijable $X_1$ i $X_2$ se mogu zapisati na sljedeći način:
-\newcommand*{\vecrow}[2]{\left[\begin{array}{cc}#1&#2\end{array}\right]}
-\newcommand*{\veccol}[2]{\left[\begin{array}{c}#1\\#2\end{array}\right]}
 \begin{eqnarray}
 	X_1 = \vecrow{1}{0} \veccol{X_1}{X_2} = \bm A_1 \bm X,
 	\\
@@ -89,4 +107,75 @@ $p_{X_2}$ također biti normalne raspodjele:
 	p_{X_2} &= \mathcal{N}(\bm A_2\bm\mu, \bm A_2 \bm\Sigma \bm A_2^\mathrm T)
 		= \mathcal{N}(\mu_2, \sigma_2^2)
 \end{align*}
+
+Posmatrajući zapis \eqref{eq:kovarijansa-2d} jasno je da je $\rho$ Pearsonov
+korelacioni koeficijent koji predstavlja mjeru koreliranosti između slučajnih
+varijabli slučajnog vektora $\bm X$.
+
+Na slici \ref{fig:gauss2} su prikazane dvodimenzionalne normalne pdf za neke
+karakteristične vrijednosti kovarijantne matrice. Također su prikazane i
+marginalne pdf. Bitno je napomenuti da su prikazane marginalne pdf skalirane po
+visini radi jasnijeg prikaza.
+
+\begin{figure}[H]
+  \centering
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{gauss_multi_std.pdf}
+		\caption{$\bm\mu=\bm 0,\ \bm C_{\bm X\bm X} = \bm I$}
+		\label{fig:gauss2a}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{img/gauss_multi_corr+.pdf}
+    \caption{$\rho = 0.6$}
+		\label{fig:gauss2b}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{img/gauss_multi_corr-.pdf}
+    \caption{$\rho = -0.6$}
+		\label{fig:gauss2c}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{img/gauss_multi_corr1.pdf}
+    \caption{$\sigma_1^2=1, \sigma_2^2=5, \rho \approx 1$}
+		\label{fig:gauss2e}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{gauss_multi_y.pdf}
+    \caption{$\sigma_1^2=1,\ \sigma_2^2=5, \rho=0$}
+		\label{fig:gauss2d}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{gauss_multi_xcorr-.pdf}
+    \caption{$\sigma_1^2=4, \sigma_2^2=1, \rho=0.6$}
+		\label{fig:gauss2f}
+	\end{subfigure}
+	\caption{Primjeri normalnih raspodjela sa različitim parametrima}
+	\label{fig:gauss2}
+\end{figure}
+
+Na slici \ref{fig:gauss2a} je prikazana standardna normalna raspodjela sa nultom
+srednjom vrijednosti i jediničnom kovarijantnom matricom. Raspodjela na slici
+\ref{fig:gauss2b} je izmijenjena tako da su varijable negativno korelirane. Na
+slici \ref{fig:gauss2c} je ova koreliranost ista po modulu, ali negativna. Na
+slici \ref{fig:gauss2b} je prikazana normalna raspodjela pri čemu su varijable
+maksimalno pozitivno korelirane. Na slici \ref{fig:gauss2e} je prikazana
+normalna raspodjela nekoreliranog slučajnog vektora, kod kojeg je varijansa
+slučajne varijable $X_2$ veća nego kod varijable $X_1$. Konačno, na slici
+\ref{fig:gauss2f} je prikazana normalna raspodjela sa pozitivnom korelacijom,
+pri čemu je varijansa varijable $X_1$ veća nego kod varijable $X_2$.\\
+
+\noindent
+Dolazi se do sljedećih zaključaka:
+\begin{enumerate}
+	\item Povećavanjem varijanse neke varijable dolazi do "razvlačenja" raspodjele
+		po odgovarajućoj koordinati
+	\item Povećanjem koreliranosti varijabli dolazi do koncentracije raspodjele
+		oko pravca koji zavisi od kovarijantne matrice.
+\end{enumerate}
 
