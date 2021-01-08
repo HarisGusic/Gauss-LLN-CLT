@@ -1,76 +1,5 @@
 #+TITLE: Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih brojeva i centralna granična teorema
 
-#+LATEX_HEADER: \usepackage{bm} \newtheorem{theorem}{Teorem}[section] \newtheorem{exmp}{Primjer}[section]
-#+LATEX_HEADER_EXTRA: \newtheorem{corollary}{Posljedica}
-
-* Normalna raspodjela
-
-  U prirodi se najčešće susreće normalna raspodjela, koja je opisana funkcijom
-  gustine raspodjele vjerovatnoće:
-	$$p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
-
-  Slučajna varijabla je normalno raspodijeljena ako ima funkciju gustine
-  raspodjele vjerovatnoće (pdf) oblika:
-  
-
-** Multivarijabilna normalna raspodjela
-
-   Normalna raspodjela se može generalizirati i za vektore slučajnih varijabli.
-   Za slučajni vektor $\bm X \in \mathbb R^k$ se kaže da je normalno
-   raspodijeljen ako je njegova funkcija gustine raspodjele:
-
-	 $$p_{\bm X}(\bm x) = \frac{1}{\sqrt{(2\pi)^k \det \bm C_{\bm X \bm X}}}
-	 e^{
-		 	-\frac{1}{2}(\bm x - \bm\mu_{\bm X})^\text T
-			\bm C_{\bm X \bm X}^{-1}
-			(\bm x - \bm\mu_{\bm X})
- 	 }$$
-
-	 \begin{theorem}
-
-		 Neka je $\bm X \in \mathbb R^n$ normalno raspodijeljen slučajni vektor sa
-		 srednjom vrijednosti $\bm\mu_{\bm X}$ i kovarijantnom matricom $\bm C_{\bm
-		 X\bm X}$. Neka je $\bm A \in \mathbb R^{m\times n}$, $\bm b \in \mathbb
-		 R^n$, pri čemu je $m\le n$. Tada je vektor $\bm Y = \bm A \bm X + \bm b$
-		 također normalno raspodijeljen sa srednjom vrijednosti $\bm\mu_{\bm Y} =
-		 \bm A\bm\mu_{\bm X} + \bm b$ i kovarijantnom matricom $\bm C_{\bm Y\bm Y} =
-		 \bm A^\mathrm T \bm C_{\bm X\bm X} \bm A$.
-
-	 \end{theorem}
-
-	 Jednostavnije rečeno, svaka linearna transformacija Gauss-ovog vektora uz
-	 eventualnu translaciju, ponovo daje Gaussov vektor.
-
-	 \begin{corollary}
-		 Svaki podvektor normalno raspodijeljenog slučajnog vektora $\bm X$ je također
-		 normalno raspodijeljen. Drugim riječima, sve marginalne pdf slučajnog
-		 vektora $\bm X$ su također normalne raspodjele.
-	 \end{corollary}
-
-	 Ovo je lako pokazati. Naime, neki podvektor $\bm Y = [x_{i_1}\ x_{i_2}\
-	 \cdots\ x_{i_m}]^\text T$ vektora $\bm X$ se može dobiti formiranjem matrice
-	 $\bm A$ koja u $j$ - tom redu sadrži jedinicu na poziciji $i_j$, dok su
-	 ostali elementi jednaki nuli. Za vektor $\bm b$ se uzima nul-vektor.
-	 Parametri raspodjele novodobijenog vektora se jednostavno određuju.
-
-	 \begin{exmp}
-		 Neka je data normalna raspodjela $p_{\bm X}(\bm x) = p_{X,Y}(x, y) = \mathcal N(\bm\mu, \bm
-		 \Sigma)$. Odrediti marginalne pdf $p_X(x)$ i $p_Y(y)$.
-	 \end{exmp}
-
-** Raspodjela sume slučajnih varijabli
-   
-   Neka su date dvije *nezavisne* slučajne varijable sa odgovarajućim pdf $p_X(x)$ i
-   $p_Y(y)$. Tada slučajna varijabla $Z = X + Y$ ima pdf:
-	 $$p_Z(z) = \int_{-\infty}^{\infty} p_X(x) p_Y(z-x) \ \text dx
-					 = \int_{-\infty}^{\infty} p_Y(y) p_X(z-y) \ \text dy$$
-   Može se primijetiti da se pdf sume širi, što je intuitivno, jer zbir dvije
-   veličine ima širi opseg vrijednosti od sabiraka.
-  
-*** TODO Nacrtati grafik koji prikazuje nalaženje raspodjele sume varijabli.
-
-* Centralni granični teorem
-
 * Upute
   - U formi tutorijala/predavanja
   - Da približi tematiku nekome ko bi se htio baviti time
@@ -99,6 +28,7 @@
   - [[https://projecteuclid.org/euclid.dmj/1077475030][CLT for dependent variables]]
   - Additional sources (CLT): [[https://rd.springer.com/article/10.1007/BF01240790][a]] [[https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php][b]] [[https://projecteuclid.org/euclid.dmj/1077475030][c]]
   - Law of large numbers and CLT connection: limit of gaussian to dirac delta (check)
+
 ** Sadržaj
    - Gaussova raspodjela
    - Multivarijabilna
@@ -107,7 +37,6 @@
    - Zakon velikih brojeva
    - Slabi zakon
    - Strogi zakon
-    
 
 ** Uslovi CLT
    

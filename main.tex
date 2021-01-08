@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{bm}
+
+\newtheorem{theorem}{Teorem}[section]
+\newtheorem{corollary}{Posljedica}
+\newtheorem{exmp}{Primjer}[section]
+
+% PATH
+\makeatletter
+\def\input@path{{contents/}}
+\makeatother
+\graphicspath{img/}
+
+\date{\today}
+\title{Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih
+brojeva i centralna granična teorema}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Normalna raspodjela}
+\input{gauss}
+
+\subsection{Raspodjela sume slučajnih varijabli}
+
+Neka su date dvije \textbf{nezavisne} slučajne varijable sa odgovarajućim pdf $p_X(x)$ i
+$p_Y(y)$. Tada slučajna varijabla $Z = X + Y$ ima pdf:
+$$p_Z(z) = \int_{-\infty}^{\infty} p_X(x) p_Y(z-x) \ \text dx
+					 = \int_{-\infty}^{\infty} p_Y(y) p_X(z-y) \ \text dy$$
+Može se primijetiti da se pdf sume širi, što je intuitivno, jer zbir dvije
+veličine ima širi opseg vrijednosti od sabiraka.
+
+\subsubsection{{\bfseries\sffamily TODO} Nacrtati grafik koji prikazuje nalaženje raspodjele sume varijabli.}
+
+\section{Centralni granični teorem}
+\input{clt}
+
+\section{Zakoni velikih brojeva}
+\input{lln}
+
+\section{Praktične primjene}
+
+\section{Prilog}
+\input{appendix}
+
+\end{document}
