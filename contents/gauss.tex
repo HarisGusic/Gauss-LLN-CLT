@@ -87,7 +87,7 @@ Neka je:
 		\mu_1 \\ \mu_2
 	\end{array}\right],\ 
 	\bm\Sigma = \left[\begin{array}{cc}
-	  \sigma_1^2 & \sigma_{12} \\ \sigma_{12} & \sigma_2^2
+	  \sigma_1^2 & \rho\sigma_1\sigma_2 \\  \rho\sigma_1\sigma_2 & \sigma_2^2
 	\end{array}\right]
 \end{eqnarray}
 
@@ -114,42 +114,41 @@ varijabli slučajnog vektora $\bm X$.
 
 Na slici \ref{fig:gauss2} su prikazane dvodimenzionalne normalne pdf za neke
 karakteristične vrijednosti kovarijantne matrice. Također su prikazane i
-marginalne pdf. Bitno je napomenuti da su prikazane marginalne pdf skalirane po
-visini radi jasnijeg prikaza.
+marginalne pdf koje su skalirane po visini radi jasnijeg prikaza.
 
 \begin{figure}[H]
   \centering
-	\begin{subfigure}[b]{0.28\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{gauss_multi_std.pdf}
 		\caption{$\bm\mu=\bm 0,\ \bm C_{\bm X\bm X} = \bm I$}
 		\label{fig:gauss2a}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.28\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{img/gauss_multi_corr+.pdf}
     \caption{$\rho = 0.6$}
 		\label{fig:gauss2b}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.28\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{img/gauss_multi_corr-.pdf}
     \caption{$\rho = -0.6$}
 		\label{fig:gauss2c}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.28\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{img/gauss_multi_corr1.pdf}
     \caption{$\sigma_1^2=1, \sigma_2^2=5, \rho \approx 1$}
 		\label{fig:gauss2e}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.28\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{gauss_multi_y.pdf}
     \caption{$\sigma_1^2=1,\ \sigma_2^2=5, \rho=0$}
 		\label{fig:gauss2d}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.28\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{gauss_multi_xcorr-.pdf}
     \caption{$\sigma_1^2=4, \sigma_2^2=1, \rho=0.6$}
@@ -178,4 +177,11 @@ Dolazi se do sljedećih zaključaka:
 	\item Povećanjem koreliranosti varijabli dolazi do koncentracije raspodjele
 		oko pravca koji zavisi od kovarijantne matrice.
 \end{enumerate}
+
+\begin{corollary}
+  Suma Gauss-ovih varijabli ponovo predstavlja Gauss-ovu varijablu. Ako
+  su ove varijable IID sa pdf $\mathcal{N}(\mu_i, \sigma_i^2)$, $i=1,...,n$,
+  njihova suma će imati raspodjelu $ \mathcal{N}(\sum_{i=1}^{n}\mu_i,
+  \sum_{i=1}^{n}\sigma_i^2)$. %TODO footnote kako se dokazuje
+\end{corollary}
 
