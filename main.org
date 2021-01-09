@@ -14,6 +14,7 @@
   - [[https://www.sciencedirect.com/topics/mathematics/central-limit-theorem][Izvor info]]
   - CLT: Konvolucija pulse-like signala samog sa sobom mnogo puta, nastaje
     Gaussov signal [[https://www.sciencedirect.com/topics/engineering/central-limit-theorem][ref]]
+  - CLT: Raspodjela, simulator konvergencije sume uzoraka ka vrijednosti.
   - Možda navesti osobinu da suma ima raspodjelu koja je konvolucija raspodjela
     ulaznih varijabli.
   - Dodati primjer sa binomnim koeficijentima (Možda)
@@ -22,7 +23,6 @@
     (TODO provjeriti).
   - Možda spomenuti Levy i druge CLT
   - Spomenuti osobinu razvoja karakteristične funkcije u Taylora oko nule
-  - Svaki podvektor Gaussovog vektora je ponovo Gaussov vektor, pg. 224
   - [[https://www.sciencedirect.com/topics/engineering/moving-average-filter][Primjene CLT u signal processingu]]
   - [[https://books.google.co.uk/books?hl=hr&lr=&id=v7kTwafIiPsC&oi=fnd&pg=PR3&dq=central+limit+theorem&ots=q-nTqkBCa4&sig=gg-sEEb9GPJQ09f50T9uCbv4Hgk#v=onepage&q=central%20limit%20theorem&f=false][Historija CLT]]
   - [[https://projecteuclid.org/euclid.dmj/1077475030][CLT for dependent variables]]
