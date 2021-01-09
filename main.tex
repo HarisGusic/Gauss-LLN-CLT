@@ -22,6 +22,9 @@
 \newtheorem{corollary}{Posljedica}
 \newtheorem{exmp}{Primjer}[section]
 
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+
 % PATH
 \makeatletter
 \def\input@path{{contents/}}
@@ -41,8 +44,6 @@ brojeva i centralna granična teorema}
 
 \section{Normalna raspodjela}
 \input{gauss}
-
-\subsubsection{{\bfseries\sffamily TODO} Nacrtati grafik koji prikazuje nalaženje raspodjele sume varijabli.}
 
 \section{Centralni granični teorem}
 \input{clt}
