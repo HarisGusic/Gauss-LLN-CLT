@@ -1,0 +1,117 @@
+U ovom poglavlju će biti objašnjen jedan od najznačajnijih rezultata u oblasti
+vjerovatnoće. Centralni granični teorem opisuje ponašanje sume velikog broja
+slučajnih varijabli. Prije nego što se formuliše centralni granični teorem, biće
+napravljeno uvodno razmatranje.
+
+\subsection{Raspodjela sume slučajnih varijabli}
+
+Neka su $K$ i $L$ dvije diskretne slučajne varijable sa masenim funkcijama
+raspodjele (pmf) $p_K(k)$ i $p_L(l)$ respektivno. Neka je potrebno naći pmf
+$p_M(m)$ slučajne varijable $M=K+L$.
+%
+\newcommand{\pr}{\text{Pr}}
+\begin{align*}
+  p_M(m) = \pr(M=m) = \pr(k\in\mathbb{Z}, l=m-k)
+  = \sum_{k=-\infty}^{\infty} p_{K,L}(k,m-k)
+\end{align*}
+
+Ako su varijable $K$ i $L$ međusobno nezavisne, onda vrijedi $p_{K,L}(k,l) =
+p_K(k)p_L(l)$, onda se prethodni izraz može dodatno pojednostaviti:
+%
+\begin{align*}
+  p_M(m) = \sum_{k=-\infty}^{\infty} p_K(k)p_L(m-k) = p_K * p_L (m)
+\end{align*}
+
+Dakle, suma nezavisnih diskretnih slučajnih varijabli će imati pmf koja je
+jednaka diskretnoj konvoluciji pmf tih varijabli. Sličan zaključak vrijedi i za
+slučaj kontinualnih varijabli.
+
+\begin{theorem} %TODO da li ga nazvati teoremom?
+
+  Ako su $X_1,X_2,...,X_n$ međusobno nezavisne slučajne varijable sa funkcijama
+  gustine vjerovatnoće $p_{X_i}$, $i=1,...,n$ respektivno, onda njihova suma $S$
+  ima funkciju gustine vjerovatnoće:
+  $$p_S(s) = p_{X_1} * p_{X_2} * \cdots * p_{X_n} (s)$$
+
+\end{theorem}
+
+Prethodno razmatranje će sada biti intuitivno objašnjeno na primjeru.  Radi
+jednostavnosti, razmatranje će biti ograničeno na diskretni slučaj.
+
+Neka su $X_i$ slučajne varijable koje uzimaju vrijednosti iz $\{0,1\}$ sa
+jednakom vjerovatnoćom, zavisno od ishoda bacanja pravednog novčića. Neka se
+takav novčić baca veliki broj puta $n$, pri čemu je od interesa broj $K$ koji
+predstavlja broj takvih bacanja u kojima je $X_i=1$. $K$ također predstavlja
+slučajnu varijablu i može se izraziti kao: %TODO footnote?
+%Na taj način je dobivena slučajna sekvenca $\{X_i,\ i=1,2,...\}$.  TODO neke
+%stvari prebaciti u LLN
+
+%\begin{equation} %TODO drop
+%  S_n = \frac{1}{n} \sum_{i=1}^n X_i
+%\end{equation}
+
+$$K = \sum_{i=1}^{n} X_i$$
+\\
+
+Pošto su slučajne varijable $X_i$ IID, pmf od $K$ se dobija konvolucijom:
+$$p_K(k) = \underbrace{p_X * p_X * \cdots * p_X}_{n\text{ puta}}(k)$$
+
+Jednostavan način da se odredi ova konvolucija jeste korištenjem
+$\mathcal{Z}$ transformacije. %TODO Footnote može se odrediti i kombinatornim pristupom
+Naime, vrijedi: %TODO footnote binomna
+\begin{equation}
+  \mathcal{Z}\{p_K(k)\}
+  = \left[\mathcal{Z}\{p_X(k)\}\right]^n
+  = (p+qz^{-1})^n
+  = \sum_{k=0}^{n} \left(\frac{n}{k}\right) p^k q^{n-k} z^{-k}
+\end{equation}
+
+Direktnom primjenom inverzne $ \mathcal{Z}$ transformacije se dobiva:
+$$p_K(k) = \left(\frac{n}{k}\right) p^kq^{n-k}$$
+
+\begin{equation} \label{eq:binom-pmf}
+  p_K(k) = \frac{1}{2^n} \left(\frac{n}{k}\right)
+\end{equation}
+
+Na slikama \ref{fig:binom} je prikazan izgled pmf iz \eqref{eq:binom-pmf} za
+razne vrijednosti $n$.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{clt_binom_1.pdf}
+    \caption{$n=1$}
+  \end{subfigure}
+  \vspace{10pt}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{clt_binom_2.pdf}
+    \caption{$n=2$}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{clt_binom_3.pdf}
+    \caption{$n=3$}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{clt_binom_8.pdf}
+    \caption{$n=8$}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+    \includegraphics[width=\textwidth]{clt_binom_50.pdf}
+    \caption{$n=50$}
+	\end{subfigure}
+	\caption{Binomna raspodjela i DeMoivre-Laplace aproksimacija}
+  \label{fig:binom}
+\end{figure}
+
+Neka su date dvije \textbf{nezavisne} slučajne varijable sa odgovarajućim pdf $p_X(x)$ i
+$p_Y(y)$. Tada slučajna varijabla $Z = X + Y$ ima pdf:
+$$p_Z(z) = \int_{-\infty}^{\infty} p_X(x) p_Y(z-x) \ \text dx
+					 = \int_{-\infty}^{\infty} p_Y(y) p_X(z-y) \ \text dy$$
+Može se primijetiti da se pdf sume širi, što je intuitivno, jer zbir dvije
+veličine ima širi opseg vrijednosti od sabiraka.
+
