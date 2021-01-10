@@ -1,8 +1,26 @@
 import numpy as np; from numpy import *
 from shared import *
+import scipy
+import scipy.stats as stats
 
 def gaussian(x, mean=0.0, var=1.0):
     return sqrt(exp(-(x-mean)**2 / var) / (2*pi*var))
+
+import scipy.optimize as opt
+def approx_gaussian(x, f):
+    # Nalaženje optimalnih parametara
+    fun = lambda x, a, m, std: a * stats.norm.pdf(x, m, std)
+    popt, pcov = opt.curve_fit(fun, x, f)
+    
+    # Alternativni metod, ako prethodni zakaže
+    if np.max(pcov) > 0.1: 
+        cijeli_integral = integral(x, f)
+        f = f / cijeli_integral # Normalizacija integrala funkcije
+        mean = integral(x, x*f)
+        var = integral(x, (x-mean)**2 * f)
+        return stats.norm.pdf(x, mean, sqrt(var)) * cijeli_integral
+    else:
+        return fun(x, *popt)
 
 def multivariate_gaussian(x, mean, cov):
     x = array(x); mean = array(mean); cov = array(cov)
@@ -26,13 +44,9 @@ def multivariate_gaussian(x, mean, cov):
     
     return y
 
-# Aproksimacija Gauss-ovom funkcijom
-def approx_gaussian(x, f):
-    cijeli_integral = integral(x, f)
-    f = f / cijeli_integral # Normalizacija integrala funkcije
-    mean = integral(x, x*f)
-    var = integral(x, x**2 * f)
-    return gaussian(x, mean, var) * cijeli_integral
+###################
+# Crtanje grafika #
+###################
 
 import matplotlib.pyplot as plt
 

@@ -1,4 +1,4 @@
-import numpy as np; from numpy import *
+import numpy as np; from numpy import *; import numpy.random as rnd
 
 def pdf_mean(f, p):
     return sum(f * p)
@@ -13,6 +13,16 @@ def convolve_n(f, n):
     for i in range(n):
         g = convolve(g, f)
     return g
+def gen_fun(tip='rect'):
+    if tip == 'rect':
+        f = pad(ones(50), (25,25))
+    elif tip == 'noise_uniform':
+        f = pad(rnd.uniform(0,1,50), (25,25))
+    elif tip == 'noise_exp':
+        f = pad(rnd.exponential(1,50), (25,25))
+    elif tip == 'exp':
+        f = pad(exp(-0.1*array(range(50))), (25,25))
+    return f / sum(f)
 
 def cov_elipsa(mean, cov, N=50):
     a = cov[0][0]; b = cov[0][1]; c = cov[1][1]
