@@ -16,7 +16,7 @@ $p_M(m)$ slučajne varijable $M=K+L$.
 \end{align*}
 
 Ako su varijable $K$ i $L$ međusobno nezavisne, onda vrijedi $p_{K,L}(k,l) =
-p_K(k)p_L(l)$, onda se prethodni izraz može dodatno pojednostaviti:
+p_K(k)p_L(l)$, te se prethodni izraz može dodatno pojednostaviti:
 %
 \begin{align*}
   p_M(m) = \sum_{k=-\infty}^{\infty} p_K(k)p_L(m-k) = p_K * p_L (m)
@@ -57,7 +57,8 @@ Pošto su slučajne varijable $X_i$ IID, pmf od $K$ se dobija konvolucijom:
 $$p_K(k) = \underbrace{p_X * p_X * \cdots * p_X}_{n\text{ puta}}(k)$$
 
 Jednostavan način da se odredi ova konvolucija jeste korištenjem
-$\mathcal{Z}$ transformacije. %TODO Footnote može se odrediti i kombinatornim pristupom
+$\mathcal{Z}$ transformacije.\footnote{\ $p_K(k)$ se može odrediti i čisto
+kombinatornim pristupom.}
 Naime, vrijedi: %TODO footnote binomna
 \begin{equation}
   \mathcal{Z}\{p_K(k)\}
@@ -76,43 +77,75 @@ $$p_K(k) = \left(\frac{n}{k}\right) p^kq^{n-k}$$
 Na slikama \ref{fig:binom} je prikazan izgled pmf iz \eqref{eq:binom-pmf} za
 razne vrijednosti $n$.
 
+Na slici \ref{fig:binom:a} je prikazana pmf $p_K(k)$, za jedno bacanje, koja se
+naravno podudara sa $p_X(k)$. Postoje dva moguća ishoda, sa jednakom
+vjerovatnoćom koja iznosi 0.5. Ako se novčić baci drugi put (slika
+\ref{fig:binom:b}), mogući ishodi za $K$ su $0, 1, 2$, pri čemu je ishod $1$
+dvostruko vjerovatniji od ostalih, jer se može dobiti na dva načina
+($1=0+1=1+0$), dok se ostali mogu dobiti na samo jedan način ($0=0+0$, $2=1+1$).
+Ako se novčić baci treći put (slika \ref{fig:binom:c}), mogući ishodi su
+$0,1,2,3$, pri čemu vrijednosti 1 i 2 imaju najveću vjerovatnoću. Na slikama
+\ref{fig:binom:d} i \ref{fig:binom:e} su prikazane pmf za $n=8$ i $n=50$
+respektivno. Već na slici \ref{fig:binom:d} se može primijetiti da je pmf
+skoncentrisana oko sredine intervala, dok se na slici \ref{fig:binom:e} vidi da
+pmf aproksimira Gauss-ovu funkciju. Ova pojava se može formalno iskazati
+\textit{De-Moivre-Laplace}-ovim teoremom koji tvrdi da je:
+\begin{equation}
+  \left(\frac{n}{k}\right) p^kq^{n-k} \simeq \frac{1}{\sqrt{2\pi npq}}
+  e^{-\frac{(k-np)^2}{2npq}}
+\end{equation}
+Dakle, binomna raspodjela aproksimira Gauss-ovu funkciju za veliko $n$.
+Prethodni primjer je dosta regularan zbog činjenice da je novčić pravedan, pa su
+sve pmf simetrične oko neke centralne tačke. U nastavku su navedeni neki bitni
+zaključci, koji vrijede u općem slučaju. Ovi zaključci direktno slijede iz
+osobina konvolucije, a također su i dosta intuitivni.
+TODO
+%\begin{enumerate}
+  %\item Suma dvije varijable uzima 
+%\end{enumerate}
+
+
+
 \begin{figure}[H]
   \centering
   \begin{subfigure}[b]{0.3\textwidth}
     \centering
     \includegraphics[width=\textwidth]{clt_binom_1.pdf}
     \caption{$n=1$}
+    \label{fig:binom:a}
   \end{subfigure}
   \vspace{10pt}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{clt_binom_2.pdf}
     \caption{$n=2$}
+    \label{fig:binom:b}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{clt_binom_3.pdf}
     \caption{$n=3$}
+    \label{fig:binom:c}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{clt_binom_8.pdf}
     \caption{$n=8$}
+    \label{fig:binom:d}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
     \includegraphics[width=\textwidth]{clt_binom_50.pdf}
     \caption{$n=50$}
+    \label{fig:binom:e}
 	\end{subfigure}
-	\caption{Binomna raspodjela i DeMoivre-Laplace aproksimacija}
+	\caption{Binomna raspodjela i De Moivre-Laplace aproksimacija}
   \label{fig:binom}
 \end{figure}
 
-Neka su date dvije \textbf{nezavisne} slučajne varijable sa odgovarajućim pdf $p_X(x)$ i
-$p_Y(y)$. Tada slučajna varijabla $Z = X + Y$ ima pdf:
-$$p_Z(z) = \int_{-\infty}^{\infty} p_X(x) p_Y(z-x) \ \text dx
-					 = \int_{-\infty}^{\infty} p_Y(y) p_X(z-y) \ \text dy$$
-Može se primijetiti da se pdf sume širi, što je intuitivno, jer zbir dvije
-veličine ima širi opseg vrijednosti od sabiraka.
-
 \subsection{Formulacija centralnog graničnog teorema}
+
+\begin{theorem}
+  Neka je 
+\end{theorem}
+
