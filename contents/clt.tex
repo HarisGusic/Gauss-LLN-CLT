@@ -38,17 +38,18 @@ slučaj kontinualnih varijabli.
 Prethodno razmatranje će sada biti intuitivno objašnjeno na primjeru.  Radi
 jednostavnosti, razmatranje će biti ograničeno na diskretni slučaj.
 
-Neka su $X_i$ slučajne varijable koje uzimaju vrijednosti iz $\{0,1\}$ sa
-jednakom vjerovatnoćom, zavisno od ishoda bacanja pravednog novčića. Neka se
-takav novčić baca veliki broj puta $n$, pri čemu je od interesa broj $K$ koji
-predstavlja broj takvih bacanja u kojima je $X_i=1$. $K$ također predstavlja
-slučajnu varijablu i može se izraziti kao: %TODO footnote?
-%Na taj način je dobivena slučajna sekvenca $\{X_i,\ i=1,2,...\}$.  TODO neke
-%stvari prebaciti u LLN
+\begin{exmp} \label{ex:novcic}
+  
+Neka su $X_i$ slučajne varijable koje uzimaju vrijednosti iz $\{0,1\}$ zavisno
+od ishoda bacanja nepravednog novčića, pri čemu je $p_X(0)= p$, $p_X(1)=q=1-p$.
+Potrebno je odrediti broj bacanja $K$ u kojima je $X_i=1$, ako je novčić bačen
+$n$ puta.
 
-%\begin{equation} %TODO drop
-%  S_n = \frac{1}{n} \sum_{i=1}^n X_i
-%\end{equation}
+\end{exmp}
+
+Traženi broj $K$ također predstavlja slučajnu varijablu i može se izraziti
+kao:\footnote{Pošto $X_i$ mogu uzeti samo vrijednosti 0 ili 1, njihova suma je
+jednaka broju njih koji su jednaki 1}
 
 $$K = \sum_{i=1}^{n} X_i$$
 \\
@@ -104,8 +105,6 @@ TODO
   %\item Suma dvije varijable uzima 
 %\end{enumerate}
 
-
-
 \begin{figure}[H]
   \centering
   \begin{subfigure}[b]{0.3\textwidth}
@@ -145,7 +144,33 @@ TODO
 
 \subsection{Formulacija centralnog graničnog teorema}
 
-\begin{theorem}
-  Neka je 
+Postoje različite formulacije centralnog graničnog teorema (CLT), ovdje će biti
+data najjednostavnija.
+
+\begin{theorem} \label{th:clt}
+  Neka je $\{X_i, i=1,2,...\}$ sekvenca IID slučajnih varijabli sa
+  konačnom srednjom vrijednosti $\mu$ i konačnom varijansom $\sigma^2$. Tada
+  sekvenca $$S_n = \sum_{i=1}^{n} X_i$$ konvergira po distribuciji ka normalnoj
+  raspodjeli $\mathcal{N}(n\mu, n\sigma^2)$.
 \end{theorem}
+
+Teorem \ref{th:clt} govori da će suma velikog broja IID slučajnih varijabli
+imati približno normalnu raspodjelu, nezavisno od raspodjele varijabli koje
+učestvuju u sumi.
+
+Često se u literaturi prethodni teorem formuliše tako što se sekvenca $S_n$
+normalizuje na sljedeći način:
+
+$$S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^{n} \frac{X_i-\mu}{\sigma}$$
+Ovako je postignuto da $E[S_n] = 0$, $Var[S_n] = 1$, pa će konvergencija biti
+ka \textit{standardnoj normalnoj raspodjeli} $\mathcal{N}(0,1)$.
+Međutim, ovakva formulacija je ekvivalentna prethodnoj.
+
+\begin{corollary}
+  Konvolucijom pozitivne funkcije sa samom sobom mnogo puta dobiva se približno
+  Gauss-ova funkcija.
+\end{corollary}
+Ovo je već ilustrovano u primjeru \ref{ex:novcic}, mada je tamo bila razmatrana
+raspodjela koja je dosta regularna i simetrična. U nastavku će isti princip biti
+prikazan na nekoliko različitih kontinualnih funkcija.
 
