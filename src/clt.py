@@ -12,7 +12,7 @@ def plot_binomial(n, approx='Auto'):
     
     if approx == 'True' or (approx == 'Auto' and n > 10):
         plt.plot(stats.norm.pdf(k, n/2, sqrt(n)/2),
-                 c='orangered', label='DeMoivre-\nLaplace')
+                 c='orangered', label='De Moivre-\nLaplace')
     plt.stem(pmf, basefmt=' ', label='$p_K(k)$')
         
     # Anotacija
