@@ -8,6 +8,11 @@ def pdf_var(x, p):
     return pdf_mean_square(x,p) - pdf_mean(x,p)**2
 def integral(x, f):
     return sum((f + roll(f, -1))[:-1] * diff(x)) / 2
+def convolve_n(f, n):
+    g = f
+    for i in range(n):
+        g = convolve(g, f)
+    return g
 
 def cov_elipsa(mean, cov, N=50):
     a = cov[0][0]; b = cov[0][1]; c = cov[1][1]
