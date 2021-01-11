@@ -79,7 +79,7 @@ def plot_multivariate_gaussian(mean, cov, N=100):
     # Računanje raspodjele
     p = multivariate_gaussian(stack((X,Y)), mean, cov)
     
-    fig = plt.figure(figsize=(4,8.7))
+    fig = plt.figure(figsize=(5,8.5))
     ax = fig.add_subplot(2,1,1, projection='3d')
     
     # Crtanje raspodjele
@@ -93,9 +93,10 @@ def plot_multivariate_gaussian(mean, cov, N=100):
               gaussian(Y, mean[1], cov[1][1]) * sqrt(cov[1][1]/(2*pi*linalg.det(cov))),
 							c='dodgerblue', label='$p_{X_2}(x_2)$')
     
-    # Anotacija
+    # Anotacija i estetika
     ax.xaxis.set_rotate_label(False); ax.yaxis.set_rotate_label(False)
     plt.xlabel('$x_1$', rotation=0); plt.ylabel('$x_2$', rotation=0)
+    ax.set_zticklabels([])
     plt.legend(bbox_to_anchor=(0.68,1.05))
     
     # Crtanje konturnog grafika
@@ -109,5 +110,5 @@ def plot_multivariate_gaussian(mean, cov, N=100):
     elipsa = cov_elipsa(mean, cov)
     ax.plot(elipsa[0], elipsa[1], label='Elipsa kovarijanse')
     plt.xlabel('$x_1$'); plt.ylabel('$x_2$', rotation=0);
-    plt.legend(bbox_to_anchor=(1.02, 1.02))
+    plt.legend(bbox_to_anchor=(1.02,1.02), loc='upper right')
 

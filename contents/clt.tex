@@ -1,7 +1,7 @@
 U ovom poglavlju će biti objašnjen jedan od najznačajnijih rezultata u oblasti
 vjerovatnoće. Centralni granični teorem opisuje ponašanje sume velikog broja
-slučajnih varijabli. Prije nego što se formuliše centralni granični teorem, biće
-napravljeno uvodno razmatranje.
+slučajnih varijabli. Prije nego što se formuliše teorem, biće napravljeno uvodno
+razmatranje.
 
 \subsection{Raspodjela sume slučajnih varijabli}
 
@@ -90,7 +90,7 @@ $0,1,2,3$, pri čemu vrijednosti 1 i 2 imaju najveću vjerovatnoću. Na slikama
 respektivno. Već na slici \ref{fig:binom:d} se može primijetiti da je pmf
 skoncentrisana oko sredine intervala, dok se na slici \ref{fig:binom:e} vidi da
 pmf aproksimira Gauss-ovu funkciju. Ova pojava se može formalno iskazati
-\textit{De-Moivre-Laplace}-ovim teoremom koji tvrdi da je:
+\textit{De Moivre-Laplace}-ovim teoremom koji tvrdi da je:
 \begin{equation}
   \left(\frac{n}{k}\right) p^kq^{n-k} \simeq \frac{1}{\sqrt{2\pi npq}}
   e^{-\frac{(k-np)^2}{2npq}}
@@ -154,6 +154,7 @@ data najjednostavnija.
   raspodjeli $\mathcal{N}(n\mu, n\sigma^2)$.
 \end{theorem}
 
+%TODO teorem ne pomaže intuiciji
 Teorem \ref{th:clt} govori da će suma velikog broja IID slučajnih varijabli
 imati približno normalnu raspodjelu, nezavisno od raspodjele varijabli koje
 učestvuju u sumi.
@@ -162,7 +163,7 @@ učestvuju u sumi.
 normalizuje na sljedeći način:
 
 $$S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^{n} \frac{X_i-\mu}{\sigma}$$
-Ovako je postignuto da $E[S_n] = 0$, $Var[S_n] = 1$, pa će konvergencija biti
+čime je obezbijeđeno $E[S_n] = 0$, $Var[S_n] = 1$, pa će konvergencija biti
 ka \textit{standardnoj normalnoj raspodjeli} $\mathcal{N}(0,1)$.
 Međutim, ovakva formulacija je ekvivalentna prethodnoj.
 
@@ -172,5 +173,131 @@ Međutim, ovakva formulacija je ekvivalentna prethodnoj.
 \end{corollary}
 Ovo je već ilustrovano u primjeru \ref{ex:novcic}, mada je tamo bila razmatrana
 raspodjela koja je dosta regularna i simetrična. U nastavku će isti princip biti
-prikazan na nekoliko različitih kontinualnih funkcija.
+prikazan na nekoliko različitih kontinualnih funkcija. Neka je $f(x)$ neka
+nenegativna funkcija, i neka je:
+\begin{equation}
+  g_n(x) = f^{*n}(x) := \underbrace{f*f\cdots*f}_{n\text{ puta}}\ (x)
+\end{equation}
+Također, neka je $\widetilde{g}_n(x)$ aproksimacija funkcije $g_n(x)$ Gauss-ovom
+funkcijom.
+
+Na slici \ref{fig:convolution} su prikazane tri funkcije: četvrtka, zašumljena
+četvrtka i neka treća funkcija, zajedno sa odgovarajućim funkcijama $g_n(x)$ za
+dvije različite vrijednosti broja $n$ za svaku od te tri funkcije. Za slučaj
+četvrtke (slike \ref{fig:rect} - \ref{fig:rect2}), vidi se da funkcionalni niz
+$g_n(x)$ jako brzo konvergira ka Gauss-ovoj funkciji. Već za $n=1$ aproksimacija
+je dosta dobra, dok za $n=2$ funkcija $g_n(x)$ jako liči na Gauss-ovu. Ponašanje
+zašumljene četvrtke (slike \ref{fig:noise} - \ref{fig:noise2}) se može opisati
+na sličan način. U slučaju treće funkcije (slike \ref{fig:exp} -
+\ref{fig:exp2}), konvergencija je dosta sporija. Na primjer za $n=1$, ne vidi se
+nikakva sličnost funkcije $g_n(x)$ sa Gauss-ovom.  Povećanjem broja $n$,
+postepeno se uočava sličnost. Međutim, čak i za $n=9$ aproksimacija je lošija
+nego u slučaju četvrtke za $n=2$.
+%TODO praksa pokazuje za nesimetrične...
+
+\begin{figure}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{ccc}
+    \begin{tabular}{c}
+      \fig{0.27}{clt_conv_rect}{Četvrtka}{fig:rect} \\[20pt]
+      \fig{0.27}{clt_conv_rect_1}{$n=1$}{fig:rect1} \\
+      \fig{0.27}{clt_conv_rect_2}{$n=2$}{fig:rect2}
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      \fig{0.27}{clt_conv_noise}{Zašumljena četvrtka}{fig:noise} \\[20pt]
+      \fig{0.27}{clt_conv_noise_1}{$n=1$}{fig:noise1} \\[20pt]
+      \fig{0.27}{clt_conv_noise_2}{$n=2$}{fig:noise2}
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      \fig{0.27}{clt_conv_exp}{Treća funkcija}{fig:exp} \\
+      \fig{0.27}{clt_conv_exp_1}{$n=1$}{fig:exp1} \\
+      \fig{0.27}{clt_conv_exp_2}{$n=9$}{fig:exp2}
+    \end{tabular}
+  \end{tabularx}
+	\caption{Primjeri kontinualnih funkcija i njihovih konvolucija sa samim sobom}
+  \label{fig:convolution}
+\end{figure}
+
+\subsection{Dokaz centralnog graničnog teorema}
+
+U ovom poglavlju će biti ponuđen dokaz centralnog graničnog teorema. Za potrebe
+ovog dokaza potrebno je definirati pojam karakteristične funkcije.
+
+\begin{definition}[Karakteristična funkcija]
+  Neka je $X$ slučajna varijabla. Funkcija 
+  \begin{equation}
+    \varphi_X(u) = E\left[e^{juX}\right]
+    = \int_{-\infty}^{\infty} p_X(x) e^{jux} \ \mathrm dx
+  \end{equation}
+  se naziva karakterističnom funkcijom slučajne varijable $X$.
+\end{definition}
+
+Iz definicije se odmah vidi da je karakteristična funkcija
+$\varphi_X(u)$\footnote{U literaturi se koriste još i oznake $M_X$ i $\Phi_X$}
+jednaka Fourierovoj transformaciji funkcije $p_X(x)$.
+
+Neka je $\{X_i, i=1,2,...\}$ sekvenca IID slučajnih varijabli sa očekivanjem
+$\mu$ i standardnom devijacijom $\sigma$ i neka je
+\begin{equation}
+  S_n := \frac{1}{\sqrt{n}} \sum_{i=1}^{n} \frac{X_i-\mu}{\sigma}
+\end{equation}
+Neka se definira pomoćna sekvenca $Y_i = \frac{X_i-\mu}{\sigma}$, za koju
+očigledno vrijedi $E[Y_i] = 0$, $\text{Var}[Y_i] = 1$. Ako slučajne varijable
+$X_i$ imaju karakteristične funkcije $\varphi_{X_i}(u) = \varphi_X(u)$, onda
+slučajne varijable imaju karakteristične funkcije:
+\begin{equation} \label{eq:phi_y}
+  \varphi_{Y_i}(u) = E\left[e^{ju\frac{X_i-\mu}{\sigma}}\right]
+  = \int_{-\infty}^{\infty} p_X(x)e^{ju\frac{x-\mu}{\sigma}} \ \mathrm dx
+  = e^{-ju\frac{\mu}{\sigma}} \varphi_X\left(\frac{u}{\sigma}\right)
+  = \varphi_Y(u)
+\end{equation}
+Pogodno je uvesti još jednu pomoćnu sekvencu $Z_i = Y_i/\sqrt{n}$. Na sličan
+način kao u \eqref{eq:phi_y} može se pokazati da je $\varphi_{Z_i}(u) =
+\varphi_Z(u) = \varphi_Y(u/\sqrt{n})$.
+
+Pod određenim uslovima koji ovdje neće biti navedeni, funkcija $\varphi_Z$ se
+može aproksimirati Taylorovim razvojem:
+\begin{equation} \label{eq:taylor}
+  \varphi_Z(u) = \varphi_Y\left(\frac{u}{\sqrt{n}}\right) 
+  = \varphi_Y(0) + \varphi_Y^{'}(0)\frac{u}{\sqrt{n}}
+  + \varphi_Y^{''}(0)\frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right),
+    \text{ kad } n\to\infty
+\end{equation}
+
+Dalje, vrijedi:
+\begin{align*}
+  \varphi_Y(0)
+    &= \left.\int_{-\infty}^{\infty} p_Y(y) e^{juy} \ \text dy\right|_{u=0}
+    = \int_{-\infty}^{\infty} p_Y(y) \ \text dy = 1 \\
+  \varphi_Y^{'}(0)
+    &= \left.\int_{-\infty}^{\infty} jyp_Y(y)e^{juy} \ \text dy \right|_{u=0}
+    = jE[Y] = 0 \\
+  \varphi_Y^{''}(0)
+    &= \left.-\int_{-\infty}^{\infty} y^2 p_Y(y)e^{juy} \ \text dy\right|_{u=0}
+    = -E[Y^2] = -1
+\end{align*}
+
+Formula \eqref{eq:taylor} sada postaje:
+\begin{equation}
+  \varphi_Z(u) = 1 - \frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right)
+\end{equation}
+
+Pošto vrijedi:
+\begin{equation}
+  S_n = \sum_{i=1}^{n} Z_i
+\end{equation}
+na osnovu osobine TODO ova sekvenca će imati karakterističnu funkciju:
+\begin{equation}
+  \varphi_{S_n}(u) = \left[\varphi_Z(u)\right]^n
+\end{equation}
+U graničnom procesu:
+\begin{equation}
+  \lim_{n\to\infty} \varphi_{S_n}(u)
+  = \lim_{n\to\infty} [\varphi_Z(u)]^n
+  = \lim_{n\to\infty}
+    \left(1 - \frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right)\right)^n
+    = e^{-\frac{u^2}{2}}
+\end{equation}
 
