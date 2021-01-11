@@ -2,7 +2,7 @@
 \usepackage[margin=3.5cm]{geometry} 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[croatian]{babel} 
+\usepackage[bosnian]{babel} 
 \usepackage{graphicx}
 \usepackage{grffile}
 \usepackage{longtable}
@@ -17,10 +17,12 @@
 \usepackage{caption} 
 \usepackage{subcaption} 
 \usepackage{float}
+\usepackage{tabularx} 
 
 \newtheorem{theorem}{Teorem}[section]
 \newtheorem{corollary}{Posljedica}
 \newtheorem{exmp}{Primjer}[section]
+\newtheorem{definition}{Definicija}[section]
 
 \counterwithin{figure}{section}
 \counterwithin{equation}{section}
@@ -31,9 +33,18 @@
 \makeatother
 \graphicspath{{img/}{_build/img/}}
 
+\newcommand{\fig}[4]{
+  \begin{subfigure}{#1\textwidth}
+    \includegraphics[width=\textwidth]{#2}
+    \caption{#3}
+    \label{#4}
+    \vspace{5pt}
+  \end{subfigure}
+}
+
 \date{\today}
 \title{Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih
-brojeva i centralna granična teorema}
+brojeva i centralni granični teorem}
 
 %%% BEGIN DOCUMENT %%%
 

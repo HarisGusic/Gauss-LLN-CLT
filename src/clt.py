@@ -40,8 +40,8 @@ def plot_convolution(f, n):
     g_approx = approx_gaussian(x, g)
     
     # Plot
-    plt.plot(x, g, label='Konvolucija');
-    plt.plot(x, g_approx, label='Aproksimacija')
+    plt.plot(x, g_approx, label='$\\widetilde{g}_n(x)$', c='orangered')
+    plt.plot(x, g, label='$g_n(x)$');
     # Anotacija i estetika
     plt.yticks([], [])
     plt.xlabel('$x$'); plt.ylabel('$g(x)$'); plt.legend()

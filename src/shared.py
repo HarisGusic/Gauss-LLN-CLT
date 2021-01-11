@@ -21,7 +21,10 @@ def gen_fun(tip='rect'):
     elif tip == 'noise_exp':
         f = pad(rnd.exponential(1,50), (25,25))
     elif tip == 'exp':
-        f = pad(exp(-0.1*array(range(50))), (25,25))
+        f = pad(exp(-0.1*arange(50)), (30,20))
+    elif tip == 'exp2':
+        f = exp(-0.1*arange(40))
+        f = pad(concatenate((f, flip(f)/2)), (10,10))
     return f / sum(f)
 
 def cov_elipsa(mean, cov, N=50):
