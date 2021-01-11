@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage[margin=3.5cm]{geometry} 
+%\usepackage[margin=3.5cm]{geometry} 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[bosnian]{babel} 
@@ -14,6 +14,7 @@
 \usepackage{amssymb}
 \usepackage[unicode]{hyperref}
 \usepackage{bm}
+\usepackage{indentfirst} 
 \usepackage{caption} 
 \usepackage{subcaption} 
 \usepackage{float}
@@ -42,6 +43,7 @@
     \vspace{5pt}
   \end{subfigure}
 }
+\newcommand{\pr}{\mathrm{Pr}}
 
 \date{\today}
 \title{Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih
@@ -51,8 +53,15 @@ brojeva i centralni granični teorem}
 
 \begin{document}
 
+\pagenumbering{gobble}
 \maketitle
+\newpage
 \tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Uvod}
+\input{intro}
 
 \section{Normalna raspodjela}
 \input{gauss}

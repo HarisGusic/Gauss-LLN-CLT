@@ -9,7 +9,6 @@ Neka su $K$ i $L$ dvije diskretne slučajne varijable sa masenim funkcijama
 raspodjele (pmf) $p_K(k)$ i $p_L(l)$ respektivno. Neka je potrebno naći pmf
 $p_M(m)$ slučajne varijable $M=K+L$.
 %
-\newcommand{\pr}{\text{Pr}}
 \begin{align*}
   p_M(m) = \pr(M=m) = \pr(k\in\mathbb{Z}, l=m-k)
   = \sum_{k=-\infty}^{\infty} p_{K,L}(k,m-k)
@@ -69,18 +68,20 @@ Naime, vrijedi: %TODO footnote binomna
 \end{equation}
 
 Direktnom primjenom inverzne $ \mathcal{Z}$ transformacije se dobiva:
-$$p_K(k) = \left(\frac{n}{k}\right) p^kq^{n-k}$$
+\begin{equation}
+  p_K(k) = \left(\frac{n}{k}\right) p^kq^{n-k}
+\end{equation}
 
+Radi jednostavnosti, u nastavku će biti pretpostavljeno da je novčić pravedan,
+tj. $p=q=1/2$, pa će odgovarajuća pmf biti:
 \begin{equation} \label{eq:binom-pmf}
   p_K(k) = \frac{1}{2^n} \left(\frac{n}{k}\right)
 \end{equation}
 
 Na slikama \ref{fig:binom} je prikazan izgled pmf iz \eqref{eq:binom-pmf} za
-razne vrijednosti $n$.
-
-Na slici \ref{fig:binom:a} je prikazana pmf $p_K(k)$, za jedno bacanje, koja se
-naravno podudara sa $p_X(k)$. Postoje dva moguća ishoda, sa jednakom
-vjerovatnoćom koja iznosi 0.5. Ako se novčić baci drugi put (slika
+razne vrijednosti $n$.  Na slici \ref{fig:binom:a} je prikazana pmf $p_K(k)$, za
+jedno bacanje, koja se naravno podudara sa $p_X(k)$. Postoje dva moguća ishoda,
+sa jednakom vjerovatnoćom koja iznosi 0.5. Ako se novčić baci drugi put (slika
 \ref{fig:binom:b}), mogući ishodi za $K$ su $0, 1, 2$, pri čemu je ishod $1$
 dvostruko vjerovatniji od ostalih, jer se može dobiti na dva načina
 ($1=0+1=1+0$), dok se ostali mogu dobiti na samo jedan način ($0=0+0$, $2=1+1$).
@@ -89,13 +90,14 @@ $0,1,2,3$, pri čemu vrijednosti 1 i 2 imaju najveću vjerovatnoću. Na slikama
 \ref{fig:binom:d} i \ref{fig:binom:e} su prikazane pmf za $n=8$ i $n=50$
 respektivno. Već na slici \ref{fig:binom:d} se može primijetiti da je pmf
 skoncentrisana oko sredine intervala, dok se na slici \ref{fig:binom:e} vidi da
-pmf aproksimira Gauss-ovu funkciju. Ova pojava se može formalno iskazati
+pmf aproksimira Gaussovu funkciju. Ova pojava se može formalno iskazati
 \textit{De Moivre-Laplace}-ovim teoremom koji tvrdi da je:
+
 \begin{equation}
   \left(\frac{n}{k}\right) p^kq^{n-k} \simeq \frac{1}{\sqrt{2\pi npq}}
   e^{-\frac{(k-np)^2}{2npq}}
 \end{equation}
-Dakle, binomna raspodjela aproksimira Gauss-ovu funkciju za veliko $n$.
+Dakle, binomna raspodjela aproksimira Gaussovu funkciju za veliko $n$.
 Prethodni primjer je dosta regularan zbog činjenice da je novčić pravedan, pa su
 sve pmf simetrične oko neke centralne tačke. U nastavku su navedeni neki bitni
 zaključci, koji vrijede u općem slučaju. Ovi zaključci direktno slijede iz
@@ -160,11 +162,24 @@ najjednostavnijih, mada ne i najopćenitija.
 
 Nažalost, način kako je definirana sekvenca $S_n$ nije najbolji oblik za
 intuitivno shvatanje teorema. Prirodnije bi bilo sekvencu $S_n$ definirati kao
-$S_n=\sum_{i=1}^{n} X_i$. Međutim, ukoliko se koristi takva definicija, nastaje
-problem u tome što takva sekvenca neće konvergirati po distribuciji. Raspodjela
-takve sekvence će sa povećanjem $n$ bolje i bolje aproksimirati \textbf{neku}
-Gauss-ovu raspodjelu $\mathcal{N}(n\mu,n\sigma^2)$, ali očigledno ovakva sekvenca
-raspodjela neće težiti ka istoj raspodjeli.
+$S_n=\sum_{i=1}^{n} X_i$, bez suvišnih oznaka. Međutim, ukoliko se koristi takva
+definicija, nastaje problem u tome što takva sekvenca neće konvergirati po
+distribuciji. Raspodjela takve sekvence će sa povećanjem $n$ bolje i bolje
+aproksimirati \textbf{neku} Gaussovu raspodjelu $\mathcal{N}(n\mu,n\sigma^2)$
+koja zavisi od $n$, ali očigledno ovakva sekvenca raspodjela neće težiti ka
+istoj raspodjeli. Još jedan prirodan način definiranja sekvence $S_n$ bi bio kao
+kao srednja vrijednost uzorka sekvence $X_n$. Međutim ovdje bi problem napravio
+zakon velikih brojeva uslijed kojeg će sa povećanjem $n$ varijansa težiti u
+nulu. Ovaj slučaj će biti dodatno razmotren u poglavlju \ref{sec:dokaz-clt}.
+Radi dodatne ilustracije, u slučaju definiranja $S_n = \left(\sum_{i=1}^n
+X_i\right)/\sqrt{n}$, varijansa bi konvergirala, ali bi očekivanje $\mu
+\sqrt{n}$ divergiralo.  Međutim, uprkos ovih problema, često se susreću
+formulacije  sekvencu $S_n$ na prethodno navedene načine, no takve formulacije
+su manje precizne. \\
+%TODO Provjeriti ovo predzadnje
+
+Centralni granični teorem ima nekoliko interesantnih posljedica koje su
+objašnjene u nastavku.
 
 \setcounter{corollary}{0}
 \begin{corollary}
@@ -175,8 +190,8 @@ raspodjela neće težiti ka istoj raspodjeli.
 
 \end{corollary}
 
-Ovakva interpretacija teorema se manje odupire intuiciji nego sama formulacija
-teorema.
+Ovakva interpretacija teorema je jednostavnija i intuitivnija nego sama
+formulacija teorema koja je data iznad.
 
 %TODO ref to eqn
 
@@ -184,31 +199,31 @@ teorema.
 
 \begin{corollary}
   Konvolucijom pozitivne funkcije sa samom sobom mnogo puta dobiva se približno
-  Gauss-ova funkcija.
+  Gaussova funkcija.
 \end{corollary}
 
 Ovo je već ilustrovano u primjeru \ref{ex:novcic}, mada je tamo bila razmatrana
 raspodjela u diskretnom slučaju koja je dosta regularna i simetrična. U nastavku
 će isti princip biti prikazan na nekoliko različitih kontinualnih funkcija. Neka
-je $f(x)$ neka nenegativna funkcija, i neka je:
+je $f(x)$ neka nenegativna funkcija dovoljno "lijepih" osobina, i neka je:
 
 \begin{equation}
   g_n(x) = f^{*n}(x) := \underbrace{f*f\cdots*f}_{n\text{ puta}}\ (x)
 \end{equation}
 
-Također, neka je $\widetilde{g}_n(x)$ aproksimacija funkcije $g_n(x)$ Gauss-ovom
+Također, neka je $\widetilde{g}_n(x)$ aproksimacija funkcije $g_n(x)$ Gaussovom
 funkcijom.
 
 Na slici \ref{fig:convolution} su prikazane tri funkcije: četvrtka, zašumljena
 četvrtka i neka treća funkcija, zajedno sa odgovarajućim funkcijama $g_n(x)$ za
 dvije različite vrijednosti broja $n$ za svaku od te tri funkcije. Za slučaj
 četvrtke (slike \ref{fig:rect} - \ref{fig:rect2}), vidi se da funkcionalni niz
-$g_n(x)$ jako brzo konvergira ka Gauss-ovoj funkciji. Već za $n=1$ aproksimacija
-je dosta dobra, dok za $n=2$ funkcija $g_n(x)$ jako liči na Gauss-ovu. Ponašanje
+$g_n(x)$ jako brzo konvergira ka Gaussovoj funkciji. Već za $n=1$ aproksimacija
+je dosta dobra, dok za $n=2$ funkcija $g_n(x)$ jako liči na Gaussovu. Ponašanje
 zašumljene četvrtke (slike \ref{fig:noise} - \ref{fig:noise2}) se može opisati
 na sličan način. U slučaju treće funkcije (slike \ref{fig:exp} -
 \ref{fig:exp2}), konvergencija je dosta sporija. Na primjer za $n=1$, ne vidi se
-nikakva sličnost funkcije $g_n(x)$ sa Gauss-ovom.  Povećanjem broja $n$,
+nikakva sličnost funkcije $g_n(x)$ sa Gaussovom.  Povećanjem broja $n$,
 postepeno se uočava sličnost. Međutim, čak i za $n=9$ aproksimacija je lošija
 nego u slučaju četvrtke za $n=2$.
 %TODO praksa pokazuje za nesimetrične...
@@ -238,7 +253,7 @@ nego u slučaju četvrtke za $n=2$.
   \label{fig:convolution}
 \end{figure}
 
-\subsection{Dokaz centralnog graničnog teorema}
+\subsection{Dokaz centralnog graničnog teorema} \label{sec:dokaz-clt}
 
 U ovom poglavlju će biti ponuđen dokaz centralnog graničnog teorema. Za potrebe
 ovog dokaza potrebno je definirati pojam karakteristične funkcije.
@@ -246,7 +261,7 @@ ovog dokaza potrebno je definirati pojam karakteristične funkcije.
 \begin{definition}[Karakteristična funkcija]
   Neka je $X$ slučajna varijabla. Funkcija 
   \begin{equation}
-    \varphi_X(u) = E\left[e^{juX}\right]
+    \varphi_X(u) := E\left[e^{juX}\right]
     = \int_{-\infty}^{\infty} p_X(x) e^{jux} \ \mathrm dx
   \end{equation}
   se naziva karakterističnom funkcijom slučajne varijable $X$.
@@ -310,9 +325,9 @@ slučajne varijable imaju karakteristične funkcije:
 Pogodno je uvesti još jednu pomoćnu sekvencu $Z_{i,n} := Y_i/\sqrt{n}$. Na
 sličan način kao u \eqref{eq:phi_y} može se pokazati da je:
 \begin{equation}
-  \varphi_{Z_{i,n}}(u) = \varphi_{Z,n}(u) := \varphi_Y\left(u\over\sqrt{n}\right)
+  \varphi_{Z_{i,n}}(u)
+  = \varphi_{Z,n}(u) := \varphi_Y\left(\frac{u}{\sqrt{n}}\right)
 \end{equation}
-
 
 Pod određenim uslovima koji ovdje neće biti navedeni, funkcija $\varphi_{Z,n}$
 se može aproksimirati Taylorovim razvojem:
@@ -359,7 +374,7 @@ U graničnom procesu:
     = e^{-\frac{u^2}{2}}
 \end{equation}
 Na osnovu \eqref{eq:char-norm}, raspodjela koja ima karakterističnu funkciju kao
-u \eqref{eq:clt-limit} je upravo normalna $\mathcal{N}(0,1)$. \blacksquare \\
+u \eqref{eq:clt-limit} je upravo normalna $\mathcal{N}(0,1)$. $\blacksquare$ \\
 
 Zanimljivo je razmotriti šta se dešava kada je sekvenca $S_n$ definirana kao
 srednja vrijednost uzorka iz \eqref{eq:sample-mean}. Ako se definira pomoćna
@@ -410,9 +425,11 @@ Ovaj zaključak se intuitivno podudara sa tvrđenjem zakona velikih brojeva.
 Naime, što je uzorak veći, srednja vrijednost uzorka se manje rasipa oko srednje
 vrijednosti probabilističkog modela. Za uzorak beskonačne veličine, srednja
 vrijednost uzorka se podudara sa matematičkim očekivanjem. \textbf{Drugim
-riječima, što je veći broj uzoraka, nesigurnost u tačnost očekivanja
-procijenjenog na osnovu tih uzoraka je manja.} %TODO
+riječima, što je veći uzorak, nesigurnost u tačnost očekivanja
+procijenjenog na osnovu tog uzorka je manja.} %TODO
 % ovo prebaciti u LLN?
 
 \subsection{Praktične primjene}
+
+\subsection{Generalizacije i srodne tvrdnje}
 
