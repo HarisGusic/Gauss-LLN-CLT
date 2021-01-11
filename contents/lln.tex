@@ -1,1 +1,38 @@
+Kao u slučaju determinističkih sekvenci, od interesa je posmatrati ponašanje
+slučajnih sekvenci (procesa) u beskonačnosti. Međutim, kod slučajnih sekvenci
+postoji više različitih pojmova konvergencije.
+
+\begin{definition}[Konvergencija svuda]
+  Za slučajnu sekvencu $\{X_n\}$ se kaže da konvergira svuda (sigurno) ka
+  slučajnoj varijabli $X$ ako je
+  \begin{equation}
+    \lim_{n\to\infty} X_n(\omega) = X(\omega)
+  \end{equation}
+  za svako $\omega \in \Omega$.
+\end{definition}
+
+\begin{definition}[Konvergencija skoro svuda]
+  Za slučajnu sekvencu $\{X_n\}$ se kaže da konvergira skoro svuda (skoro
+  sigurno) ka slučajnoj varijabli $X$ ako je
+  \begin{equation}
+    \lim_{n\to\infty} X_n(\omega) = X(\omega)
+  \end{equation}
+  za svako $\omega$ iz nekog skupa $\Lambda$ za koji vrijedi $P(\Lambda)=1$.
+\end{definition}
+
+\begin{definition}[Konvergencija po vjerovatnoći]
+  Za slučajnu sekvencu $\{X_n\}$ se kaže da konvergira po vjerovatnoći ka
+  slučajnoj varijabli $X$ ako za
+  svako fiksno $\varepsilon > 0$ vrijedi
+  \begin{equation}
+    \lim_{n\to\infty} P\left(|X_n - X| \le \varepsilon\right)
+  \end{equation}
+\end{definition}
+
+TODTOTOTOTOTOTOTOTOTOTODDDDDDDDDDO
+
+\begin{equation} \label{eq:sample-mean}
+  S_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+\end{equation}
+
 

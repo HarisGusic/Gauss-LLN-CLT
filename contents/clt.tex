@@ -144,40 +144,58 @@ TODO
 
 \subsection{Formulacija centralnog graničnog teorema}
 
-Postoje različite formulacije centralnog graničnog teorema (CLT), ovdje će biti
-data najjednostavnija.
-
+Postoje različite formulacije centralnog graničnog teorema (engl.
+\textit{central limit theorem} - CLT), ovdje će biti data jedna od
+najjednostavnijih, mada ne i najopćenitija.
+% TODO u uvodu dati prevod CLT
 \begin{theorem} \label{th:clt}
   Neka je $\{X_i, i=1,2,...\}$ sekvenca IID slučajnih varijabli sa
-  konačnom srednjom vrijednosti $\mu$ i konačnom varijansom $\sigma^2$. Tada
-  sekvenca $$S_n = \sum_{i=1}^{n} X_i$$ konvergira po distribuciji ka normalnoj
-  raspodjeli $\mathcal{N}(n\mu, n\sigma^2)$.
+  konačnim očekivanjem $\mu$ i konačnom varijansom $\sigma^2$. Tada
+  sekvenca
+  \begin{equation}
+    S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^{n} \frac{X_i-\mu}{\sigma}
+  \end{equation}
+  konvergira po distribuciji ka normalnoj raspodjeli $\mathcal{N}(0, 1)$.
 \end{theorem}
 
+Nažalost, način kako je definirana sekvenca $S_n$ nije najbolji oblik za
+intuitivno shvatanje teorema. Prirodnije bi bilo sekvencu $S_n$ definirati kao
+$S_n=\sum_{i=1}^{n} X_i$. Međutim, ukoliko se koristi takva definicija, nastaje
+problem u tome što takva sekvenca neće konvergirati po distribuciji. Raspodjela
+takve sekvence će sa povećanjem $n$ bolje i bolje aproksimirati \textbf{neku}
+Gauss-ovu raspodjelu $\mathcal{N}(n\mu,n\sigma^2)$, ali očigledno ovakva sekvenca
+raspodjela neće težiti ka istoj raspodjeli.
+
+\setcounter{corollary}{0}
+\begin{corollary}
+
+  Suma velikog broja IID slučajnih varijabli sa očekivanjem $\mu$ i varijansom
+  $\sigma^2$ imati raspodjelu koja aproksimira $\mathcal{N}(n\mu, n\sigma^2)$,
+  nezavisno od raspodjele varijabli koje učestvuju u sumi. 
+
+\end{corollary}
+
+Ovakva interpretacija teorema se manje odupire intuiciji nego sama formulacija
+teorema.
+
+%TODO ref to eqn
+
 %TODO teorem ne pomaže intuiciji
-Teorem \ref{th:clt} govori da će suma velikog broja IID slučajnih varijabli
-imati približno normalnu raspodjelu, nezavisno od raspodjele varijabli koje
-učestvuju u sumi.
-
-Često se u literaturi prethodni teorem formuliše tako što se sekvenca $S_n$
-normalizuje na sljedeći način:
-
-$$S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^{n} \frac{X_i-\mu}{\sigma}$$
-čime je obezbijeđeno $E[S_n] = 0$, $Var[S_n] = 1$, pa će konvergencija biti
-ka \textit{standardnoj normalnoj raspodjeli} $\mathcal{N}(0,1)$.
-Međutim, ovakva formulacija je ekvivalentna prethodnoj.
 
 \begin{corollary}
   Konvolucijom pozitivne funkcije sa samom sobom mnogo puta dobiva se približno
   Gauss-ova funkcija.
 \end{corollary}
+
 Ovo je već ilustrovano u primjeru \ref{ex:novcic}, mada je tamo bila razmatrana
-raspodjela koja je dosta regularna i simetrična. U nastavku će isti princip biti
-prikazan na nekoliko različitih kontinualnih funkcija. Neka je $f(x)$ neka
-nenegativna funkcija, i neka je:
+raspodjela u diskretnom slučaju koja je dosta regularna i simetrična. U nastavku
+će isti princip biti prikazan na nekoliko različitih kontinualnih funkcija. Neka
+je $f(x)$ neka nenegativna funkcija, i neka je:
+
 \begin{equation}
   g_n(x) = f^{*n}(x) := \underbrace{f*f\cdots*f}_{n\text{ puta}}\ (x)
 \end{equation}
+
 Također, neka je $\widetilde{g}_n(x)$ aproksimacija funkcije $g_n(x)$ Gauss-ovom
 funkcijom.
 
@@ -238,12 +256,48 @@ Iz definicije se odmah vidi da je karakteristična funkcija
 $\varphi_X(u)$\footnote{U literaturi se koriste još i oznake $M_X$ i $\Phi_X$}
 jednaka Fourierovoj transformaciji funkcije $p_X(x)$.
 
+\begin{property}
+  Ako su $X_i$, $i=1,2,...,n$ nezavisne slučajne varijable i
+  $S=X_1+X_2+\cdots+X_n$ njihova suma, onda vrijedi:
+  \begin{equation}
+    \varphi_S(u) = \prod_{i=1}^{n} \varphi_{X_i}(u)
+  \end{equation}
+  Specijalno, ako se radi o IID varijablama, onda je
+  \begin{equation} \label{eq:char-power}
+    \varphi_S(u) = [\varphi_X(u)]^n
+  \end{equation}
+\end{property}
+
+Dokaz:
+
+\begin{align}
+  \varphi_S(u) = E\left[e^{ju(X_1+\cdots+X_n)}\right]
+  &= \idotsint\limits_{\mathbb{R}^n}
+    p_{X_1,...,X_n}(x_1,...,x_n) e^{ju(X_1+\cdots+X_n)} \ \text d\bm x \nonumber \\
+  &= \int_{-\infty}^{\infty} p_{X_1}(x_1)e^{juX_1}\ \mathrm dx_1 \cdots
+    \int_{-\infty}^{\infty} p_{X_n}(x_n)e^{juX_n}\ \mathrm dx_n
+\end{align}
+
+\begin{property}[Normalna raspodjela]
+  Slučajna varijabla iz normalne raspodjele $X \sim \mathcal{N}(\mu, \sigma^2)$
+  ima karakterističnu funkciju: %TODO footnote UPUTA?
+  \begin{equation} \label{eq:char-norm}
+    \varphi_X(u) = e^{j\mu u} e^{-\frac{u^2}{2\sigma^2}}
+  \end{equation}
+\end{property}
+
+Nakon što su uvedene potrebne definicije i osobine, slijedi dokaz centralnog
+graničnog teorema, koji nije potpuno matematski strog, jer su neki detalji
+izostavljeni radi jednostavnijeg razumijevanja. \\
+
+\subsection*{Dokaz CLT}
+
 Neka je $\{X_i, i=1,2,...\}$ sekvenca IID slučajnih varijabli sa očekivanjem
 $\mu$ i standardnom devijacijom $\sigma$ i neka je
 \begin{equation}
   S_n := \frac{1}{\sqrt{n}} \sum_{i=1}^{n} \frac{X_i-\mu}{\sigma}
 \end{equation}
-Neka se definira pomoćna sekvenca $Y_i = \frac{X_i-\mu}{\sigma}$, za koju
+Neka se definira pomoćna sekvenca $Y_i := \frac{X_i-\mu}{\sigma}$, za koju
 očigledno vrijedi $E[Y_i] = 0$, $\text{Var}[Y_i] = 1$. Ako slučajne varijable
 $X_i$ imaju karakteristične funkcije $\varphi_{X_i}(u) = \varphi_X(u)$, onda
 slučajne varijable imaju karakteristične funkcije:
@@ -253,51 +307,112 @@ slučajne varijable imaju karakteristične funkcije:
   = e^{-ju\frac{\mu}{\sigma}} \varphi_X\left(\frac{u}{\sigma}\right)
   = \varphi_Y(u)
 \end{equation}
-Pogodno je uvesti još jednu pomoćnu sekvencu $Z_i = Y_i/\sqrt{n}$. Na sličan
-način kao u \eqref{eq:phi_y} može se pokazati da je $\varphi_{Z_i}(u) =
-\varphi_Z(u) = \varphi_Y(u/\sqrt{n})$.
+Pogodno je uvesti još jednu pomoćnu sekvencu $Z_{i,n} := Y_i/\sqrt{n}$. Na
+sličan način kao u \eqref{eq:phi_y} može se pokazati da je:
+\begin{equation}
+  \varphi_{Z_{i,n}}(u) = \varphi_{Z,n}(u) := \varphi_Y\left(u\over\sqrt{n}\right)
+\end{equation}
 
-Pod određenim uslovima koji ovdje neće biti navedeni, funkcija $\varphi_Z$ se
-može aproksimirati Taylorovim razvojem:
+
+Pod određenim uslovima koji ovdje neće biti navedeni, funkcija $\varphi_{Z,n}$
+se može aproksimirati Taylorovim razvojem:
 \begin{equation} \label{eq:taylor}
-  \varphi_Z(u) = \varphi_Y\left(\frac{u}{\sqrt{n}}\right) 
+  \varphi_{Z,n}(u) = \varphi_Y\left(\frac{u}{\sqrt{n}}\right) 
   = \varphi_Y(0) + \varphi_Y^{'}(0)\frac{u}{\sqrt{n}}
   + \varphi_Y^{''}(0)\frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right),
     \text{ kad } n\to\infty
 \end{equation}
 
-Dalje, vrijedi:
+Dalje vrijedi:
 \begin{align*}
   \varphi_Y(0)
-    &= \left.\int_{-\infty}^{\infty} p_Y(y) e^{juy} \ \text dy\right|_{u=0}
-    = \int_{-\infty}^{\infty} p_Y(y) \ \text dy = 1 \\
+    &= \left.\int_{-\infty}^{\infty} p_{Y_i}(y) e^{juy} \ \text dy\right|_{u=0}
+    = \int_{-\infty}^{\infty} p_{Y_i}(y) \ \text dy = 1,\  \forall i \\
   \varphi_Y^{'}(0)
-    &= \left.\int_{-\infty}^{\infty} jyp_Y(y)e^{juy} \ \text dy \right|_{u=0}
-    = jE[Y] = 0 \\
+    &= \left.\int_{-\infty}^{\infty} jyp_{Y_i}(y)e^{juy} \ \text dy \right|_{u=0}
+    = jE[Y_i] = 0,\ \forall i \\
   \varphi_Y^{''}(0)
-    &= \left.-\int_{-\infty}^{\infty} y^2 p_Y(y)e^{juy} \ \text dy\right|_{u=0}
-    = -E[Y^2] = -1
+    &= \left.-\int_{-\infty}^{\infty} y^2 p_{Y_i}(y)e^{juy} \ \text dy\right|_{u=0}
+    = -E[Y_i^2] = -1,\ \forall i
 \end{align*}
 
 Formula \eqref{eq:taylor} sada postaje:
 \begin{equation}
-  \varphi_Z(u) = 1 - \frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right)
+  \varphi_{Z,n}(u) = 1 - \frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right)
 \end{equation}
 
 Pošto vrijedi:
 \begin{equation}
-  S_n = \sum_{i=1}^{n} Z_i
+  S_n = \sum_{i=1}^{n} Z_{i,n}
 \end{equation}
-na osnovu osobine TODO ova sekvenca će imati karakterističnu funkciju:
+na osnovu formule \eqref{eq:char-power} ova sekvenca će imati karakterističnu
+funkciju:
 \begin{equation}
-  \varphi_{S_n}(u) = \left[\varphi_Z(u)\right]^n
+  \varphi_{S_n}(u) = \left[\varphi_{Z,n}(u)\right]^n
 \end{equation}
 U graničnom procesu:
-\begin{equation}
+\begin{equation} \label{eq:clt-limit}
   \lim_{n\to\infty} \varphi_{S_n}(u)
-  = \lim_{n\to\infty} [\varphi_Z(u)]^n
+  = \lim_{n\to\infty} [\varphi_{Z,n}(u)]^n
   = \lim_{n\to\infty}
     \left(1 - \frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right)\right)^n
     = e^{-\frac{u^2}{2}}
 \end{equation}
+Na osnovu \eqref{eq:char-norm}, raspodjela koja ima karakterističnu funkciju kao
+u \eqref{eq:clt-limit} je upravo normalna $\mathcal{N}(0,1)$. \blacksquare \\
+
+Zanimljivo je razmotriti šta se dešava kada je sekvenca $S_n$ definirana kao
+srednja vrijednost uzorka iz \eqref{eq:sample-mean}. Ako se definira pomoćna
+sekvenca $W_i = \frac{X_i}{n}$, tada je
+
+\begin{equation}
+  S_n = \frac{1}{n}\sum_{i=1}^{\infty} X_i = \sum_{i=1}^{n} W_{i,n}
+\end{equation}
+
+Jednostavnim manipulacijama se dolazi do:
+\begin{equation}
+  W_{i,n} = \frac{X_i}{n} = \frac{\sigma \sqrt{n} Z_{i,n}+\mu}{n}
+  = \frac{\sigma}{\sqrt{n}} Z_{i,n} + \frac{\mu}{n}
+\end{equation}
+gdje su $Y_i$, $Z_{i,n}$ definirane na isti način kao u dokazu CLT.
+
+Primjenom definicije karakteristične funkcije se dobiva:
+\begin{equation}
+  \varphi_{W_{i,n}}(u) = \varphi_{W,n}(u)
+  = e^{j\frac{\mu}{n} u} \varphi_{Z,n}\left(\frac{\sigma u}{\sqrt{n}}\right)
+\end{equation}
+
+Dalje vrijedi:
+
+\begin{equation}
+  \varphi_{S_n}(u) = [\varphi_{W,n}(u)]^n
+  = e^{j\mu u} \left[\varphi_{Z,n}\left(\frac{\sigma u}{\sqrt{n}}\right)\right]^n
+\end{equation}
+
+Iskorištavanjem Taylorovog razvoja iz \eqref{eq:taylor}, dolazi se do:
+\begin{equation}
+  \lim_{n\to\infty}
+    \left[\varphi_{Z,n}\left(\frac{\sigma u}{\sqrt{n}}\right)\right]^n
+    = \lim_{n\to\infty} \left[1-\frac{\sigma^2u^2}{2n^2} +
+      o\left(\frac{\sigma^2u^2}{2n^2}\right)\right]^n
+    = 1
+\end{equation}
+Konačno,
+\begin{equation}
+  \lim_{n\to\infty} \varphi_{S_n}(u) = e^{ju\mu}
+\end{equation}
+Primjenom inverzne Fourierove transformacije se dobiva da je
+\begin{equation}
+  \lim_{n\to\infty} p_{S_n}(s) = \delta(s-\mu)
+\end{equation}
+
+Ovaj zaključak se intuitivno podudara sa tvrđenjem zakona velikih brojeva.
+Naime, što je uzorak veći, srednja vrijednost uzorka se manje rasipa oko srednje
+vrijednosti probabilističkog modela. Za uzorak beskonačne veličine, srednja
+vrijednost uzorka se podudara sa matematičkim očekivanjem. \textbf{Drugim
+riječima, što je veći broj uzoraka, nesigurnost u tačnost očekivanja
+procijenjenog na osnovu tih uzoraka je manja.} %TODO
+% ovo prebaciti u LLN?
+
+\subsection{Praktične primjene}
 
