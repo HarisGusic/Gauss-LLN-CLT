@@ -1,6 +1,18 @@
+\subsection{Konvergencija slučajnih sekvenci}
+
+Ako su $X_i$, $i=1,2,...$ slučajne varijable, onda se sa $\{X_n\}$ označava
+slučajna sekvenca (proces). Razlika između slučajne sekvence i determinističke
+sekvence jeste u tome što vrijednost sekvence zavisi od ishoda nekog
+eksperimenta.  Ako je $\Omega$ skup svih ishoda nekog eksperimenta, onda se
+slučajna sekvenca može zapisati kao $\{X_n(\omega)\}$, pri čemu $\omega \in
+\Omega$. Ovaj posljednji zapis će se često koristiti u ostatku poglavlja. Bitno
+je primijetiti da sekvenca $X_n$ predstavlja determinističku sekvencu za
+svaku konkretnu (poznatu) vrijednost $\omega$.
+
 Kao u slučaju determinističkih sekvenci, od interesa je posmatrati ponašanje
 slučajnih sekvenci (procesa) u beskonačnosti. Međutim, kod slučajnih sekvenci
-postoji više različitih pojmova konvergencije.
+postoji više različitih pojmova konvergencije. U ovom poglavlju će biti uvedene
+neke od njih. 
 
 \begin{definition}[Konvergencija svuda]
   Za slučajnu sekvencu $\{X_n\}$ se kaže da konvergira svuda (sigurno) ka
@@ -11,22 +23,93 @@ postoji više različitih pojmova konvergencije.
   za svako $\omega \in \Omega$.
 \end{definition}
 
+% Primjer TODO rm
+%\begin{exmp}
+%  Neka je data slučajna sekvenca $X_n(\omega) = \omega^n$, pri čemu je
+%  eksperiment opisan uniformnom funkcijom gustine raspodjele $p(\omega)$ na
+%  intervalu $[0, 0.5]$, koji se podudara sa skupom ishoda $\Omega$. Ispitati
+%  sigurnu konvergenciju sekvence $X_n$.
+%\end{exmp}
+
+%Jednostavno se zaključuje da je
+%\begin{equation}
+%  \lim_{n\to\infty} X_n(\omega)
+%  = \lim_{n\to\infty} \omega^n = 0,\ \forall \omega \in \Omega
+%\end{equation}
+
+%Dakle, sekvenca $X_n(\omega)$ konvergira svuda ka $X=0$. U ovom
+%primjeru sekvenca konvergira ka istom broju za svaku vrijednost $\omega$, tj.
+%nezavisno od ishoda eksperimenta.
+
+% Primjer
+\begin{exmp}
+  Neka je slučajna sekvenca $X_n(\omega) = \frac{\omega n}{n+1}$, $\omega \in
+  \Omega = \mathbb{R}$. Ispitati sigurnu konvergenciju.
+\end{exmp}
+
+Vrijedi
+\begin{equation}
+  \lim_{n\to\infty} X_n(\omega) = \omega \lim_{n\to\infty}\frac{n}{n+1} = \omega
+\end{equation}
+
+Dakle, sekvenca $X_n(\omega)$ konvergira svuda ka slučajnoj varijabli $X(\omega)
+= \omega$. U ovom primjeru slučajna sekvenca $X_n$ konvergira za svako $\omega$.
+Međutim granična vrijednost zavisi od $\omega$, tj. od ishoda eksperimenta, što
+je opisano slučajnom varijablom $X$.
+
+\begin{exmp} \label{ex:converge-surely}
+  Neka je $X_n(\omega) = \omega^n$, pri čemu je $\Omega= \mathbb{R}$ eksperiment
+  opisan uniformnom PDF:
+  $$p(\omega) = 1_{[0,1]}(\omega) = \begin{cases}
+      1, \omega \in [0,1]\ \\ 0,\ \text{\normalfont inače}
+    \end{cases}
+  $$
+  Ispitati sigurnu konvergenciju sekvence $X_n$.
+\end{exmp}
+Jasno je da sekvenca $\omega^n$ konvergira ka $X=0$ za $\omega \in [0,1)$, te ka
+$X=1$ za $\omega = 1$. Međutim, za sve ostale vrijednosti $\omega$, sekvenca
+divergira. Dakle, sekvenca $X_n$ ne konvergira svuda.\\
+
+Međutim, konvergencija svuda u praksi često nije potrebna. Na primjer, nije od
+velikog interesa da li sekvenca $X_n$ iz prethodnog primjera konvergirati za
+$\omega \in \mathbb{R}\setminus[0,1]$, jer je taj događaj nemoguć. Zato se uvodi
+pojam konvergencije skoro svuda.
+
 \begin{definition}[Konvergencija skoro svuda]
   Za slučajnu sekvencu $\{X_n\}$ se kaže da konvergira skoro svuda (skoro
-  sigurno) ka slučajnoj varijabli $X$ ako je
+  sigurno, ili sa vjerovatnoćom 1) ka slučajnoj varijabli $X$ ako je
   \begin{equation}
     \lim_{n\to\infty} X_n(\omega) = X(\omega)
   \end{equation}
-  za svako $\omega$ iz nekog skupa $\Lambda$ za koji vrijedi $P(\Lambda)=1$.
+  za svako $\omega$ iz nekog skupa $\Lambda$ za koji vrijedi
+  $\pr(\omega\in\Lambda)=1$.
 \end{definition}
+
+Sekvenca iz primjera \ref{ex:converge-surely} konvergira skoro sigurno jer
+sekvenca konvergira za $\forall \omega \in \Lambda = [0,1]$, pri čemu je
+$\pr(\omega \in [0,1]) = 1$.
 
 \begin{definition}[Konvergencija po vjerovatnoći]
   Za slučajnu sekvencu $\{X_n\}$ se kaže da konvergira po vjerovatnoći ka
-  slučajnoj varijabli $X$ ako za
-  svako fiksno $\varepsilon > 0$ vrijedi
+  slučajnoj varijabli $X$ ako za svako fiksno $\varepsilon > 0$ vrijedi
+  \footnote{
+    Ovaj uslov se često (ekvivalentno) navodi kao
+    $\lim_{n\to\infty} \pr(|X_n-X|>\varepsilon) = 0$
+  }
   \begin{equation}
-    \lim_{n\to\infty} P\left(|X_n - X| \le \varepsilon\right)
+    \lim_{n\to\infty} \pr\left(|X_n - X| \le \varepsilon\right) = 1
   \end{equation}
+\end{definition}
+
+U nastavku će sa $P_X(x)$ biti označena funkcija raspodjele
+vjerovatnoće slučajne varijable $X$.
+\begin{definition}[Konvergencija po distribuciji]
+  Za slučajnu sekvencu $\{X_n\}$ se kaže da konvergira po raspodjeli ka
+  slučajnoj varijabli $X$ ako je
+  \begin{equation}
+    \lim_{n\to\infty} P_{X_n}(x) = P_X(x)
+  \end{equation}
+  u svakoj tački $x$ u kojoj je funkcija $P_X$ neprekidna.
 \end{definition}
 
 TODTOTOTOTOTOTOTOTOTOTODDDDDDDDDDO
@@ -35,4 +118,5 @@ TODTOTOTOTOTOTOTOTOTOTODDDDDDDDDDO
   S_n = \frac{1}{n} \sum_{i=1}^{n} X_i
 \end{equation}
 
+\subsection{Generalizacije i srodne tvdnje}
 
