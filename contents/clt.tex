@@ -109,37 +109,11 @@ TODO
 
 \begin{figure}[H]
   \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{clt_binom_1.pdf}
-    \caption{$n=1$}
-    \label{fig:binom:a}
-  \end{subfigure}
-  \vspace{10pt}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{clt_binom_2.pdf}
-    \caption{$n=2$}
-    \label{fig:binom:b}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{clt_binom_3.pdf}
-    \caption{$n=3$}
-    \label{fig:binom:c}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{clt_binom_8.pdf}
-    \caption{$n=8$}
-    \label{fig:binom:d}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{clt_binom_50.pdf}
-    \caption{$n=50$}
-    \label{fig:binom:e}
-	\end{subfigure}
+    \fig{0.31}{clt_binom_1}{$n=1$}{fig:binom:a}
+    \fig{0.31}{clt_binom_2}{$n=2$}{fig:binom:b}
+    \fig{0.31}{clt_binom_3}{$n=3$}{fig:binom:c}
+    \fig{0.31}{clt_binom_8}{$n=8$}{fig:binom:d}
+    \fig{0.31}{clt_binom_50}{$n=50$}{fig:binom:e}
 	\caption{Binomna raspodjela i De Moivre-Laplace aproksimacija}
   \label{fig:binom}
 \end{figure}
@@ -210,9 +184,9 @@ je $f(x)$ neka nenegativna funkcija dovoljno "lijepih" osobina, i neka je:
 \begin{equation}
   g_n(x) = f^{*n}(x) := \underbrace{f*f\cdots*f}_{n\text{ puta}}\ (x)
 \end{equation}
-
+%
 Također, neka je $\widetilde{g}_n(x)$ aproksimacija funkcije $g_n(x)$ Gaussovom
-funkcijom.
+funkcijom. \\
 
 Na slici \ref{fig:convolution} su prikazane tri funkcije: četvrtka, zašumljena
 četvrtka i neka treća funkcija, zajedno sa odgovarajućim funkcijama $g_n(x)$ za
@@ -226,27 +200,26 @@ na sličan način. U slučaju treće funkcije (slike \ref{fig:exp} -
 nikakva sličnost funkcije $g_n(x)$ sa Gaussovom.  Povećanjem broja $n$,
 postepeno se uočava sličnost. Međutim, čak i za $n=9$ aproksimacija je lošija
 nego u slučaju četvrtke za $n=2$.
-%TODO praksa pokazuje za nesimetrične...
-
+%
 \begin{figure}[H]
   \centering
   \begin{tabularx}{\textwidth}{ccc}
     \begin{tabular}{c}
-      \fig{0.27}{clt_conv_rect}{Četvrtka}{fig:rect} \\[20pt]
-      \fig{0.27}{clt_conv_rect_1}{$n=1$}{fig:rect1} \\
-      \fig{0.27}{clt_conv_rect_2}{$n=2$}{fig:rect2}
+      \fig{0.265}{clt_conv_rect}{Četvrtka}{fig:rect} \\[20pt]
+      \fig{0.265}{clt_conv_rect_1}{$n=1$}{fig:rect1} \\
+      \fig{0.265}{clt_conv_rect_2}{$n=2$}{fig:rect2}
     \end{tabular}
     &
     \begin{tabular}{c}
-      \fig{0.27}{clt_conv_noise}{Zašumljena četvrtka}{fig:noise} \\[20pt]
-      \fig{0.27}{clt_conv_noise_1}{$n=1$}{fig:noise1} \\[20pt]
-      \fig{0.27}{clt_conv_noise_2}{$n=2$}{fig:noise2}
+      \fig{0.265}{clt_conv_noise}{Zašumljena četvrtka}{fig:noise} \\[20pt]
+      \fig{0.265}{clt_conv_noise_1}{$n=1$}{fig:noise1} \\[20pt]
+      \fig{0.265}{clt_conv_noise_2}{$n=2$}{fig:noise2}
     \end{tabular}
     &
     \begin{tabular}{c}
-      \fig{0.27}{clt_conv_exp}{Treća funkcija}{fig:exp} \\
-      \fig{0.27}{clt_conv_exp_1}{$n=1$}{fig:exp1} \\
-      \fig{0.27}{clt_conv_exp_2}{$n=9$}{fig:exp2}
+      \fig{0.265}{clt_conv_exp}{Treća funkcija}{fig:exp} \\
+      \fig{0.265}{clt_conv_exp_1}{$n=1$}{fig:exp1} \\
+      \fig{0.265}{clt_conv_exp_2}{$n=9$}{fig:exp2}
     \end{tabular}
   \end{tabularx}
 	\caption{Primjeri kontinualnih funkcija i njihovih konvolucija sa samim sobom}
@@ -286,7 +259,8 @@ jednaka Fourierovoj transformaciji funkcije $p_X(x)$.
 Dokaz:
 
 \begin{align}
-  \varphi_S(u) = E\left[e^{ju(X_1+\cdots+X_n)}\right]
+  \varphi_S(u)
+  &= E\left[e^{ju(X_1+\cdots+X_n)}\right] \\
   &= \idotsint\limits_{\mathbb{R}^n}
     p_{X_1,...,X_n}(x_1,...,x_n) e^{ju(X_1+\cdots+X_n)} \ \text d\bm x \nonumber \\
   &= \int_{-\infty}^{\infty} p_{X_1}(x_1)e^{juX_1}\ \mathrm dx_1 \cdots
@@ -421,12 +395,14 @@ Primjenom inverzne Fourierove transformacije se dobiva da je
   \lim_{n\to\infty} p_{S_n}(s) = \delta(s-\mu)
 \end{equation}
 
-Ovaj zaključak se intuitivno podudara sa tvrđenjem zakona velikih brojeva.
-Naime, što je uzorak veći, srednja vrijednost uzorka se manje rasipa oko srednje
-vrijednosti probabilističkog modela. Za uzorak beskonačne veličine, srednja
-vrijednost uzorka se podudara sa matematičkim očekivanjem. \textbf{Drugim
-riječima, što je veći uzorak, nesigurnost u tačnost očekivanja
-procijenjenog na osnovu tog uzorka je manja.} %TODO
+Ovo izvođenje se ne smije shvatiti kao matematski strogo. Uvedene su neke
+pretpostavke koje su matematski upitne, međutim dobiveni zaključak ima veliku
+ilustrativnu moć. Ovaj zaključak se intuitivno podudara sa tvrđenjem zakona
+velikih brojeva.  Naime, što je uzorak veći, srednja vrijednost uzorka se manje
+rasipa oko srednje vrijednosti probabilističkog modela. Za uzorak beskonačne
+veličine, srednja vrijednost uzorka se podudara sa matematičkim očekivanjem.
+\textbf{Drugim riječima, što je veći uzorak, nesigurnost u tačnost procijenjenog
+  očekivanja na osnovu tog uzorka je manja.} %TODO
 % ovo prebaciti u LLN?
 
 \subsection{Praktične primjene}
