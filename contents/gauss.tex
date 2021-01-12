@@ -1,29 +1,24 @@
 \newcommand*{\vecrow}[2]{\left[\begin{array}{cc}#1&#2\end{array}\right]}
 \newcommand*{\veccol}[2]{\left[\begin{array}{c}#1\\#2\end{array}\right]}
 
-U prirodi se najčešće susreće normalna raspodjela, koja je opisana funkcijom
-gustine raspodjele vjerovatnoće:
+Normalna (Gaussova) raspodjela je opisana funkcijom gustine raspodjele
+vjerovatnoće (PDF):
 
-$$p_X(x) = \mathcal{N}(\mu,\sigma^2)
-	= \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+\begin{equation} \label{eq:normal}
+  p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+
+Ako je slučajna varijabla opisana normalnom raspodjelom, kaže se da je normalno
+raspodijeljena i piše se $X \sim \mathcal{N}(\mu,\sigma^2)$. Ovakva slučajna
+varijabla ima očekivanu vrijednost $\mu$ i varijansu $\sigma^2$ (tj. standardnu
+devijaciju $\sigma$).\footnote{Očekivana vrijednost slijedi iz parnosti funkcije
+oko $x=\mu$, a varijansa se može odrediti primjenom parcijalne integracije.}
 
 \begin{figure}[h]
   \centering
-  \begin{subfigure}[b]{0.28\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{gauss_uni_std.pdf}
-    \caption{$\mu=0,\ \sigma^2=1$}
-  \end{subfigure}
-	\begin{subfigure}[b]{0.28\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{gauss_uni_deltamean.pdf}
-    \caption{$\mu=-2,\ \sigma^2=1$}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.28\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{img/gauss_uni_deltavar.pdf}
-    \caption{$\mu=-2,\ \sigma^2=4$}
-	\end{subfigure}
+  \fig{0.31}{gauss_uni_std}{$\mu=0,\ \sigma^2=1$}{}
+  \fig{0.31}{gauss_uni_deltamean}{$\mu=-2,\ \sigma^2=1$}{}
+  \fig{0.31}{gauss_uni_deltavar}{$\mu=-2,\ \sigma^2=4$}{}
 	\caption{Primjeri normalnih raspodjela sa različitim parametrima}
 \end{figure}
 
@@ -32,7 +27,7 @@ $$p_X(x) = \mathcal{N}(\mu,\sigma^2)
 Normalna raspodjela se može generalizirati i za vektore slučajnih varijabli.
 Za slučajni vektor $\bm X \in \mathbb{R}^k$ se kaže da je normalno
 raspodijeljen ako je njegova funkcija gustine raspodjele:
-
+%
 $$p_{\bm X}(\bm x) = \mathcal{N}(\bm\mu,\bm C_{\bm X\bm X}) =
 	\frac{1}{\sqrt{(2\pi)^k \det \bm C_{\bm X \bm X}}}
 	e^{
@@ -118,42 +113,12 @@ marginalne pdf koje su skalirane po visini radi jasnijeg prikaza.
 
 \begin{figure}[H]
   \centering
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{gauss_multi_std.pdf}
-		\caption{$\bm\mu=\bm 0,\ \bm C_{\bm X\bm X} = \bm I$}
-		\label{fig:gauss2a}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{img/gauss_multi_corr+.pdf}
-    \caption{$\rho = 0.6$}
-		\label{fig:gauss2b}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{img/gauss_multi_corr-.pdf}
-    \caption{$\rho = -0.6$}
-		\label{fig:gauss2c}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{img/gauss_multi_corr1.pdf}
-    \caption{$\sigma_1^2=1, \sigma_2^2=5, \rho \approx 1$}
-		\label{fig:gauss2e}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{gauss_multi_y.pdf}
-    \caption{$\sigma_1^2=1,\ \sigma_2^2=5, \rho=0$}
-		\label{fig:gauss2d}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-    \includegraphics[width=\textwidth]{gauss_multi_xcorr-.pdf}
-    \caption{$\sigma_1^2=4, \sigma_2^2=1, \rho=0.6$}
-		\label{fig:gauss2f}
-	\end{subfigure}
+  \fig{0.31}{gauss_multi_std}{$\bm\mu=\bm 0,\ \bm C_{\bm X\bm X} = \bm I$}{fig:gauss2a}
+  \fig{0.31}{gauss_multi_corr+}{$\rho = 0.6$}{fig:gauss2b}
+  \fig{0.31}{gauss_multi_corr-}{$\rho = -0.6$}{fig:gauss2c}
+  \fig{0.31}{gauss_multi_corr1}{$\sigma_1^2=1, \sigma_2^2=5, \rho \approx 1$}{fig:gauss2d}
+  \fig{0.31}{gauss_multi_y}{$\sigma_1^2=1,\ \sigma_2^2=5, \rho=0$}{fig:gauss2e}
+  \fig{0.31}{gauss_multi_xcorr-}{$\sigma_1^2=4, \sigma_2^2=1, \rho=0.6$}{fig:gauss2f}
 	\caption{Primjeri normalnih raspodjela sa različitim parametrima}
 	\label{fig:gauss2}
 \end{figure}

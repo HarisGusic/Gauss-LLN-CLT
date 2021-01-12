@@ -66,12 +66,13 @@ je opisano slučajnom varijablom $X$.
   $$
   Ispitati sigurnu konvergenciju sekvence $X_n$.
 \end{exmp}
+
 Jasno je da sekvenca $\omega^n$ konvergira ka $X=0$ za $\omega \in [0,1)$, te ka
 $X=1$ za $\omega = 1$. Međutim, za sve ostale vrijednosti $\omega$, sekvenca
 divergira. Dakle, sekvenca $X_n$ ne konvergira svuda.\\
 
 Međutim, konvergencija svuda u praksi često nije potrebna. Na primjer, nije od
-velikog interesa da li sekvenca $X_n$ iz prethodnog primjera konvergirati za
+velikog interesa da li će sekvenca $X_n$ iz prethodnog primjera konvergirati za
 $\omega \in \mathbb{R}\setminus[0,1]$, jer je taj događaj nemoguć. Zato se uvodi
 pojam konvergencije skoro svuda.
 
@@ -101,6 +102,15 @@ $\pr(\omega \in [0,1]) = 1$.
   \end{equation}
 \end{definition}
 
+Grubo rečeno, sekvenca koja konvergira po vjerovatnoći je takva da relativno
+veliki broj realizacija sekvence dovoljno dobro aproksimira slučajnu varijablu
+$X$ u beskonačnosti. Ekvivalentno, to znači da relativno mali broj realizacija
+nedovoljno dobro aproksimira slučajnu varijablu $X$ u beskonačnosti. Iz skoro
+sigurne konvergencije slijedi konvergencija po vjerovatnoći, dok obrat ne važi.
+Intuitivno, konvergencija po vjerovatnoći znači "Svaka realizacija
+vjerovatno konvergira", dok konvergencija skoro svuda znači "Vjerovatno je da
+svaka realizacija konvergira". \\
+
 U nastavku će sa $P_X(x)$ biti označena funkcija raspodjele
 vjerovatnoće slučajne varijable $X$.
 \begin{definition}[Konvergencija po distribuciji]
@@ -112,11 +122,32 @@ vjerovatnoće slučajne varijable $X$.
   u svakoj tački $x$ u kojoj je funkcija $P_X$ neprekidna.
 \end{definition}
 
-TODTOTOTOTOTOTOTOTOTOTODDDDDDDDDDO
+\begin{exmp}
+  Neka je $\{X_n\}$ slučajna sekvenca, pri čemu svaki $X_n$ ima raspodjelu
+  $\mathcal{N}(1/n, 1)$. Ispitati konvergenciju po distribuciji. TODO
+\end{exmp}
 
-\begin{equation} \label{eq:sample-mean}
-  S_n = \frac{1}{n} \sum_{i=1}^{n} X_i
-\end{equation}
+Prije nego što se formuliše zakon velikih brojeva, potrebno je definirati
+srednju vrijednost uzorka (engl. \textit{sample mean}).
+\begin{definition}[Srednja vrijednost uzorka]
+
+  Neka je $\{X_n\}$ slučajna sekvenca. Slučajna varijabla $S_n$
+  definirana kao 
+  \begin{equation} \label{eq:sample-mean}
+    S_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+  \end{equation}
+  se naziva srednja vrijednost uzorka.
+
+\end{definition}
+Od praktičnog interesa je odrediti ponašanje sekvence $\{S_n\}$ za velike
+vrijednosti $n$. Preciznije, od interesa su sljedeće osobine:
+Sljedeća pitanja su od praktičnog interesa:
+\begin{itemize}
+  \item Ponašanje empirijski dobivene srednje vrijednosti $S_n$, konvergencija i
+    na koji način konvergencija zavisi od sekvence $\{X_n\}$.
+  \item Statističke osobine malih varijacija sekvence $S_n$ oko srednje
+    vrijednosti.
+\end{itemize}
 
 \subsection{Generalizacije i srodne tvdnje}
 

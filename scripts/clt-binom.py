@@ -3,6 +3,7 @@
 from clt import *
 import os
 exec(open(os.path.dirname(__file__) + '/common_plot.py').read())
+rc('font', size=18)
 
 plt.figure()
 plot_binomial(1)
