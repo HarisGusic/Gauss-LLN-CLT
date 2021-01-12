@@ -24,7 +24,6 @@
   - Možda spomenuti Levy i druge CLT
   - Spomenuti osobinu razvoja karakteristične funkcije u Taylora oko nule
   - [[https://www.sciencedirect.com/topics/engineering/moving-average-filter][Primjene CLT u signal processingu]]
-  - [[https://books.google.co.uk/books?hl=hr&lr=&id=v7kTwafIiPsC&oi=fnd&pg=PR3&dq=central+limit+theorem&ots=q-nTqkBCa4&sig=gg-sEEb9GPJQ09f50T9uCbv4Hgk#v=onepage&q=central%20limit%20theorem&f=false][Historija CLT]]
   - [[https://projecteuclid.org/euclid.dmj/1077475030][CLT for dependent variables]]
   - Additional sources (CLT): [[https://rd.springer.com/article/10.1007/BF01240790][a]] [[https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php][b]] [[https://projecteuclid.org/euclid.dmj/1077475030][c]]
   - Law of large numbers and CLT connection: limit of gaussian to dirac delta (check)

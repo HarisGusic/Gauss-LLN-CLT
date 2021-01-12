@@ -1,6 +1,8 @@
 \newcommand*{\vecrow}[2]{\left[\begin{array}{cc}#1&#2\end{array}\right]}
 \newcommand*{\veccol}[2]{\left[\begin{array}{c}#1\\#2\end{array}\right]}
 
+\subsection{Funkcija gustine vjerovatnoće}
+
 Normalna (Gaussova) raspodjela je opisana funkcijom gustine raspodjele
 vjerovatnoće (PDF):
 
@@ -9,10 +11,11 @@ vjerovatnoće (PDF):
 \end{equation}
 
 Ako je slučajna varijabla opisana normalnom raspodjelom, kaže se da je normalno
-raspodijeljena i piše se $X \sim \mathcal{N}(\mu,\sigma^2)$. Ovakva slučajna
-varijabla ima očekivanu vrijednost $\mu$ i varijansu $\sigma^2$ (tj. standardnu
-devijaciju $\sigma$).\footnote{Očekivana vrijednost slijedi iz parnosti funkcije
-oko $x=\mu$, a varijansa se može odrediti primjenom parcijalne integracije.}
+raspodijeljena i piše se $X \sim \mathcal{N}(\mu,\sigma^2)$ Ovakva slučajna
+varijabla se često naziva Gauss-ovom. Gaussova slučajna varijabla ima očekivanu
+vrijednost $\mu$ i varijansu $\sigma^2$ (tj. standardnu devijaciju
+$\sigma$).\footnote{Očekivana vrijednost slijedi iz parnosti funkcije oko
+$x=\mu$, a varijansa se može odrediti primjenom parcijalne integracije.}
 
 \begin{figure}[h]
   \centering
@@ -22,19 +25,16 @@ oko $x=\mu$, a varijansa se može odrediti primjenom parcijalne integracije.}
 	\caption{Primjeri normalnih raspodjela sa različitim parametrima}
 \end{figure}
 
-\subsection{Multivarijabilna normalna raspodjela}
+\subsection{Multivarijabilna normalna raspodjela} \label{sec:gauss-multi}
 
-Normalna raspodjela se može generalizirati i za vektore slučajnih varijabli.
-Za slučajni vektor $\bm X \in \mathbb{R}^k$ se kaže da je normalno
-raspodijeljen ako je njegova funkcija gustine raspodjele:
+Normalna raspodjela se može generalizirati i za vektore slučajnih varijabli.  Za
+slučajni vektor $\bm X \in \mathbb{R}^k$ se kaže da je normalno raspodijeljen
+ako je njegova funkcija gustine raspodjele:
 %
-$$p_{\bm X}(\bm x) = \mathcal{N}(\bm\mu,\bm C_{\bm X\bm X}) =
-	\frac{1}{\sqrt{(2\pi)^k \det \bm C_{\bm X \bm X}}}
-	e^{
-		-\frac{1}{2}(\bm x - \bm\mu_{\bm X})^\text T
-		\bm C_{\bm X \bm X}^{-1}
-		(\bm x - \bm\mu_{\bm X})
- 	 }$$
+\begin{equation} p_{\bm X}(\bm x) = \mathcal{N}(\bm\mu,\bm C_{\bm X\bm X}) =
+\frac{1}{\sqrt{(2\pi)^k \det \bm C_{\bm X \bm X}}} e^{ -\frac{1}{2}(\bm x -
+\bm\mu_{\bm X})^\text T \bm C_{\bm X \bm X}^{-1} (\bm x - \bm\mu_{\bm X}) }
+\end{equation} Piše se $\bm X \sim \mathcal{N}(\bm\mu, \bm C_{\bm X\bm X})$.
 
 Jedini uslov koji se postavlja na parametre ove raspodjele jeste da matrica
 $\bm C_{\bm X\bm X}$ bude ispravna kovarijantna matrica, tj. da bude simetrična
