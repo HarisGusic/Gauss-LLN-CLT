@@ -231,6 +231,8 @@ nego u slučaju četvrtke za $n=2$.
 U ovom poglavlju će biti ponuđen dokaz centralnog graničnog teorema. Za potrebe
 ovog dokaza potrebno je definirati pojam karakteristične funkcije.
 
+\subsubsection{Pojam karakteristične funkcije}
+
 \begin{definition}[Karakteristična funkcija]
   Neka je $X$ slučajna varijabla. Funkcija 
   \begin{equation}
@@ -242,7 +244,10 @@ ovog dokaza potrebno je definirati pojam karakteristične funkcije.
 
 Iz definicije se odmah vidi da je karakteristična funkcija
 $\varphi_X(u)$\footnote{U literaturi se koriste još i oznake $M_X$ i $\Phi_X$}
-jednaka Fourierovoj transformaciji funkcije $p_X(x)$.
+jednaka Fourierovoj transformaciji funkcije $p_X(x)$.\footnote{ Ovakva
+  definicija se razlikuje od uobičajene definicije Fourierove transformacije u
+inženjerskim primjenama, gdje se varijabla transformacije uzima sa različitim
+predznakom.}
 
 \begin{property}
   Ako su $X_i$, $i=1,2,...,n$ nezavisne slučajne varijable i
@@ -268,18 +273,21 @@ Dokaz:
 \end{align}
 
 \begin{property}[Normalna raspodjela]
-  Slučajna varijabla iz normalne raspodjele $X \sim \mathcal{N}(\mu, \sigma^2)$
-  ima karakterističnu funkciju: %TODO footnote UPUTA?
+  Slučajna varijabla iz normalne raspodjele $\mathcal{N}(\mu, \sigma^2)$ ima
+  karakterističnu funkciju:
   \begin{equation} \label{eq:char-norm}
     \varphi_X(u) = e^{j\mu u} e^{-\frac{u^2}{2\sigma^2}}
   \end{equation}
 \end{property}
 
+Odavde se lako provjerava da će suma međusobno nezavisnih Gaussovih varijabli
+biti Gaussova, što je već pokazano u poglavlju \ref{sec:gauss-multi}. \\
+
 Nakon što su uvedene potrebne definicije i osobine, slijedi dokaz centralnog
 graničnog teorema, koji nije potpuno matematski strog, jer su neki detalji
 izostavljeni radi jednostavnijeg razumijevanja. \\
 
-\subsection*{Dokaz CLT}
+\subsubsection{Dokaz}
 
 Neka je $\{X_i, i=1,2,...\}$ sekvenca IID slučajnih varijabli sa očekivanjem
 $\mu$ i standardnom devijacijom $\sigma$ i neka je
@@ -350,34 +358,36 @@ U graničnom procesu:
 Na osnovu \eqref{eq:char-norm}, raspodjela koja ima karakterističnu funkciju kao
 u \eqref{eq:clt-limit} je upravo normalna $\mathcal{N}(0,1)$. $\blacksquare$ \\
 
+\subsection{Veza sa zakonom velikih brojeva} \label{sec:clt-lln}
+
 Zanimljivo je razmotriti šta se dešava kada je sekvenca $S_n$ definirana kao
-srednja vrijednost uzorka iz \eqref{eq:sample-mean}. Ako se definira pomoćna
-sekvenca $W_i = \frac{X_i}{n}$, tada je
+sekvenca srednjih vrijednosti uzoraka iz \eqref{eq:sample-mean}. Naime, ako se
+definira pomoćna sekvenca $W_i = \frac{X_i}{n}$, tada je
 
 \begin{equation}
   S_n = \frac{1}{n}\sum_{i=1}^{\infty} X_i = \sum_{i=1}^{n} W_{i,n}
 \end{equation}
-
+%
 Jednostavnim manipulacijama se dolazi do:
 \begin{equation}
   W_{i,n} = \frac{X_i}{n} = \frac{\sigma \sqrt{n} Z_{i,n}+\mu}{n}
   = \frac{\sigma}{\sqrt{n}} Z_{i,n} + \frac{\mu}{n}
 \end{equation}
 gdje su $Y_i$, $Z_{i,n}$ definirane na isti način kao u dokazu CLT.
-
+%
 Primjenom definicije karakteristične funkcije se dobiva:
 \begin{equation}
   \varphi_{W_{i,n}}(u) = \varphi_{W,n}(u)
   = e^{j\frac{\mu}{n} u} \varphi_{Z,n}\left(\frac{\sigma u}{\sqrt{n}}\right)
 \end{equation}
-
+%
 Dalje vrijedi:
 
 \begin{equation}
   \varphi_{S_n}(u) = [\varphi_{W,n}(u)]^n
   = e^{j\mu u} \left[\varphi_{Z,n}\left(\frac{\sigma u}{\sqrt{n}}\right)\right]^n
 \end{equation}
-
+%
 Iskorištavanjem Taylorovog razvoja iz \eqref{eq:taylor}, dolazi se do:
 \begin{equation}
   \lim_{n\to\infty}
@@ -390,20 +400,19 @@ Konačno,
 \begin{equation}
   \lim_{n\to\infty} \varphi_{S_n}(u) = e^{ju\mu}
 \end{equation}
-Primjenom inverzne Fourierove transformacije se dobiva da je
-\begin{equation}
-  \lim_{n\to\infty} p_{S_n}(s) = \delta(s-\mu)
-\end{equation}
+Inverzna Fourierova transformacija ove funkcije je $\delta(s-\mu)$. Intuitivno
+je da će se raspodjela sekvence srednjih vrijednosti uzoraka degenerisati u ovu
+funkciju. Prikaz ovoga je dat na slici \ref{fig:TODO}.
 
-Ovo izvođenje se ne smije shvatiti kao matematski strogo. Uvedene su neke
-pretpostavke koje su matematski upitne, međutim dobiveni zaključak ima veliku
-ilustrativnu moć. Ovaj zaključak se intuitivno podudara sa tvrđenjem zakona
-velikih brojeva.  Naime, što je uzorak veći, srednja vrijednost uzorka se manje
-rasipa oko srednje vrijednosti probabilističkog modela. Za uzorak beskonačne
-veličine, srednja vrijednost uzorka se podudara sa matematičkim očekivanjem.
-\textbf{Drugim riječima, što je veći uzorak, nesigurnost u tačnost procijenjenog
-  očekivanja na osnovu tog uzorka je manja.} %TODO
-% ovo prebaciti u LLN?
+Prethodno izvođenje se ne smije shvatiti kao matematski strogo, međutim dobiveni
+zaključak ima veliku ilustrativnu moć.\footnote{Matematski strog tretman se može
+pronaći u knjizi TODO A modern approach..., str. 273} Ovaj zaključak se intuitivno
+podudara sa tvrđenjem zakona velikih brojeva.  Naime, što je uzorak veći,
+srednja vrijednost uzorka se manje rasipa oko srednje vrijednosti
+probabilističkog modela. Za uzorak beskonačne veličine, srednja vrijednost
+uzorka se podudara sa matematičkim očekivanjem.  \textbf{Drugim riječima, što je
+veći uzorak, nesigurnost u tačnost procijenjenog očekivanja na osnovu tog uzorka
+je manja.} %TODO prebaciti u LLN?
 
 \subsection{Praktične primjene}
 

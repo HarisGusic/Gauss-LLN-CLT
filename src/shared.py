@@ -27,6 +27,13 @@ def gen_fun(tip='rect'):
         f = pad(concatenate((f, flip(f)/2)), (10,10))
     return f / sum(f)
 
+def sample_means(X_n):
+    N_realiz, N_sekv = X_n.shape
+    S_n = empty((N_realiz, N_sekv))
+    for j in range(0, N_sekv):
+        S_n[:,j] = sum(X_n[:, 0:j+1], axis=1) / (j+1)
+    return S_n
+
 def cov_elipsa(mean, cov, N=50):
     a = cov[0][0]; b = cov[0][1]; c = cov[1][1]
     A = (a+c) / 2

@@ -1,13 +1,14 @@
 \subsection{Konvergencija slučajnih sekvenci}
 
 Ako su $X_i$, $i=1,2,...$ slučajne varijable, onda se sa $\{X_n\}$ označava
-slučajna sekvenca (proces). Razlika između slučajne sekvence i determinističke
-sekvence jeste u tome što vrijednost sekvence zavisi od ishoda nekog
-eksperimenta.  Ako je $\Omega$ skup svih ishoda nekog eksperimenta, onda se
-slučajna sekvenca može zapisati kao $\{X_n(\omega)\}$, pri čemu $\omega \in
+\textit{slučajna sekvenca (proces)}. Razlika između slučajne sekvence i
+determinističke sekvence jeste u tome što vrijednost sekvence zavisi od ishoda
+nekog eksperimenta.  Ako je $\Omega$ skup svih ishoda nekog eksperimenta, onda
+se slučajna sekvenca može zapisati kao $\{X_n(\omega)\}$, pri čemu $\omega \in
 \Omega$. Ovaj posljednji zapis će se često koristiti u ostatku poglavlja. Bitno
-je primijetiti da sekvenca $X_n$ predstavlja determinističku sekvencu za
-svaku konkretnu (poznatu) vrijednost $\omega$.
+je primijetiti da sekvenca $X_n(\omega)$ za svaku konkretnu (poznatu) vrijednost
+$\omega$ predstavlja determinističku sekvencu, koja se naziva
+\textit{realizacija slučajne sekvence}.
 
 Kao u slučaju determinističkih sekvenci, od interesa je posmatrati ponašanje
 slučajnih sekvenci (procesa) u beskonačnosti. Međutim, kod slučajnih sekvenci
@@ -105,14 +106,18 @@ $\pr(\omega \in [0,1]) = 1$.
 Grubo rečeno, sekvenca koja konvergira po vjerovatnoći je takva da relativno
 veliki broj realizacija sekvence dovoljno dobro aproksimira slučajnu varijablu
 $X$ u beskonačnosti. Ekvivalentno, to znači da relativno mali broj realizacija
-nedovoljno dobro aproksimira slučajnu varijablu $X$ u beskonačnosti. Iz skoro
+nedovoljno dobro aproksimira slučajnu varijablu $X$ u beskonačnosti. Pojam
+\textit{dovoljno dobro} ovdje znači u odnosu na odabrano $\varepsilon$. Iz skoro
 sigurne konvergencije slijedi konvergencija po vjerovatnoći, dok obrat ne važi.
-Intuitivno, konvergencija po vjerovatnoći znači "Svaka realizacija
-vjerovatno konvergira", dok konvergencija skoro svuda znači "Vjerovatno je da
-svaka realizacija konvergira". \\
+Intuitivno, konvergencija po vjerovatnoći znači "Svaka realizacija vjerovatno
+konvergira", dok konvergencija skoro svuda znači "Praktično je sigurno da svaka
+realizacija konvergira". \\
 
-U nastavku će sa $P_X(x)$ biti označena funkcija raspodjele
-vjerovatnoće slučajne varijable $X$.
+Prethodne definicije su potrebne za formulaciju zakona velikih brojeva, dok će
+sljedeća definicija biti od koristi za centralni granični teorem.  U nastavku će
+sa $P_X(x)$ biti označena funkcija raspodjele vjerovatnoće slučajne varijable
+$X$.
+
 \begin{definition}[Konvergencija po distribuciji]
   Za slučajnu sekvencu $\{X_n\}$ se kaže da konvergira po raspodjeli ka
   slučajnoj varijabli $X$ ako je
@@ -122,13 +127,12 @@ vjerovatnoće slučajne varijable $X$.
   u svakoj tački $x$ u kojoj je funkcija $P_X$ neprekidna.
 \end{definition}
 
-\begin{exmp}
-  Neka je $\{X_n\}$ slučajna sekvenca, pri čemu svaki $X_n$ ima raspodjelu
-  $\mathcal{N}(1/n, 1)$. Ispitati konvergenciju po distribuciji. TODO
-\end{exmp}
+Korisno je istaknuti da su svi prethodni konvergencije navedeni od najstrožijeg
+ka najblažem.
 
-Prije nego što se formuliše zakon velikih brojeva, potrebno je definirati
-srednju vrijednost uzorka (engl. \textit{sample mean}).
+Prije nego što se formuliše zakon velikih brojeva, potrebno je
+definirati srednju vrijednost uzorka (engl. \textit{sample mean}).
+
 \begin{definition}[Srednja vrijednost uzorka]
 
   Neka je $\{X_n\}$ slučajna sekvenca. Slučajna varijabla $S_n$
@@ -136,18 +140,50 @@ srednju vrijednost uzorka (engl. \textit{sample mean}).
   \begin{equation} \label{eq:sample-mean}
     S_n = \frac{1}{n} \sum_{i=1}^{n} X_i
   \end{equation}
-  se naziva srednja vrijednost uzorka.
+  se naziva srednja vrijednost uzorka $X_1,X_2,...,X_n$.
 
 \end{definition}
-Od praktičnog interesa je odrediti ponašanje sekvence $\{S_n\}$ za velike
-vrijednosti $n$. Preciznije, od interesa su sljedeće osobine:
+%
 Sljedeća pitanja su od praktičnog interesa:
+
 \begin{itemize}
   \item Ponašanje empirijski dobivene srednje vrijednosti $S_n$, konvergencija i
     na koji način konvergencija zavisi od sekvence $\{X_n\}$.
   \item Statističke osobine malih varijacija sekvence $S_n$ oko srednje
-    vrijednosti.
+    vrijednosti.\footnote{Često su od interesa su i statističke osobine velikih
+    varijacija oko srednje vrijednosti, što neće biti razmatrano u ovom radu.}
 \end{itemize}
+
+Odgovor na prvo pitanje daju zakoni velikih brojeva, dok odgovor na drugo
+pitanje daje centralni granični teorem koji će biti obrađen u sljedećem
+poglavlju. U literaturi se najčešće susreću dva zakona velikih brojeva: slabi i
+jaki. Dodatno, oba zakona se susreću u više verzija. U nastavku će ovi zakoni
+biti formulisani način koji najbolje ilustruje razliku između njih.
+
+\begin{theorem}[Slabi zakon velikih brojeva]
+  Neka je $\{X_n\}$ sekvenca slučajnih varijabli sa očekivanjem $\mu$ i konačnom
+  i ograničenom varijansom $\sigma_n^2 \le \sigma^2 < \infty$ i neka je
+  $\{S_n\}$ sekvenca srednjih vrijednosti uzoraka . Tada za svako
+  $\varepsilon>0$
+  \begin{equation}
+    \lim_{n\to\infty} \pr(|S_n - \mu| \le \varepsilon) = 1
+  \end{equation}
+  Drugim riječima, sekvenca $\{S_n\}$ konvergira ka $\mu$ po vjerovatnoći.
+\end{theorem}
+Druga verzija ovog teorema koja se češće susreće u literaturi je manje općenita,
+a razlikuje se od prethodne u tome što se za $\{S_n\}$ pretpostavlja da je IID.
+Jedan heuristički dokaz ovog teorema će biti dat u poglavlju \ref{sec:clt-lln}.
+
+\begin{theorem}[Jaki zakon velikih brojeva]
+  Neka je $\{X_n\}$ sekvenca IID slučajnih varijabli sa očekivanjem $\mu$ i
+  konačnom varijansom. Tada sekvenca $\{S_n\}$ srednjih vrijednosti uzoraka
+  konvergira skoro sigurno ka $\mu$.
+\end{theorem}
+
+Postoji i uslov koji garantuje važenje ovog teorema i za sekvence koje nisu
+identično raspodijeljene, ali se ovdje neće razmatrati.
+
+Sada će prethodni koncepti biti ilustrirani kroz primjer.
 
 \subsection{Generalizacije i srodne tvdnje}
 
