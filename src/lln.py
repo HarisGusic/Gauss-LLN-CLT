@@ -41,16 +41,16 @@ def histogram(X, bins=10):
         k = int((X[i]-a)/dx)
         if k < len(hist):
             hist[k] += 1
-        else: # Uslijed numeričke nepreciznosti može biti van opsega
+        else: # Uslijed numericke nepreciznosti može biti van opsega
             hist[k-1] += 1
     return hist, linspace(a, b, bins), dx
 
-# N_sekv - veličina sekvence
+# N_sekv - velicina sekvence
 # N_realiz - broj realizacija koje se prikazuju
 def plot_lln(X_n, mean, plot_range=[-2, 2], colored=True):
     N_realiz, N_sekv = X_n.shape
 
-    # Računanje sekvence srednjih vrijednosti uzoraka
+    # Racunanje sekvence srednjih vrijednosti uzoraka
     S_n = sample_means(X_n)
     n = arange(1, N_sekv+1)
     n_multi = repeat(n.reshape(N_sekv, 1), N_realiz, axis=1)
@@ -59,12 +59,12 @@ def plot_lln(X_n, mean, plot_range=[-2, 2], colored=True):
     plt.ylim(mean * array([1, 1]) + plot_range)
     plt.plot(n_multi, S_n.T, c=None if colored else 'k')
     plt.plot([n[0], n[-1]], [mean, mean],
-             label='Očekivanje $\mu$', c='k' if colored else 'red')
+             label='Ocekivanje $\mu$', c='k' if colored else 'red')
     plt.legend(); plt.xlabel('$n$')
 
 def plot_hist(tip, N, bins=10):
     
-    # Generisanje slučajne varijable i histograma
+    # Generisanje slucajne varijable i histograma
     X = gen_rnd_sequence(N, 1, tip, 0, 1)[0]
     hist, x, dx = histogram(X, bins)
     
