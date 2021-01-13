@@ -6,7 +6,7 @@ razmatranje na tu temu.
 \subsection{Raspodjela sume slučajnih varijabli} \label{sec:clt-suma}
 
 Neka su $K$ i $L$ dvije diskretne slučajne varijable sa masenim funkcijama
-raspodjele (pmf) $p_K(k)$ i $p_L(l)$ respektivno. Neka je potrebno naći pmf
+raspodjele (PMF) $p_K(k)$ i $p_L(l)$ respektivno. Neka je potrebno naći PMF
 $p_M(m)$ slučajne varijable $M=K+L$.
 %
 \begin{align*}
@@ -21,8 +21,8 @@ p_K(k)p_L(l)$, te se prethodni izraz može dodatno pojednostaviti:
   p_M(m) = \sum_{k=-\infty}^{\infty} p_K(k)p_L(m-k) = p_K * p_L (m)
 \end{align*}
 
-Dakle, suma nezavisnih diskretnih slučajnih varijabli će imati pmf koja je
-jednaka diskretnoj konvoluciji pmf tih varijabli. Sličan zaključak vrijedi i za
+Dakle, suma nezavisnih diskretnih slučajnih varijabli će imati PMF koja je
+jednaka diskretnoj konvoluciji PMF tih varijabli. Sličan zaključak vrijedi i za
 slučaj kontinualnih varijabli.
 
 \begin{theorem} %TODO da li ga nazvati teoremom?
@@ -51,7 +51,7 @@ kao:
 $$K = \sum_{i=1}^{n} X_i$$
 \\
 
-Pošto su slučajne varijable $X_i$ IID, pmf od $K$ se dobija konvolucijom:
+Pošto su slučajne varijable $X_i$ IID, PMF od $K$ se dobija konvolucijom:
 $$p_K(k) = \underbrace{p_X * p_X * \cdots * p_X}_{n\text{ puta}}(k)$$
 
 Jednostavan način da se odredi ova konvolucija jeste korištenjem
@@ -71,33 +71,33 @@ Direktnom primjenom inverzne $ \mathcal{Z}$ transformacije se dobiva:
 \end{equation}
 
 Radi jednostavnosti, u nastavku će biti pretpostavljeno da je novčić pravedan,
-tj. $p=q=1/2$, pa će odgovarajuća pmf biti:
-\begin{equation} \label{eq:binom-pmf}
+tj. $p=q=1/2$, pa će odgovarajuća PMF biti:
+\begin{equation} \label{eq:binom-PMF}
   p_K(k) = \frac{1}{2^n} \binom{n}{k}
 \end{equation}
 
-Na slikama \ref{fig:binom} je prikazan izgled pmf iz \eqref{eq:binom-pmf} za
-razne vrijednosti $n$.  Na slici \ref{fig:binom:a} je prikazana pmf $p_K(k)$, za
-jedno bacanje, koja se naravno podudara sa $p_X(k)$. Postoje dva moguća ishoda,
-sa jednakom vjerovatnoćom koja iznosi 0.5. Ako se novčić baci drugi put (slika
-\ref{fig:binom:b}), mogući ishodi za $K$ su $0, 1, 2$, pri čemu je ishod $1$
-dvostruko vjerovatniji od ostalih, jer se može dobiti na dva načina
+Na slikama \ref{fig:binom} je prikazan izgled PMF iz \eqref{eq:binom-PMF} za
+razne vrijednosti $n$.  Na slici \ref{fig:binom:a} je prikazana PMF $p_K(k)$, za
+jedno bacanje, koja se naravno podudara sa $p_X(k)$. Ovdje postoje dva moguća
+ishoda, sa jednakom vjerovatnoćom koja iznosi 0.5. Ako se novčić baci drugi put
+(slika \ref{fig:binom:b}), mogući ishodi za $K$ su $0, 1, 2$, pri čemu je ishod
+$1$ dvostruko vjerovatniji od ostalih, jer se može dobiti na dva načina
 ($1=0+1=1+0$), dok se ostali mogu dobiti na samo jedan način ($0=0+0$, $2=1+1$).
 Ako se novčić baci treći put (slika \ref{fig:binom:c}), mogući ishodi su
 $0,1,2,3$, pri čemu vrijednosti 1 i 2 imaju najveću vjerovatnoću. Na slikama
-\ref{fig:binom:d} i \ref{fig:binom:e} su prikazane pmf za $n=8$ i $n=50$
-respektivno. Već na slici \ref{fig:binom:d} se može primijetiti da je pmf
+\ref{fig:binom:d} i \ref{fig:binom:e} su prikazane PMF za $n=8$ i $n=50$
+respektivno. Već na slici \ref{fig:binom:d} se može primijetiti da je PMF
 skoncentrisana oko sredine intervala, dok se na slici \ref{fig:binom:e} vidi da
-pmf aproksimira Gaussovu funkciju. Ova pojava se može formalno iskazati
+PMF aproksimira Gaussovu funkciju. Ova pojava se može formalno iskazati
 \textit{De Moivre-Laplace}-ovim teoremom koji tvrdi da je:
 
 \begin{equation}
-  \left(\frac{n}{k}\right) p^kq^{n-k} \simeq \frac{1}{\sqrt{2\pi npq}}
+  \binom{n}{k}p^kq^{n-k} \simeq \frac{1}{\sqrt{2\pi npq}}
   e^{-\frac{(k-np)^2}{2npq}}
 \end{equation}
 Dakle, binomna raspodjela aproksimira Gaussovu funkciju za veliko $n$.
 Prethodni primjer je dosta regularan zbog činjenice da je novčić pravedan, pa su
-sve pmf simetrične oko neke centralne tačke. U nastavku su navedeni neki bitni
+sve PMF simetrične oko neke centralne tačke. U nastavku su navedeni neki bitni
 zaključci, koji vrijede u općem slučaju. Ovi zaključci direktno slijede iz
 osobina konvolucije, a također su i dosta intuitivni.
 TODO
@@ -399,7 +399,17 @@ Konačno,
 \end{equation}
 Inverzna Fourierova transformacija ove funkcije je $\delta(s-\mu)$. Intuitivno
 je da će se raspodjela sekvence srednjih vrijednosti uzoraka degenerisati u ovu
-funkciju. Prikaz ovoga je dat na slici \ref{fig:TODO}.
+funkciju. Prikaz ovoga je dat na slici \ref{fig:clt-degen}. Pri tome je sa
+$\widetilde{p_{S_n}}(x)$ označena aproksimacija raspodjele sekvence $S_n$
+normalnom raspodjelom. Sekvenca $X_n$ nad kojom je definirana sekvenca $S_n$ ima
+standardnu normalnu raspodjelu.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{clt_degen}
+	\caption{Degeneracija normalne raspodjele za veliko $n$}
+  \label{fig:clt-degen}
+\end{figure}
 
 Prethodno izvođenje se ne smije shvatiti kao matematski strogo, međutim dobiveni
 zaključak ima veliku ilustrativnu moć.\footnote{Matematski strog tretman se može
@@ -409,9 +419,8 @@ srednja vrijednost uzorka se manje rasipa oko srednje vrijednosti
 probabilističkog modela. Za uzorak beskonačne veličine, srednja vrijednost
 uzorka se podudara sa matematičkim očekivanjem.  \textbf{Drugim riječima, što je
 veći uzorak, nesigurnost u tačnost procijenjenog očekivanja na osnovu tog uzorka
-je manja.} %TODO prebaciti u LLN?
+je manja.}
 
-\subsection{Praktične primjene}
 
 \subsection{Generalizacije i srodne tvrdnje}
 

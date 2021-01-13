@@ -46,3 +46,14 @@ def plot_convolution(f, n):
     plt.yticks([], [])
     plt.xlabel('$x$'); plt.ylabel('$g(x)$'); plt.legend()
     
+def plot_degenerate(n_seq):
+    x = linspace(-2.5, 2.5, 100)
+    
+    for i in n_seq:
+        y = stats.norm.pdf(x, 0, 1/sqrt(i))
+        plt.plot(x, y, label='$n=' + str(i) + '$')
+        
+    # Anotacija i estetika
+    plt.legend()
+    plt.xlabel('$x$')
+    plt.ylabel('$\widetilde{p_{S_n}}(x)$'); plt.yticks([], [])

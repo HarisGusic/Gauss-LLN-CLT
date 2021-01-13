@@ -4,13 +4,18 @@ import scipy
 import scipy.stats as stats
 
 def gaussian(x, mean=0.0, var=1.0):
-    return sqrt(exp(-(x-mean)**2 / var) / (2*pi*var))
+    return stats.norm.pdf(x, mean, sqrt(var))
+
+def erf(x, mean=0.0, var=1.0):
+    return stats.norm.cdf(x, mean, sqrt(var))
 
 import scipy.optimize as opt
 def approx_gaussian(x, f):
     # Nalaženje optimalnih parametara
     fun = lambda x, a, m, std: a * stats.norm.pdf(x, m, std)
-    popt, pcov = opt.curve_fit(fun, x, f)
+    try:
+        popt, pcov = opt.curve_fit(fun, x, f)
+    except: raise Exception('Numerički problem aproksimacije normalnom funkcijom')
     
     # Alternativni metod, ako prethodni zakaže
     if np.max(pcov) > 0.1: 
@@ -26,13 +31,6 @@ def multivariate_gaussian(x, mean, cov):
     x = array(x); mean = array(mean); cov = array(cov)
     k = x.shape[0] # Broj varijabli
     n = x.shape[1] # Broj ulaznih koordinata
-    
-    # Provjera ulaznih parametara
-    #if len(x.shape) != 1:
-        #raise Exception('Neispravan vektor ulaznih promjenljivih x');
-    #if shape(cov)[0] != shape(cov)[1] or any(cov != cov.T) or any(linalg.eig(cov) < 0):
-        #raise Exception('Neispravna kovarijantna matrica')
-    #TODO provjere
     
     inv_cov = matrix(linalg.inv(cov))
     inv_det = linalg.det(inv_cov)
@@ -105,10 +103,6 @@ def plot_multivariate_gaussian(mean, cov, N=100):
     
     # Srednja vrijednost
     ax.scatter(mean[0], mean[1], c='k', label='Očekivanje')
-    
-    # Elipsa kovarijanse
-    elipsa = cov_elipsa(mean, cov)
-    ax.plot(elipsa[0], elipsa[1], label='Elipsa kovarijanse')
-    plt.xlabel('$x_1$'); plt.ylabel('$x_2$', rotation=0);
+
     plt.legend(bbox_to_anchor=(1.02,1.02), loc='upper right')
 

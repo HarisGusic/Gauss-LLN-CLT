@@ -1,21 +1,28 @@
 \newcommand*{\vecrow}[2]{\left[\begin{array}{cc}#1&#2\end{array}\right]}
 \newcommand*{\veccol}[2]{\left[\begin{array}{c}#1\\#2\end{array}\right]}
 
+U ovom poglavlju će biti obrađena normalna raspodjela, koja je važna zato što se
+u praksi jako često susreće.
+
 \subsection{Funkcija gustine vjerovatnoće}
 
-Normalna (Gaussova) raspodjela je opisana funkcijom gustine raspodjele
-vjerovatnoće (PDF):
+\begin{definition}
+  Za slučajnu varijablu $X$ se kaže da je normalno raspodijeljena ako ima
+  funkciju gustine vjerovatnoće (PDF):
+  \begin{equation} \label{eq:normal}
+    p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+  \end{equation}
+  Piše se $X \sim \mathcal{N}(\mu,\sigma^2)$.
+\end{definition}
 
-\begin{equation} \label{eq:normal}
-  p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
-\end{equation}
-
-Ako je slučajna varijabla opisana normalnom raspodjelom, kaže se da je normalno
-raspodijeljena i piše se $X \sim \mathcal{N}(\mu,\sigma^2)$ Ovakva slučajna
-varijabla se često naziva Gaussovom. Gaussova slučajna varijabla ima očekivanu
-vrijednost $\mu$ i varijansu $\sigma^2$ (tj. standardnu devijaciju
-$\sigma$).\footnote{Očekivana vrijednost slijedi iz parnosti funkcije oko
-$x=\mu$, a varijansa se može odrediti primjenom parcijalne integracije.}
+Ovakva slučajna varijabla se naziva još i \textit{Gaussova}. Lako se pokazuje da
+ovako definirana Gaussova slučajna varijabla ima očekivanu vrijednost $\mu$ i
+varijansu $\sigma^2$ (tj. standardnu devijaciju $\sigma$).\footnote{Očekivana
+  vrijednost slijedi iz parnosti funkcije oko $x=\mu$, a varijansa se može
+odrediti primjenom parcijalne integracije.} Ako je $\mu=0$ i $\sigma^2=1$, takva
+raspodjela se zove \textit{standardna} normalna raspodjela. Na slici
+\ref{fig:gauss-uni} je prikazan izgled normalnih raspodjela za nekoliko
+vrijednosti parametara $\mu$ i $\sigma^2$.
 
 \begin{figure}[h]
   \centering
@@ -23,22 +30,54 @@ $x=\mu$, a varijansa se može odrediti primjenom parcijalne integracije.}
   \fig{0.31}{gauss_uni_deltamean}{$\mu=-2,\ \sigma^2=1$}{}
   \fig{0.31}{gauss_uni_deltavar}{$\mu=-2,\ \sigma^2=4$}{}
 	\caption{Primjeri normalnih raspodjela sa različitim parametrima}
+  \label{fig:gauss-uni}
 \end{figure}
+
+\subsection{Funkcija raspodjele vjerovatnoće}
+
+Funkcija raspodjele vjerovatnoće (\textit{CDF}) za slučajnu varijablu $X \sim
+\mathcal{N}(0, 1)$ je data kao:
+
+\begin{equation} \label{eq:gauss-cdf-std}
+  P_X(x) = \Phi(x)
+  = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{x^2}{2}} \ \mathrm dx
+\end{equation}
+
+Za integral u prethodnoj relaciji ne postoji zatvoren oblik, pa se iz tog
+razloga CDF izražava preko nekih standardnih funkcija. Jedna takva funkcija je
+upravo $\Phi$-funkcija definirana iznad.\footnote{Koriste se još i
+  \textit{funkcija greške} $\mathrm{erf}(x)$ i $Q$-funkcija čije definicije se
+  neznatno razlikuju.} Izražena preko ove funkcije, CDF slučajne varijable $X
+  \sim \mathcal{N}(\mu, \sigma^2)$ postaje: \footnote{Ovo se jednostavno može
+    dobiti odgovarajućom smjenom u integralu iz \ref{eq:gauss-cdf-std}.}
+
+\begin{equation}
+  P_X(x) = \Phi\left(\frac{x-\mu}{\sigma}\right)
+\end{equation}
 
 \subsection{Multivarijabilna normalna raspodjela} \label{sec:gauss-multi}
 
-Normalna raspodjela se može generalizirati i za vektore slučajnih varijabli.  Za
-slučajni vektor $\bm X \in \mathbb{R}^k$ se kaže da je normalno raspodijeljen
-ako je njegova funkcija gustine raspodjele:
-%
-\begin{equation} p_{\bm X}(\bm x) = \mathcal{N}(\bm\mu,\bm C_{\bm X\bm X}) =
-\frac{1}{\sqrt{(2\pi)^k \det \bm C_{\bm X \bm X}}} e^{ -\frac{1}{2}(\bm x -
-\bm\mu_{\bm X})^\text T \bm C_{\bm X \bm X}^{-1} (\bm x - \bm\mu_{\bm X}) }
-\end{equation} Piše se $\bm X \sim \mathcal{N}(\bm\mu, \bm C_{\bm X\bm X})$.
+Normalna raspodjela se može generalizirati i za vektore slučajnih varijabli na
+sljedeći način.
 
-Jedini uslov koji se postavlja na parametre ove raspodjele jeste da matrica
-$\bm C_{\bm X\bm X}$ bude ispravna kovarijantna matrica, tj. da bude simetrična
-i pozitivno semi-definitna.
+\begin{definition}
+
+  Za slučajni vektor $\bm X \in \mathbb{R}^k$ se kaže da je normalno
+  raspodijeljen ako je njegova funkcija gustine raspodjele:
+  %
+  \begin{equation}
+    p_{\bm X}(\bm x) 
+    = \frac{1}{\sqrt{(2\pi)^k \det \bm C_{\bm X \bm X}}} e^{ -\frac{1}{2}(\bm x -
+      \bm\mu_{\bm X})^\text T \bm C_{\bm X \bm X}^{-1} (\bm x - \bm\mu_{\bm X}) }
+  \end{equation}
+  Piše se $\bm X \sim \mathcal{N}(\bm\mu, \bm C_{\bm X\bm X})$.
+
+\end{definition}
+
+Vektor $\bm\mu$ je jednak očekivanju dok je matrica $\bm C_{\bm X\bm X}$
+jednaka kovarijantnoj matrici slučajnog vekora $\bm X$.  Jedini uslov koji se
+postavlja na parametre raspodjele jeste da matrica $\bm C_{\bm X\bm X}$ bude
+ispravna kovarijantna matrica, tj. da bude simetrična i pozitivno definitna. 
 
 \begin{theorem}
 	\label{th:lin-tr-gauss}
@@ -57,8 +96,8 @@ eventualnu translaciju, ponovo daje Gaussov vektor.
 
 \begin{corollary}
 	Svaki podvektor normalno raspodijeljenog slučajnog vektora $\bm X$ je također
-	normalno raspodijeljen. Drugim riječima, sve marginalne pdf slučajnog
-	vektora $\bm X$ su također normalne raspodjele.
+	normalno raspodijeljen. Drugim riječima, sve marginalne raspodjele slučajnog
+	vektora $\bm X$ su također normalne.
 \end{corollary}
 
 Ovo je lako pokazati. Naime, neki podvektor $\bm Y = [X_{i_1}\ X_{i_2}\ \cdots\
@@ -70,9 +109,9 @@ novodobijenog vektora se jednostavno određuju primjenom teorema
 varijable kroz sljedeći primjer.
 
 \begin{exmp}
-	Neka je data normalna raspodjela $p_{\bm X}(\bm x) = p_{X_1,X_2}(x_1, x_2) =
-	\mathcal{N}(\bm\mu, \bm \Sigma)$. Odrediti marginalne pdf $p_{X_1}(x)$ i
-	$p_{X_2}(x)$.
+  Neka je data normalna raspodjela $p_{\bm X}(\bm x) = p_{X_1,X_2}(x_1, x_2) =
+  \mathcal{N}(\bm\mu, \bm \Sigma)$. Odrediti marginalne raspodjele za $X_1$
+  i $X_2$.
 \end{exmp}
 
 Neka je:
@@ -93,13 +132,13 @@ Slučajne varijable $X_1$ i $X_2$ se mogu zapisati na sljedeći način:
 	X_2 = \vecrow{0}{1} \veccol{X_1}{X_2} = \bm A_2 \bm X,
 \end{eqnarray}
 
-Primjenom teoreme \ref{th:lin-tr-gauss} se zaključuje da će $p_{X_1}$ i
-$p_{X_2}$ također biti normalne raspodjele:
+Primjenom teorema \ref{th:lin-tr-gauss} se zaključuje da će $X_1$ i
+$X_2$ također biti iz normalne raspodjele:
 
 \begin{align*}
-	p_{X_1} &= \mathcal{N}(\bm A_1\bm\mu, \bm A_1 \bm\Sigma \bm A_1^\mathrm T)
+	X_1 &\sim \mathcal{N}(\bm A_1\bm\mu, \bm A_1 \bm\Sigma \bm A_1^\mathrm T)
 		= \mathcal{N}(\mu_1, \sigma_1^2) \\
-	p_{X_2} &= \mathcal{N}(\bm A_2\bm\mu, \bm A_2 \bm\Sigma \bm A_2^\mathrm T)
+	X_2 &\sim \mathcal{N}(\bm A_2\bm\mu, \bm A_2 \bm\Sigma \bm A_2^\mathrm T)
 		= \mathcal{N}(\mu_2, \sigma_2^2)
 \end{align*}
 
@@ -107,9 +146,9 @@ Posmatrajući zapis \eqref{eq:kovarijansa-2d} jasno je da je $\rho$ Pearsonov
 korelacioni koeficijent koji predstavlja mjeru koreliranosti između slučajnih
 varijabli slučajnog vektora $\bm X$.
 
-Na slici \ref{fig:gauss2} su prikazane dvodimenzionalne normalne pdf za neke
+Na slici \ref{fig:gauss2} su prikazane dvodimenzionalne normalne PDF za neke
 karakteristične vrijednosti kovarijantne matrice. Također su prikazane i
-marginalne pdf koje su skalirane po visini radi jasnijeg prikaza.
+marginalne PDF koje su skalirane po visini radi jasnijeg prikaza.
 
 \begin{figure}[H]
   \centering
