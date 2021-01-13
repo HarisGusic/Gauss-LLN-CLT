@@ -1,9 +1,9 @@
 U ovom poglavlju će biti objašnjen jedan od najznačajnijih rezultata u oblasti
 vjerovatnoće. Centralni granični teorem opisuje ponašanje sume velikog broja
 slučajnih varijabli. Prije nego što se formuliše teorem, biće napravljeno uvodno
-razmatranje.
+razmatranje na tu temu.
 
-\subsection{Raspodjela sume slučajnih varijabli}
+\subsection{Raspodjela sume slučajnih varijabli} \label{sec:clt-suma}
 
 Neka su $K$ i $L$ dvije diskretne slučajne varijable sa masenim funkcijama
 raspodjele (pmf) $p_K(k)$ i $p_L(l)$ respektivno. Neka je potrebno naći pmf
@@ -47,9 +47,7 @@ $n$ puta.
 \end{exmp}
 
 Traženi broj $K$ također predstavlja slučajnu varijablu i može se izraziti
-kao:\footnote{Pošto $X_i$ mogu uzeti samo vrijednosti 0 ili 1, njihova suma je
-jednaka broju njih koji su jednaki 1}
-
+kao:
 $$K = \sum_{i=1}^{n} X_i$$
 \\
 
@@ -64,18 +62,18 @@ Naime, vrijedi: %TODO footnote binomna
   \mathcal{Z}\{p_K(k)\}
   = \left[\mathcal{Z}\{p_X(k)\}\right]^n
   = (p+qz^{-1})^n
-  = \sum_{k=0}^{n} \left(\frac{n}{k}\right) p^k q^{n-k} z^{-k}
+  = \sum_{k=0}^{n} \binom{n}{k} p^k q^{n-k} z^{-k}
 \end{equation}
 
 Direktnom primjenom inverzne $ \mathcal{Z}$ transformacije se dobiva:
 \begin{equation}
-  p_K(k) = \left(\frac{n}{k}\right) p^kq^{n-k}
+  p_K(k) = \binom{n}{k} p^kq^{n-k}
 \end{equation}
 
 Radi jednostavnosti, u nastavku će biti pretpostavljeno da je novčić pravedan,
 tj. $p=q=1/2$, pa će odgovarajuća pmf biti:
 \begin{equation} \label{eq:binom-pmf}
-  p_K(k) = \frac{1}{2^n} \left(\frac{n}{k}\right)
+  p_K(k) = \frac{1}{2^n} \binom{n}{k}
 \end{equation}
 
 Na slikama \ref{fig:binom} je prikazan izgled pmf iz \eqref{eq:binom-pmf} za
@@ -147,10 +145,9 @@ zakon velikih brojeva uslijed kojeg će sa povećanjem $n$ varijansa težiti u
 nulu. Ovaj slučaj će biti dodatno razmotren u poglavlju \ref{sec:dokaz-clt}.
 Radi dodatne ilustracije, u slučaju definiranja $S_n = \left(\sum_{i=1}^n
 X_i\right)/\sqrt{n}$, varijansa bi konvergirala, ali bi očekivanje $\mu
-\sqrt{n}$ divergiralo.  Međutim, uprkos ovih problema, često se susreću
-formulacije  sekvencu $S_n$ na prethodno navedene načine, no takve formulacije
-su manje precizne. \\
-%TODO Provjeriti ovo predzadnje
+\sqrt{n}$ divergiralo. Međutim, uprkos ovih problema, često se susreću
+formulacije koje sekvencu $S_n$ definiraju na prethodno navedene načine, no
+takve formulacije su manje precizne. \\
 
 Centralni granični teorem ima nekoliko interesantnih posljedica koje su
 objašnjene u nastavku.
@@ -348,13 +345,13 @@ funkciju:
   \varphi_{S_n}(u) = \left[\varphi_{Z,n}(u)\right]^n
 \end{equation}
 U graničnom procesu:
-\begin{equation} \label{eq:clt-limit}
+\begin{align*} \label{eq:clt-limit}
   \lim_{n\to\infty} \varphi_{S_n}(u)
-  = \lim_{n\to\infty} [\varphi_{Z,n}(u)]^n
-  = \lim_{n\to\infty}
+  &= \lim_{n\to\infty} [\varphi_{Z,n}(u)]^n \nonumber \\
+  &= \lim_{n\to\infty}
     \left(1 - \frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right)\right)^n
     = e^{-\frac{u^2}{2}}
-\end{equation}
+\end{align*}
 Na osnovu \eqref{eq:char-norm}, raspodjela koja ima karakterističnu funkciju kao
 u \eqref{eq:clt-limit} je upravo normalna $\mathcal{N}(0,1)$. $\blacksquare$ \\
 

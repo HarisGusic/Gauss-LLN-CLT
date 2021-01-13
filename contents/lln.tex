@@ -1,3 +1,15 @@
+Neka se vrši jednostavni eksperiment bacanja novčića i posmatra ishod koji može
+biti "glava" ili "pismo". Intuitivno je da će oba ishoda imati jednaku
+vjerovatnoću. Kako se može opravdati ta intuicija?
+
+Javlja se problem u tome što je moguće da se pri (nekom fiksnom) velikom broju
+bacanja svaki put pojavi glava. Štaviše, neizbježno je da će se prilikom
+izvođenja eksperimenta pojavljivati intervali u kojima se isti ishodi javljaju
+zaredom. Pitanja vezana za ponašanje eksperimenata koji se izvode veliki
+broj puta će biti razjašnjena u ovom poglavlju. Razmatranje će biti provedeno
+formalno, korištenjem pojma slučajne sekvence i definiranjem ostalih relevantnih
+pojmova.
+
 \subsection{Konvergencija slučajnih sekvenci}
 
 Ako su $X_i$, $i=1,2,...$ slučajne varijable, onda se sa $\{X_n\}$ označava
@@ -152,18 +164,23 @@ Sljedeća pitanja su od praktičnog interesa:
   \item Statističke osobine malih varijacija sekvence $S_n$ oko srednje
     vrijednosti.\footnote{Često su od interesa su i statističke osobine velikih
     varijacija oko srednje vrijednosti, što neće biti razmatrano u ovom radu.}
+    Drugim riječima, od interesa je kakav će biti oblik raspodjele sekvence $S_n$.
 \end{itemize}
 
 Odgovor na prvo pitanje daju zakoni velikih brojeva, dok odgovor na drugo
 pitanje daje centralni granični teorem koji će biti obrađen u sljedećem
-poglavlju. U literaturi se najčešće susreću dva zakona velikih brojeva: slabi i
+poglavlju.
+
+\subsection{Formulacija zakona velikih brojeva}%
+
+ U literaturi se najčešće susreću dva zakona velikih brojeva: slabi i
 jaki. Dodatno, oba zakona se susreću u više verzija. U nastavku će ovi zakoni
 biti formulisani način koji najbolje ilustruje razliku između njih.
 
 \begin{theorem}[Slabi zakon velikih brojeva]
   Neka je $\{X_n\}$ sekvenca slučajnih varijabli sa očekivanjem $\mu$ i konačnom
   i ograničenom varijansom $\sigma_n^2 \le \sigma^2 < \infty$ i neka je
-  $\{S_n\}$ sekvenca srednjih vrijednosti uzoraka . Tada za svako
+  $\{S_n\}$ sekvenca srednjih vrijednosti uzoraka. Tada za svako
   $\varepsilon>0$
   \begin{equation}
     \lim_{n\to\infty} \pr(|S_n - \mu| \le \varepsilon) = 1
@@ -181,9 +198,138 @@ Jedan heuristički dokaz ovog teorema će biti dat u poglavlju \ref{sec:clt-lln}
 \end{theorem}
 
 Postoji i uslov koji garantuje važenje ovog teorema i za sekvence koje nisu
-identično raspodijeljene, ali se ovdje neće razmatrati.
+identično raspodijeljene, ali se ovdje neće razmatrati. Bitno je napomenuti da
+jaki zakon velikih brojeva implicira slabi zakon velikih brojeva. \\
 
-Sada će prethodni koncepti biti ilustrirani kroz primjer.
+Sada će prethodni koncepti biti ilustrirani kroz primjer. Slučajna sekvenca se
+može predstaviti kao niz nizova (matrica), pri čemu svaki red predstavlja jednu
+realizaciju slučajne sekvence. Izvršeno je kompjutersko generisanje (simulacija)
+nekoliko nezavisnih sekvenci $X_n$ iz normalne raspodjele sa očekivanjem $\mu=0$
+i standardnom devijacijom $\sigma$ koja se razlikuje za svaki slučaj.  Zatim je
+za svaku sekvencu $X_n$ formirana sekvenca $S_n$. Na slikama \ref{fig:lln} su
+prikazani rezultati ove simulacije za nekoliko karakterističnih slučajeva.
+Različite sekvence su predstavljene različitim bojama.
 
-\subsection{Generalizacije i srodne tvdnje}
+Na slici \ref{fig:lln:a} su predstavljene 3 realizacije slučajne sekvence sa
+standardnom devijacijom $\sigma=1$. Na ovom primjeru se jasno vidi da da
+sekvenca sa povećanjem $n$ teži ka matematičkom očekivanju koje iznosi $\mu$. Na
+slici \ref{fig:lln:b} su prikazane 3 realizacije za slučaj devijacije
+$\sigma=2$. Ovdje se jasno vidi da je konvergencija sporija nego u prvom
+slučaju. Međutim, predstavljeni grafici su namjenski podešeni tako da na prvi
+pogled budu intuitivni. Može se desiti, na primjer, da sekvenca za male
+vrijednosti $n$ bude jako bliska očekivanju $\mu$, pa da u nekom intervalu
+"igrom slučaja" krene odstupati od očekivane vrijednosti (što je razmatrano u
+uvodu ovog poglavlja). Intuitivno je da ovakvi događaji imaju jako malu
+vjerovatnoću.
+
+Dalje, na slici \ref{fig:lln:c} je prikazano 50 realizacija sekvence za
+$\sigma=2$. Gledajući ovako veliki broj realizacija, moguće je intuitivno
+procijeniti ponašanje standardne devijacije sekvence, što će biti formalno
+razjašnjeno u poglavlju \ref{sec:clt}. Na ovom primjeru se može ilustrirati
+razlika između slabog i jakog zakona velikih brojeva. Naime, posmatrajući sliku
+\ref{fig:lln:c} se može primijetiti da se funkcija gustine raspodjele sužava sa
+povećanjem sekvence $S_n$. Međutim, ipak se može primijetiti postojanje nekih
+realizacija koje odstupaju. Slabi zakon velikih brojeva garantuje da će se
+vjerovatnoća postojanja ovakvih odstupanja smanjivati u beskonačnosti, što ne
+znači da će sigurno sve realizacije konvergirati.  S druge strane, jaki zakon
+velikih brojeva garantuje da će skoro sve realizacije konvergirati ka $\mu$.
+
+Slika \ref{fig:lln:d} prikazuje slučaj kada se standardna devijacija sekvence
+$X_n$ mijenja u zavisnosti od $n$. Konkretno, u ovom slučaju je $\sigma_n =
+0.1n$, što divergira. Sa slike se vidi da će i sekvenca $S_n$ divergirati. Bitno
+je napomenuti da u skladu sa slabim zakonom velikih brojeva, sekvenca $S_n$ bi
+konvergirala da je niz standardnih devijacija $\sigma_n$ bio konvergentan.
+
+\begin{figure}[H]
+  \centering
+    \fig{0.4}{lln_demo_1}{3 realizacije, $\sigma=1$}{fig:lln:a}
+    \fig{0.4}{lln_demo_2}{3 realizacije, $\sigma=2$}{fig:lln:b}
+    \fig{0.4}{lln_demo_3}{50 realizacija, $\sigma=2$}{fig:lln:c}
+    \fig{0.4}{lln_demo_4}{5 realizacija, $\sigma_n=0.1n$}{fig:lln:d}
+	\caption{Simulacija zakona velikih brojeva na slučajnoj sekvenci sa $\mu=0$}
+  \label{fig:lln}
+\end{figure}
+
+\subsection{Praktična primjena}
+
+Za kraj je korisno razmotriti jedan specijalan slučaj primjene zakona velikih
+brojeva, koji je za praksu izuzetno važan. Prije konkretnog primjera će biti
+napravljeno razmatranje jednostavnog primjera sa novčićem.
+
+Neka se eksperiment $A$ sastoji u bacanju novčića, pri čemu vjerovatnoća ishoda
+"glava" iznosi $p$, a vjerovatnoća ishoda $pismo$ iznosi $q$. Izvođenjem tog
+eksperimenta više puta dobiva se novi eksperiment $B$. Nad skupom ishoda tog
+eksperimenta se može definirati \textit{binarna} slučajna sekvenca $\{X_n\}$.
+Ovdje će biti uzeto da takva sekvenca uzima vrijednost $X_n=1$, ako je ishod
+$n$-tog bacanja bio glava, a $X_n=0$ u suprotnom. Bitno je razumjeti da skup
+ishoda eksperimenta $B$ nije skup $\{\text{"glava"}=G, \text{"pismo"}=P\}$, nego
+skup sekvenci koje mogu imati vrijednost G ili P. Na primjer, jedna takva
+sekvenca je GPPGGPG....
+
+Neka je od posebnog interesa za neki konkretan broj bacanja $n$ odrediti broj
+bacanja $K_n$ u kojima je ishod bio glava ($X_i=1$). $\{K_n\}$ je također
+slučajna sekvenca. Lako se vidi da je\footnote{Pošto $X_i$ mogu uzeti samo
+  vrijednosti 0 ili 1, njihova suma je jednaka broju njih koji su jednaki 1}
+
+\begin{equation}
+  K_n = \sum_{i=1}^{n} X_i 
+\end{equation}
+%
+Pokazuje se da će sekvenca $K_n$ imati masenu funkciju vjerovatnoće
+\begin{equation}
+  p_{K_n}(k) = \binom{n}{k} p^k q^{n-k}
+\end{equation}
+%
+Ovo će biti pokazano u poglavlju \ref{sec:clt-suma}.  Ovakva raspodjela se
+naziva \textit{binomna}. Također se pokazuje da će ova sekvenca imati očekivanu
+vrijednost $\mu_{K_n}=np$.
+
+Sada se može se definirati sekvenca srednjih vrijednosti uzoraka za sekvencu
+$\{X_n\}$, kao $S_n = K_n / n$. Ova sekvenca predstavlja \textit{relativnu
+frekvenciju} ishoda "glava" u eksperimentu. Na osnovu zakona velikih brojeva,
+sekvenca $S_n$ će konvergirati ka $\mu = \mu_{K_n}/n = p$.  Intuitivno, to znači
+da će relativna frekvencija ishoda "glava" u velikom broju bacanja težiti
+vjerovatnoći pojave glave u jednom bacanju.
+
+Ovaj primer se može generalizirati na sljedeći način. Neka je $X_n$ IID slučajna
+sekvenca koja može uzeti bilo koju vrijednost iz nekog diskretnog skupa $\chi$,
+opisana masenom funkcijom vjerovatnoće $p_{X}(x)$. Ova sekvenca jednoznačno
+opisuje ishod nekog eksperimenta.
+
+Neka se sada posmatra događaj $A:\{X=a\}$ i neka sekvenca $\{Y_{A,n}\}$ uzima
+vrijednost 1 ako je u eksperimentu nastupio događaj $A$, te vrijednost 0 u
+suprotnom. Ovaj događaj ima vjerovatnoću $p_A=p_X(a)$. Jasno je da njemu
+komplementaran događaj ima vjerovatnoću $q_A:=1-p_A$. Za ovaj događaj se može
+definirati sekvenca
+
+\begin{equation}
+    S_{A,n} = \frac{1}{n}\sum_{i=1}^{n} Y_{A,i}
+\end{equation}
+%
+koja predstavlja relativnu frekvenciju događaja $A$ prilikom $n$ izvođenja
+eksperimenta. Na osnovu prethodnog razmatranja, sekvenca $S_{A,n}$ konvergira ka
+$p_A$.
+
+Ovaj rezultat se može interpretirati na sljedeći način. Za svaki mogući događaj
+$A$ koji može nastupiti u eksperimentu se nađe njegova relativna frekvencija u
+$n$ bacanja. Na taj način je dobiven \textit{histogram} za sekvencu $X_n$, koji
+je pomnožen sa $n$. Ako se eksperiment izvrši veliki broj puta, ovaj histogram
+će konvergirati ka masenoj funkciji vjerovatnoće $p_X(x)$. \\
+
+Ovo se jednostavno generalizuje za sekvence koje uzimaju realne vrijednosti.
+Naime, skup vrijednosti neke IID sekvence $X_n$ se može uniformno podijeliti na
+podintervale $A$ koji predstavljaju događaje.\footnote{Preciznije bi bilo pisati
+$A_k$, jer je ovo zapravo niz skupova.} Za svaki događaj $A$ se može odrediti
+njegova vjerovatnoća nastupanja u jednom eksperimentu na osnovu raspodjele
+sekvence $X_n$. Ova vjerovatnoća se može označiti sa $p_A$. Slično kao i ranije,
+vrijedi se da će relativna frekvencija događaja $A$ u $n$ izvođenja eksperimenta
+konvergirati ka $p_A$.
+
+I u ovom slučaju je dobiven histogram sekvence $X_n$. Naime, intervali $A$ se
+mogu posmatrati kao korpe u koje se ubacuju loptice kad god ishod eksperimenta
+pripada tom intervalu. Ako se broj loptica u korpi podijeli sa brojem
+eksperimenata, dobiva se relativna frekvencija događaja $A$. Usitnjavanjem
+intervala $A$, te povećanjem broja eksperimenata, ovako dobiven histogram
+(dodatno podijeljen sa širinom intervala) sve bolje i bolje aproksimira funkciju
+gustine raspodjele sekvence $X_n$.
 
