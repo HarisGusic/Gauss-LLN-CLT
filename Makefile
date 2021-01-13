@@ -23,6 +23,7 @@ img-clt:
 	mkdir -p _build/img/
 	$(PY) scripts/clt-binom.py
 	$(PY) scripts/clt-conv.py
+	$(PY) scripts/clt-degen.py
 
 img: img-gauss img-lln img-clt
 

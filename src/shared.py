@@ -31,18 +31,5 @@ def sample_means(X_n):
     N_realiz, N_sekv = X_n.shape
     S_n = empty((N_realiz, N_sekv))
     for j in range(0, N_sekv):
-        S_n[:,j] = sum(X_n[:, 0:j+1], axis=1) / (j+1)
+        S_n[:,j] = mean(X_n[:, 0:j+1], axis=1)
     return S_n
-
-def cov_elipsa(mean, cov, N=50):
-    a = cov[0][0]; b = cov[0][1]; c = cov[1][1]
-    A = (a+c) / 2
-    B = sqrt((a-c)**2/4 + b**2)
-    l1 = A + B; l2 = A - B
-    if isclose(b, 0) and a >= c: theta = 0
-    elif isclose(b, 0) and a < c: theta = pi/2
-    else: theta = arctan2(l1 - a, b)
-    t = linspace(0, 2*pi, 50)
-    x = sqrt(l1) * cos(theta) * cos(t) - sqrt(l2) * sin(theta) * sin(t) + mean[0]
-    y = sqrt(l1) * sin(theta) * cos(t) + sqrt(l2) * cos(theta) * sin(t) + mean[1]
-    return x, y
