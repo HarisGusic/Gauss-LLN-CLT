@@ -1,7 +1,7 @@
 U ovom poglavlju će biti objašnjen jedan od najznačajnijih rezultata u oblasti
-vjerovatnoće. Centralni granični teorem opisuje ponašanje sume velikog broja
-slučajnih varijabli. Prije nego što se formuliše teorem, biće napravljeno uvodno
-razmatranje na tu temu.
+vjerovatnoće. Centralni granični teorem (engl.  \textit{central limit theorem} -
+CLT) opisuje ponašanje sume velikog broja slučajnih varijabli. Prije nego što se
+formuliše teorem, biće napravljeno uvodno razmatranje na tu temu.
 
 \subsection{Raspodjela sume slučajnih varijabli} \label{sec:clt-suma}
 
@@ -25,7 +25,7 @@ Dakle, suma nezavisnih diskretnih slučajnih varijabli će imati PMF koja je
 jednaka diskretnoj konvoluciji PMF tih varijabli. Sličan zaključak vrijedi i za
 slučaj kontinualnih varijabli.
 
-\begin{theorem} %TODO da li ga nazvati teoremom?
+\begin{theorem}
 
   Ako su $X_1,X_2,...,X_n$ međusobno nezavisne slučajne varijable sa funkcijama
   gustine vjerovatnoće $p_{X_i}$, $i=1,...,n$ respektivno, onda njihova suma $S$
@@ -57,7 +57,7 @@ $$p_K(k) = \underbrace{p_X * p_X * \cdots * p_X}_{n\text{ puta}}(k)$$
 Jednostavan način da se odredi ova konvolucija jeste korištenjem
 $\mathcal{Z}$ transformacije.\footnote{\ $p_K(k)$ se može odrediti i čisto
 kombinatornim pristupom.}
-Naime, vrijedi: %TODO footnote binomna
+Naime, vrijedi:
 \begin{equation}
   \mathcal{Z}\{p_K(k)\}
   = \left[\mathcal{Z}\{p_X(k)\}\right]^n
@@ -95,15 +95,10 @@ PMF aproksimira Gaussovu funkciju. Ova pojava se može formalno iskazati
   \binom{n}{k}p^kq^{n-k} \simeq \frac{1}{\sqrt{2\pi npq}}
   e^{-\frac{(k-np)^2}{2npq}}
 \end{equation}
-Dakle, binomna raspodjela aproksimira Gaussovu funkciju za veliko $n$.
+Dakle, binomna raspodjela aproksimira Gaussovu funkciju za veliko $n$. \\
+
 Prethodni primjer je dosta regularan zbog činjenice da je novčić pravedan, pa su
-sve PMF simetrične oko neke centralne tačke. U nastavku su navedeni neki bitni
-zaključci, koji vrijede u općem slučaju. Ovi zaključci direktno slijede iz
-osobina konvolucije, a također su i dosta intuitivni.
-TODO
-%\begin{enumerate}
-  %\item Suma dvije varijable uzima 
-%\end{enumerate}
+sve PMF simetrične oko neke centralne tačke.
 
 \begin{figure}[H]
   \centering
@@ -116,12 +111,11 @@ TODO
   \label{fig:binom}
 \end{figure}
 
-\subsection{Formulacija centralnog graničnog teorema}
+\subsection{Formulacija centralnog graničnog teorema} \label{sec:clt-formulation}
 
-Postoje različite formulacije centralnog graničnog teorema (engl.
-\textit{central limit theorem} - CLT), ovdje će biti data jedna od
-najjednostavnijih, mada ne i najopćenitija.
-% TODO u uvodu dati prevod CLT
+Postoje različite formulacije centralnog graničnog teorema, ali ovdje će biti
+data jedna od najjednostavnijih, mada ne i najopćenitija.
+
 \begin{theorem} \label{th:clt}
   Neka je $\{X_i, i=1,2,...\}$ sekvenca IID slučajnih varijabli sa
   konačnim očekivanjem $\mu$ i konačnom varijansom $\sigma^2$. Tada
@@ -316,7 +310,7 @@ se može aproksimirati Taylorovim razvojem:
   + \varphi_Y^{''}(0)\frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right),
     \text{ kad } n\to\infty
 \end{equation}
-
+%
 Dalje vrijedi:
 \begin{align*}
   \varphi_Y(0)
@@ -329,12 +323,12 @@ Dalje vrijedi:
     &= \left.-\int_{-\infty}^{\infty} y^2 p_{Y_i}(y)e^{juy} \ \text dy\right|_{u=0}
     = -E[Y_i^2] = -1,\ \forall i
 \end{align*}
-
+%
 Formula \eqref{eq:taylor} sada postaje:
 \begin{equation}
   \varphi_{Z,n}(u) = 1 - \frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right)
 \end{equation}
-
+%
 Pošto vrijedi:
 \begin{equation}
   S_n = \sum_{i=1}^{n} Z_{i,n}
@@ -362,7 +356,7 @@ sekvenca srednjih vrijednosti uzoraka iz \eqref{eq:sample-mean}. Naime, ako se
 definira pomoćna sekvenca $W_i = \frac{X_i}{n}$, tada je
 
 \begin{equation}
-  S_n = \frac{1}{n}\sum_{i=1}^{\infty} X_i = \sum_{i=1}^{n} W_{i,n}
+  S_n = \frac{1}{n}\sum_{i=1}^{n} X_i = \sum_{i=1}^{n} W_{i,n}
 \end{equation}
 %
 Jednostavnim manipulacijama se dolazi do:
@@ -407,7 +401,7 @@ standardnu normalnu raspodjelu.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.4\textwidth]{clt_degen}
-	\caption{Degeneracija normalne raspodjele za veliko $n$}
+	\caption{Degeneracija normalne raspodjele sa smanjenjem varijanse}
   \label{fig:clt-degen}
 \end{figure}
 
@@ -417,10 +411,68 @@ pronaći u knjizi TODO A modern approach..., str. 273} Ovaj zaključak se intuit
 podudara sa tvrđenjem zakona velikih brojeva.  Naime, što je uzorak veći,
 srednja vrijednost uzorka se manje rasipa oko srednje vrijednosti
 probabilističkog modela. Za uzorak beskonačne veličine, srednja vrijednost
-uzorka se podudara sa matematičkim očekivanjem.  \textbf{Drugim riječima, što je
+uzorka se podudara sa matematičkim očekivanjem.  \textit{Drugim riječima, što je
 veći uzorak, nesigurnost u tačnost procijenjenog očekivanja na osnovu tog uzorka
 je manja.}
 
+\subsection{Praktične primjene}
+
+Centralni granični teorem objašnjava zašto se normalna raspodjela susreće toliko
+često u prirodi. Naime, česti su fenomeni koji nastaju superpozicijom više
+međusobno nezavisnih fenomena. Na primjer, termalno (haotično) kretanje
+elektrona se može smatrati slučajnim. Amplituda termalnog šuma koji se javlja u
+električnim krugovima se dobiva superpozicijom doprinosa svakog elektrona. Kao
+posljedica CLT, distribucija amplitude ovakvog šuma će biti približno normalna.
+
+Još jedna interesantna posljedica CLT je da svjetlosni signal u obliku četvrtke
+koji ulazi u optički vodič, na izlazu iz optičkog vodiča biti "razliven".
+Izlazni signal će biti približno Gaussov, što se objašnjava činjenicom da
+svjetlosni zraci prelaze različite puteve, zbog toga što zraci ulazi u vodič pod
+različitim uglovima. Oblik izlaznog signala zavisi od dužine vodiča. Ova pojava
+ima određene implikacije na brzinu prenosa informacija kroz optički vod.
+
+CLT ima primjenu i u digitalnom procesiranju signala. Naime, kaskada
+\textit{moving average} filtera, će imati impulsni odziv oblika Gaussove
+funkcije. Ovo je posljedica osobine višestruke konvolucije koja je ilustrovana u
+poglavlju \ref{sec:clt-formulation}. Ovakav filter za mnoge primjene ima bolje
+osobine od običnog moving average filtera.
+
+Konačno, CLT se primjenjuje i za kompjutersko generisanje slučajnih sekvenci
+koje imaju normalnu raspodjelu.\footnote{Primjer je preuzet iz knjige TODO...}
 
 \subsection{Generalizacije i srodne tvrdnje}
+
+Kao što je već rečeno, oblik CLT formulisan u ovom radu nije najopćenitiji.
+Postoje generalizacije koje ne zahtijevaju da slučajne varijable koje se
+sumiraju imaju jednaku varijansu. Naime, postoje formulacije teorema koje
+garantuju da zaključak teorema vrijedi ako su slučajne varijable koje se
+sumiraju "slabo" međusobno korelirane. Ovdje neće biti objašnjeno šta takva
+"slaba" korelacija podrazumijeva.
+
+Postoje i teoremi koji daju procjenu brzine
+konvergencije ka normalnoj raspodjeli, no u većini praktičnih primjena
+konvergencija je \textit{veoma brza}. \\
+%
+Za praktične primjene, može se smatrati da CLT vrijedi kada:
+
+\begin{enumerate}
+  \item Slučajne varijable imaju konačno očekivanje i konačnu varijansu,
+  \item Slučajne varijable su "slabo" korelirane,
+  \item Doprinos svake od varijabli u sumi nije previše velik.
+\end{enumerate}
+
+U ovom radu, CLT je uveden postepeno na primjeru sumiranja diskretnih varijabli.
+Naveden je \textit{De Moivre-Laplace} teorem koji govori da će binomna
+raspodjela aproksimirati normalnu raspodjelu. Međutim u primjeru koji je
+razmatran, slučaj je da i PMF odgovarajuće diskretne slučajne sekvence
+aproksimira Gaussovu funkciju. Ovo nije uvijek slučaj. Naime, distribucija
+sekvence (preciznije CDF) srednjih vrijednosti uzoraka $\{S_n\}$ diskretne
+sekvence $\{X_n\}$ će također konvergirati ka normalnoj distribuciji, ali to ne
+znači da će i PMF od $S_n$ konvergirati. Pokazuje se da u slučaju kada su sve
+vrijednosti sekvence $X_n$ uniformno distribuirane, i PMF sekvence $S_n$ će
+konvergirati.
+
+CLT se može generalizirati i za sekvence slučajnih vektora, pri čemu će suma
+velikog broja slučajnih vektora (uz odgovarajuće uvjete) biti približno
+normalna.
 
