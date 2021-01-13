@@ -331,5 +331,19 @@ pripada tom intervalu. Ako se broj loptica u korpi podijeli sa brojem
 eksperimenata, dobiva se relativna frekvencija događaja $A$. Usitnjavanjem
 intervala $A$, te povećanjem broja eksperimenata, ovako dobiven histogram
 (dodatno podijeljen sa širinom intervala) sve bolje i bolje aproksimira funkciju
-gustine raspodjele sekvence $X_n$.
+gustine raspodjele sekvence $X_n$. Ovaj zaključak je ilustriran na slikama
+\ref{fig:lln-hist}, koja prikazuje PDF neke normalne slučajne sekvence, kao i
+histogram kompjuterski generisane sekvence iz te raspodjele. $k$ predstavlja
+veličinu generisanog uzorka sekvence, dok $k$ predstavlja broj intervala
+histograma
+
+\begin{figure}[H]
+  \centering
+    \fig{0.31}{lln_hist_1}{$N=100$, $k=10$}{fig:lln-hist:a}
+    \fig{0.31}{lln_hist_2}{$N=1000$, $k=30$}{fig:lln-hist:b}
+    \fig{0.31}{lln_hist_3}{$N=10000$, $k=80$}{fig:lln-hist:c}
+  \caption{Ilustracija konvergencije histograma ka PDF na simuliranoj slučajnoj
+  sekvenci}
+  \label{fig:lln-hist}
+\end{figure}
 
