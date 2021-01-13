@@ -1,9 +1,9 @@
 
 PY=PYTHONPATH=src python
 
-.PHONY: img
+.PHONY: img src
 
-all: img pdf
+all: img src pdf
 
 pdf:
 	mkdir -p _build/
@@ -26,6 +26,12 @@ img-clt:
 	$(PY) scripts/clt-degen.py
 
 img: img-gauss img-lln img-clt
+
+src:
+	mkdir -p _build/src
+	cd src/; ../scripts/split-file.sh src/gauss.py ../_build/src
+	cd src/; ../scripts/split-file.sh src/lln.py ../_build/src
+	cd src/; ../scripts/split-file.sh src/clt.py ../_build/src
 
 clean-img:
 	rm -rf _build/img/
