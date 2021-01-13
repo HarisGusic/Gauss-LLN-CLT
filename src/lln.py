@@ -2,9 +2,8 @@ import numpy as np; from numpy import *
 import numpy.random as rnd
 import scipy.stats as stats
 import matplotlib.pyplot as plt
-
 from shared import *
-
+################################################################################
 def gen_rnd_sequence(N_sekv, N_realiz, tip, mean=0, std=1):
     if tip == 'uniform':
         return rnd.uniform(mean - std*sqrt(3), mean + std*sqrt(3), (N_realiz, N_sekv))
@@ -22,7 +21,7 @@ def gen_rnd_sequence(N_sekv, N_realiz, tip, mean=0, std=1):
         for j in range(N_sekv):
             X_n[:, j] = rnd.normal(mean, std * (j+1), N_realiz)
         return X_n
-
+################################################################################
 def gen_pdf(x, tip, mean, std):
     if tip == 'uniform':
         return stats.uniform.pdf(x, mean-std*sqrt(3), 2 * std * sqrt(3))
@@ -30,11 +29,11 @@ def gen_pdf(x, tip, mean, std):
         return stats.expon.pdf(x, 0, std)
     elif tip == 'normal':
         return stats.norm.pdf(x, mean, std)
-
+################################################################################
 def histogram(X, bins=10):
     # Određivanje raspona vrijednosti
     a = min(X); b = max(X)
-    # Širina intervala za svaku "korpu"
+    # Sirina intervala za svaku "korpu"
     dx = (b - a) / bins
     hist = zeros(bins)
     for i in range(len(X)):
@@ -44,7 +43,7 @@ def histogram(X, bins=10):
         else: # Uslijed numericke nepreciznosti može biti van opsega
             hist[k-1] += 1
     return hist, linspace(a, b, bins), dx
-
+################################################################################
 # N_sekv - velicina sekvence
 # N_realiz - broj realizacija koje se prikazuju
 def plot_lln(X_n, mean, plot_range=[-2, 2], colored=True):
@@ -61,7 +60,7 @@ def plot_lln(X_n, mean, plot_range=[-2, 2], colored=True):
     plt.plot([n[0], n[-1]], [mean, mean],
              label='Ocekivanje $\mu$', c='k' if colored else 'red')
     plt.legend(); plt.xlabel('$n$')
-
+################################################################################
 def plot_hist(tip, N, bins=10):
     
     # Generisanje slucajne varijable i histograma
