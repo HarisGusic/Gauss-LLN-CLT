@@ -16,12 +16,12 @@ def gen_rnd_sequence(N_sekv, N_realiz, tip, mean=0, std=1):
         X_n = empty((N_realiz, N_sekv))
         for j in range(N_sekv):
             X_n[:, j] = rnd.normal(mean, std * (1 - exp(-(j+1))), N_realiz)
-        return X_n if N_realiz == 1 else X_n[0]
+        return X_n
     elif tip == 'normal_diverging_var':
         X_n = empty((N_realiz, N_sekv))
         for j in range(N_sekv):
             X_n[:, j] = rnd.normal(mean, std * (j+1), N_realiz)
-        return X_n if N_realiz == 1 else X_n[0]
+        return X_n
 
 def gen_pdf(x, tip, mean, std):
     if tip == 'uniform':

@@ -17,6 +17,7 @@ img-gauss:
 img-lln:
 	mkdir -p _build/img/
 	$(PY) scripts/lln-demo.py
+	$(PY) scripts/lln-hist.py
 
 img-clt:
 	mkdir -p _build/img/
