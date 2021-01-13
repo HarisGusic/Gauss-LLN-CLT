@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np; from numpy import *
 from shared import *
 from gauss import *
-
+################################################################################
 def plot_binomial(n, approx='Auto'):
     k = range(n+1)
     pmf = stats.binom.pmf(k, n, 0.5) # Generisanje raspodjele
@@ -20,13 +20,13 @@ def plot_binomial(n, approx='Auto'):
     # Anotacija
     plt.xlabel('$k$')
     plt.legend(loc='upper right', bbox_to_anchor=(0.99,0.92), framealpha=1)
-
+################################################################################
 def plot_fun(f):
     plt.plot(arange(-50, 50), f)
     plt.yticks([], [])
     plt.tight_layout()
     plt.xlabel('$x$'); plt.ylabel('$f(x)$')
-    
+################################################################################
 def plot_convolution(f, n):
     # Formiranje normalizovane konvolucije
     g = convolve_n(f, n)
@@ -45,7 +45,7 @@ def plot_convolution(f, n):
     # Anotacija i estetika
     plt.yticks([], [])
     plt.xlabel('$x$'); plt.ylabel('$g(x)$'); plt.legend()
-    
+################################################################################
 def plot_degenerate(n_seq):
     x = linspace(-2.5, 2.5, 100)
     
