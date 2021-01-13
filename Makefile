@@ -32,3 +32,10 @@ clean-img:
 
 clean: clean-img
 	rm -rf _build/
+
+zip: all zip-only
+
+zip-only:
+	rm -f HarisGusic_SIS2_Sem.zip
+	zip -r HarisGusic_SIS2_Sem.zip main.tex Makefile scripts/ src/ _build/img/ \
+	_build/main.pdf
