@@ -112,9 +112,9 @@ novodobijenog vektora se jednostavno određuju primjenom teorema
 varijable kroz sljedeći primjer.
 
 \begin{exmp}
-  Neka je data normalna raspodjela $p_{\bm X}(\bm x) = p_{X_1,X_2}(x_1, x_2) =
-  \mathcal{N}(\bm\mu, \bm \Sigma)$. Odrediti marginalne raspodjele za $X_1$
-  i $X_2$.
+  Neka je data slučajni vektor $\bm X = \vecrow{X_1}{X_2}^\mathrm T$ sa
+  raspodjelom $\mathcal{N}(\bm\mu, \bm \Sigma)$. Odrediti marginalne raspodjele
+  za ovaj vektor.
 \end{exmp}
 
 Neka je:
@@ -160,7 +160,7 @@ marginalne PDF koje su skalirane po visini radi jasnijeg prikaza.
   \fig{0.31}{gauss_multi_corr-}{$\rho = -0.6$}{fig:gauss2c}
   \fig{0.31}{gauss_multi_corr1}{$\sigma_1^2=1, \sigma_2^2=5, \rho \approx 1$}{fig:gauss2d}
   \fig{0.31}{gauss_multi_y}{$\sigma_1^2=1,\ \sigma_2^2=5, \rho=0$}{fig:gauss2e}
-  \fig{0.31}{gauss_multi_xcorr-}{$\sigma_1^2=4, \sigma_2^2=1, \rho=0.6$}{fig:gauss2f}
+  \fig{0.31}{gauss_multi_xcorr-}{$\sigma_1^2=4, \sigma_2^2=1, \rho=-0.6$}{fig:gauss2f}
 	\caption{Primjeri normalnih raspodjela sa različitim parametrima}
 	\label{fig:gauss2}
 \end{figure}
@@ -200,13 +200,13 @@ Dolazi se do sljedećih zaključaka:
 \end{corollary}
 
 Ova osobina je povezana sa centralnim graničnim teoremom (poglavlje
-\ref{sec:clt}). Za kraj, biće navedena jedna vrlo zanimljiva osobina normalne
-raspodjele, bez dokaza.
+\ref{sec:clt}). Za kraj, biće navedena jedna zanimljiva osobina
+dvodimenzionalne normalne raspodjele, bez dokaza.
 
 \begin{theorem}
 
-  Slučajne varijable $X_i, i=1,...,n$ koje čine normalno raspodijeljen vektor
-  $\bm X$ su nezavisne ako i samo ako su nekorelirane.
+  Slučajne varijable $X_1$, $X_2$ koje čine normalno raspodijeljen slučajni
+  vektor $\bm X = (X_1, X_2)$ su nezavisne ako i samo ako su nekorelirane.
 
 \end{theorem}
 

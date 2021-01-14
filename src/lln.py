@@ -4,6 +4,13 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 from shared import *
 ################################################################################
+"""
+    Generisanje `N_realiz` slucajne sekvence od kojih je svaka duzine `N_sekv`.
+    Parametar `tip` odredjuje oblik raspodjele sekvence i dozvoljene su sljedece
+    vrijednosti: "uniform", "exponential", "normal", "normal_converging_var",
+    "normal_diverging_var". Parametri `mean` i `std` predstavljaju ocekivanje i
+    standardnu devijaciju, respektivno.
+"""
 def gen_rnd_sequence(N_sekv, N_realiz, tip, mean=0, std=1):
     if tip == 'uniform':
         return rnd.uniform(mean - std*sqrt(3), mean + std*sqrt(3), (N_realiz, N_sekv))
@@ -22,6 +29,12 @@ def gen_rnd_sequence(N_sekv, N_realiz, tip, mean=0, std=1):
             X_n[:, j] = rnd.normal(mean, std * (j+1), N_realiz)
         return X_n
 ################################################################################
+"""
+    Generisanje idealne PDF zadanog tipa koja je definirana u tackama vektora
+    `x`. `tip` moze imati sljedece vrijednosti: "uniform", "exponential",
+    "normal". Parametri `mean` i `std` predstavljaju ocekivanje i standardnu
+    devijaciju, respektivno.
+"""
 def gen_pdf(x, tip, mean, std):
     if tip == 'uniform':
         return stats.uniform.pdf(x, mean-std*sqrt(3), 2 * std * sqrt(3))
@@ -30,8 +43,13 @@ def gen_pdf(x, tip, mean, std):
     elif tip == 'normal':
         return stats.norm.pdf(x, mean, std)
 ################################################################################
+"""
+    Generisanje histograma za sekvencu `X`, pri cemu se broj intervala zadaje
+    parametrom `bins`. Funkcija vraca generisani histogram, vektor
+    ivica intervala, te sirinu jednog intervala.
+"""
 def histogram(X, bins=10):
-    # Određivanje raspona vrijednosti
+    # Odredjivanje raspona vrijednosti
     a = min(X); b = max(X)
     # Sirina intervala za svaku "korpu"
     dx = (b - a) / bins
@@ -40,14 +58,20 @@ def histogram(X, bins=10):
         k = int((X[i]-a)/dx)
         if k < len(hist):
             hist[k] += 1
-        else: # Uslijed numericke nepreciznosti može biti van opsega
+        else: # Uslijed numericke nepreciznosti moze biti van opsega
             hist[k-1] += 1
     return hist, linspace(a, b, bins), dx
 ################################################################################
-# N_sekv - velicina sekvence
-# N_realiz - broj realizacija koje se prikazuju
+"""
+    Vizualizacija zakona velikih brojeva. Za slucajnu sekvencu `X_n` se
+    prikazuje sekvenca srednjih vrijednosti uzoraka, zajedno sa matematickim
+    ocekivanjem koje se prosljedjuje kroz parametar `mean`. Opseg vrijednosti po
+    ordinati je odredjen parametrom `plot_range`. Parametar `colored` odredjuje
+    da li ce razlicite realizacije sekvence biti razlicito obojene (True) ili ce
+    sve biti iste boje (False).
+"""
 def plot_lln(X_n, mean, plot_range=[-2, 2], colored=True):
-    N_realiz, N_sekv = X_n.shape
+    N_realiz, N_sekv = X_n.shape # Broj realizacija, duzina sekvence
 
     # Racunanje sekvence srednjih vrijednosti uzoraka
     S_n = sample_means(X_n)
@@ -61,6 +85,12 @@ def plot_lln(X_n, mean, plot_range=[-2, 2], colored=True):
              label='Ocekivanje $\mu$', c='k' if colored else 'red')
     plt.legend(); plt.xlabel('$n$')
 ################################################################################
+"""
+    Graficki prikaz histograma sekvence zadanog tipa `tip`. Broj `N` predstavlja
+    broj realizacija sekvence, dok parametar `bins` predstavlja broj intervala
+    histograma. Parametar `tip` uzima iste vrijednosti kao u funkciji
+    `gen_rnd_sequence`.
+"""
 def plot_hist(tip, N, bins=10):
     
     # Generisanje slucajne varijable i histograma

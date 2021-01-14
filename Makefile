@@ -7,7 +7,9 @@ all: img src pdf
 
 pdf:
 	mkdir -p _build/
-	pdflatex -interaction=nonstopmode -output-directory _build main.tex 
+	for i in {1,2}; do \
+		pdflatex -interaction=nonstopmode -output-directory _build main.tex; \
+	done
 
 img-gauss:
 	mkdir -p _build/img/
@@ -29,6 +31,7 @@ img: img-gauss img-lln img-clt
 
 src:
 	mkdir -p _build/src
+	cd src/; ../scripts/split-file.sh src/shared.py ../_build/src
 	cd src/; ../scripts/split-file.sh src/gauss.py ../_build/src
 	cd src/; ../scripts/split-file.sh src/lln.py ../_build/src
 	cd src/; ../scripts/split-file.sh src/clt.py ../_build/src
@@ -36,12 +39,13 @@ src:
 clean-img:
 	rm -rf _build/img/
 
-clean: clean-img
+clean: 
 	rm -rf _build/
 
 zip: all zip-only
 
 zip-only:
-	rm -f HarisGusic_SIS2_Sem.zip
-	zip -r HarisGusic_SIS2_Sem.zip main.tex Makefile scripts/ src/ _build/img/ \
-	_build/main.pdf
+	rm -f HarisGusic_SIS2_Seminarski.zip
+	zip -r HarisGusic_SIS2_Seminarski.zip main.tex literature.bib IEEEtranETF.bst \
+		Makefile contents/ scripts/ src/*.py src/*.ipynb  \
+		_build/img/ _build/main.pdf _build/src/
