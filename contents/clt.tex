@@ -17,9 +17,9 @@ $p_M(m)$ slučajne varijable $M=K+L$.
 Ako su varijable $K$ i $L$ međusobno nezavisne, onda vrijedi $p_{K,L}(k,l) =
 p_K(k)p_L(l)$, te se prethodni izraz može dodatno pojednostaviti:
 %
-\begin{align*}
+\begin{align}
   p_M(m) = \sum_{k=-\infty}^{\infty} p_K(k)p_L(m-k) = p_K * p_L (m)
-\end{align*}
+\end{align}
 
 Dakle, suma nezavisnih diskretnih slučajnih varijabli će imati PMF koja je
 jednaka diskretnoj konvoluciji PMF tih varijabli. Sličan zaključak vrijedi i za
@@ -40,7 +40,7 @@ jednostavnosti, razmatranje će biti ograničeno na diskretni slučaj.
 \begin{exmp} \label{ex:novcic}
   
 Neka su $X_i$ slučajne varijable koje uzimaju vrijednosti iz $\{0,1\}$ zavisno
-od ishoda bacanja nepravednog novčića, pri čemu je $p_X(0)= p$, $p_X(1)=q=1-p$.
+od ishoda bacanja nepravednog novčića, pri čemu je $p_X(1)= p$, $p_X(0)=q=1-p$.
 Potrebno je odrediti broj bacanja $K$ u kojima je $X_i=1$, ako je novčić bačen
 $n$ puta.
 
@@ -61,8 +61,8 @@ Naime, vrijedi:
 \begin{equation}
   \mathcal{Z}\{p_K(k)\}
   = \left[\mathcal{Z}\{p_X(k)\}\right]^n
-  = (p+qz^{-1})^n
-  = \sum_{k=0}^{n} \binom{n}{k} p^k q^{n-k} z^{-k}
+  = (q+pz^{-1})^n
+  = \sum_{k=0}^{n} \binom{n}{k} p^k z^{-k} q^{n-k}
 \end{equation}
 
 Direktnom primjenom inverzne $ \mathcal{Z}$ transformacije se dobiva:
