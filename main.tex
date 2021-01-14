@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[11pt, a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -51,8 +51,14 @@
 \newcommand{\pr}{\mathrm{Pr}}
 
 \date{\today}
-\title{Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih
-brojeva i centralni granični teorem}
+\title{\bfseries
+  \huge Signali i sistemi 2 \\[24pt]
+  {\LARGE
+    Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih
+    brojeva i centralni granični teorem} \\[24pt]
+  {\normalfont \Large Autor: Haris Gušić}
+  \vfill
+}
 
 % LISTINGS SETUP
 \definecolor{code}{HTML}{576ECC}
@@ -70,11 +76,7 @@ brojeva i centralni granični teorem}
   tabsize=4,
   showstringspaces=false,
   backgroundcolor=\color{gray},
-  %xleftmargin=0pt,
-  %xrightmargin=30pt,
   frame=tblr,
-  %framexleftmargin=6pt,
-  %framexrightmargin=6pt,
   framextopmargin=4pt,
   framexbottommargin=4pt,
   upquote=true,
@@ -143,38 +145,13 @@ brojeva i centralni granični teorem}
 \bibliography{literature}
 
 \section*{Prilog}
+\addcontentsline{toc}{section}{Prilog}
 
 U prilogu su dati svi programski kodovi koji su korišteni za simulacije i
 grafičke vizualizacije u radu. Svi programi su napisani u programskom jeziku
 \textit{Python}, verzija 3.8.
 
 \appendix
-
-\section{Programski kodovi za demonstraciju normalne raspodjele}
-\input{appendix-gauss}
-
-\newcommand{\lst}[1]{
-  \begin{figure}[H]
-    \centering
-    \begingroup \fontencoding{T1}\selectfont
-      \lstinputlisting{#1}
-    \endgroup
-  \end{figure}
-}
-
-\lst{_build/src/gauss.py_1}
-\lst{_build/src/gauss.py_2}
-\lst{_build/src/gauss.py_3}
-\lst{_build/src/gauss.py_4}
-\lst{_build/src/gauss.py_5}
-\lst{_build/src/gauss.py_6}
-
-\lst{_build/src/lln.py_1}
-\lst{_build/src/lln.py_2}
-\lst{_build/src/lln.py_3}
-
-\lst{_build/src/clt.py_1}
-\lst{_build/src/clt.py_2}
-\lst{_build/src/clt.py_3}
+\input{appendix}
 
 \end{document}

@@ -1,7 +1,7 @@
 U ovom poglavlju će biti objašnjen jedan od najznačajnijih rezultata u oblasti
-vjerovatnoće. Centralni granični teorem (engl.  \textit{central limit theorem} -
-CLT) opisuje ponašanje sume velikog broja slučajnih varijabli. Prije nego što se
-formuliše teorem, biće napravljeno uvodno razmatranje na tu temu.
+vjerovatnoće. Centralni granični teorem (engl.  \textit{central limit theorem -
+CLT}) opisuje ponašanje sume velikog broja slučajnih varijabli. Prije nego što
+se formuliše teorem, biće napravljeno uvodno razmatranje na tu temu.
 
 \subsection{Raspodjela sume slučajnih varijabli} \label{sec:clt-suma}
 
@@ -157,10 +157,6 @@ objašnjene u nastavku.
 
 Ovakva interpretacija teorema je jednostavnija i intuitivnija nego sama
 formulacija teorema koja je data iznad.
-
-%TODO ref to eqn
-
-%TODO teorem ne pomaže intuiciji
 
 \begin{corollary}
   Konvolucijom pozitivne funkcije sa samom sobom mnogo puta dobiva se približno
@@ -339,13 +335,13 @@ funkciju:
   \varphi_{S_n}(u) = \left[\varphi_{Z,n}(u)\right]^n
 \end{equation}
 U graničnom procesu:
-\begin{align*} \label{eq:clt-limit}
+\begin{align} \label{eq:clt-limit}
   \lim_{n\to\infty} \varphi_{S_n}(u)
   &= \lim_{n\to\infty} [\varphi_{Z,n}(u)]^n \nonumber \\
   &= \lim_{n\to\infty}
     \left(1 - \frac{u^2}{2n} + o\left(\frac{u^2}{2n}\right)\right)^n
     = e^{-\frac{u^2}{2}}
-\end{align*}
+\end{align}
 Na osnovu \eqref{eq:char-norm}, raspodjela koja ima karakterističnu funkciju kao
 u \eqref{eq:clt-limit} je upravo normalna $\mathcal{N}(0,1)$. $\blacksquare$ \\
 
@@ -407,9 +403,9 @@ standardnu normalnu raspodjelu.
 
 Prethodno izvođenje se ne smije shvatiti kao matematski strogo, međutim dobiveni
 zaključak ima veliku ilustrativnu moć.\footnote{Matematski strog tretman se može
-pronaći u knjizi TODO A modern approach..., str. 273} Ovaj zaključak se intuitivno
-podudara sa tvrđenjem zakona velikih brojeva.  Naime, što je uzorak veći,
-srednja vrijednost uzorka se manje rasipa oko srednje vrijednosti
+pronaći u knjizi \cite{fristedt2013modern} na stranici 273} Ovaj zaključak se
+intuitivno podudara sa tvrđenjem zakona velikih brojeva.  Naime, što je uzorak
+veći, srednja vrijednost uzorka se manje rasipa oko srednje vrijednosti
 probabilističkog modela. Za uzorak beskonačne veličine, srednja vrijednost
 uzorka se podudara sa matematičkim očekivanjem.  \textit{Drugim riječima, što je
 veći uzorak, nesigurnost u tačnost procijenjenog očekivanja na osnovu tog uzorka
@@ -423,22 +419,25 @@ međusobno nezavisnih fenomena. Na primjer, termalno (haotično) kretanje
 elektrona se može smatrati slučajnim. Amplituda termalnog šuma koji se javlja u
 električnim krugovima se dobiva superpozicijom doprinosa svakog elektrona. Kao
 posljedica CLT, distribucija amplitude ovakvog šuma će biti približno normalna.
+Može se navesti još nekoliko primjera. \footnote{Primjeri su preuzeti iz knjige
+\cite{smith2003digital}}.
 
-Još jedna interesantna posljedica CLT je da svjetlosni signal u obliku četvrtke
-koji ulazi u optički vodič, na izlazu iz optičkog vodiča biti "razliven".
-Izlazni signal će biti približno Gaussov, što se objašnjava činjenicom da
-svjetlosni zraci prelaze različite puteve, zbog toga što zraci ulazi u vodič pod
-različitim uglovima. Oblik izlaznog signala zavisi od dužine vodiča. Ova pojava
-ima određene implikacije na brzinu prenosa informacija kroz optički vod.
+
+Još jedna interesantna posljedica CLT je da će svjetlosni signal u obliku
+četvrtke koji ulazi u optički vodič, na izlazu iz optičkog vodiča biti
+"razliven". Izlazni signal će biti približno Gaussov, što se objašnjava
+činjenicom da svjetlosni zraci prelaze različite puteve, zbog toga što zraci
+ulazi u vodič pod različitim uglovima. Oblik izlaznog signala zavisi od dužine
+vodiča. Ova pojava ima određene implikacije na brzinu prenosa informacija kroz
+optički vod.
 
 CLT ima primjenu i u digitalnom procesiranju signala. Naime, kaskada
-\textit{moving average} filtera, će imati impulsni odziv oblika Gaussove
+\textit{moving average} filtera će imati impulsni odziv oblika Gaussove
 funkcije. Ovo je posljedica osobine višestruke konvolucije koja je ilustrovana u
 poglavlju \ref{sec:clt-formulation}. Ovakav filter za mnoge primjene ima bolje
 osobine od običnog moving average filtera.
-
 Konačno, CLT se primjenjuje i za kompjutersko generisanje slučajnih sekvenci
-koje imaju normalnu raspodjelu.\footnote{Primjer je preuzet iz knjige TODO...}
+koje imaju normalnu raspodjelu.
 
 \subsection{Generalizacije i srodne tvrdnje}
 
@@ -448,10 +447,6 @@ sumiraju imaju jednaku varijansu. Naime, postoje formulacije teorema koje
 garantuju da zaključak teorema vrijedi ako su slučajne varijable koje se
 sumiraju "slabo" međusobno korelirane. Ovdje neće biti objašnjeno šta takva
 "slaba" korelacija podrazumijeva.
-
-Postoje i teoremi koji daju procjenu brzine
-konvergencije ka normalnoj raspodjeli, no u većini praktičnih primjena
-konvergencija je \textit{veoma brza}. \\
 %
 Za praktične primjene, može se smatrati da CLT vrijedi kada:
 
@@ -460,6 +455,10 @@ Za praktične primjene, može se smatrati da CLT vrijedi kada:
   \item Slučajne varijable su "slabo" korelirane,
   \item Doprinos svake od varijabli u sumi nije previše velik.
 \end{enumerate}
+
+Postoje i teoremi koji daju procjenu brzine konvergencije ka normalnoj
+raspodjeli, no u većini praktičnih primjena se konvergencija je \textit{veoma
+brza}. \\
 
 U ovom radu, CLT je uveden postepeno na primjeru sumiranja diskretnih varijabli.
 Naveden je \textit{De Moivre-Laplace} teorem koji govori da će binomna

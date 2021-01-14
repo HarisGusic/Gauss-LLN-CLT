@@ -1,18 +1,27 @@
 import numpy as np; from numpy import *; import numpy.random as rnd
-
-def pdf_mean(f, p):
-    return sum(f * p)
-def pdf_mean_square(x, p):
-    return pdf_mean(x**2, p)
-def pdf_var(x, p):
-    return pdf_mean_square(x,p) - pdf_mean(x,p)**2
+################################################################################
+"""
+    Racunanje integrala za funkciju `f` definiranu u tackama iz vektora `x`.
+    Vrijednosti vektora `x` ne moraju biti uniformo rasporedjene.
+"""
 def integral(x, f):
     return sum((f + roll(f, -1))[:-1] * diff(x)) / 2
+################################################################################
+"""
+    Konvolucija funkcije `f` sa samom sobom `n` puta.
+"""
 def convolve_n(f, n):
     g = f
     for i in range(n):
         g = convolve(g, f)
     return g
+################################################################################
+"""
+    Generisanje funkcije odredjenog tipa na osnovu parametra `tip`.
+
+    Podrzane vrijednosti za parametar `tip`: "rect", "noise_uniform",
+    "noise_exp", "noise_exp", "exp", "exp2".
+"""
 def gen_fun(tip='rect'):
     if tip == 'rect':
         f = pad(ones(50), (25,25))
@@ -26,9 +35,12 @@ def gen_fun(tip='rect'):
         f = exp(-0.1*arange(40))
         f = pad(concatenate((f, flip(f)/2)), (10,10))
     return f / sum(f)
-
+################################################################################
+"""
+    Racunanje sekvence srednjih vrijednosti uzoraka za sekvencu `X_n`.
+"""
 def sample_means(X_n):
-    N_realiz, N_sekv = X_n.shape
+    N_realiz, N_sekv = X_n.shape # Broj realizacija, duzina sekvence
     S_n = empty((N_realiz, N_sekv))
     for j in range(0, N_sekv):
         S_n[:,j] = mean(X_n[:, 0:j+1], axis=1)

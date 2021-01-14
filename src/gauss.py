@@ -1,8 +1,13 @@
 import numpy as np; from numpy import *
-from shared import *
 import scipy.stats as stats
+import matplotlib.pyplot as plt
+from shared import *
 ################################################################################
 import scipy.optimize as opt
+"""
+    Generisanje aproksimacije date funkcije `f` definirane u vrijednostima
+    vektora `x`, Gaussovom funkcijom.
+"""
 def approx_gaussian(x, f):
     # Nalazenje optimalnih parametara
     fun = lambda x, a, m, std: a * stats.norm.pdf(x, m, std)
@@ -14,7 +19,7 @@ def approx_gaussian(x, f):
     
     # Alternativni metod, ako prethodni zakaze
     if np.max(pcov) > 0.1: 
-        cijeli_integral = integral(x, f)
+        cijeli_integral = integral(x, f) # Prakticno integral na (-inf, inf)
         f = f / cijeli_integral # Normalizacija integrala funkcije
         mean = integral(x, x*f)
         var = integral(x, (x-mean)**2 * f)
@@ -22,6 +27,10 @@ def approx_gaussian(x, f):
     else:
         return fun(x, *popt)
 ################################################################################
+"""
+    Generisanje multivarijabilne Gaussove funkcije u tackama vektora `x`, za
+    zadano ocekivanje `mean` i kovarijantnu matricu `cov`.
+"""
 def multivariate_gaussian(x, mean, cov):
     x = array(x); mean = array(mean); cov = array(cov)
     k = x.shape[0] # Broj varijabli
@@ -38,8 +47,11 @@ def multivariate_gaussian(x, mean, cov):
     
     return y
 ################################################################################
-import matplotlib.pyplot as plt
-################################################################################
+"""
+    Crtanje grafika normalne PDF sa zadanim ocekivanjem `mean` i varijansom
+    `var` na intervalu [-8, 8], uz vizualizaciju parametara. `N` predstavlja
+    broj uzoraka intervala.
+"""
 def plot_gaussian(mean, var, N=100):
     x = linspace(-8, 8, N)
     p = stats.norm.pdf(x, mean, sqrt(var))
@@ -58,6 +70,11 @@ def plot_gaussian(mean, var, N=100):
     
     plt.xlabel('$x$'); plt.legend()
 ################################################################################
+"""
+    Crtanje grafika multivarijabilne normalne PDF sa zadanim ocekivanjem `mean`
+    i kovarijantnom matricom `cov` na intervalu -6<=x<=6, -6<=y<=6. `N`
+    predstavlja broj uzoraka intervala po svakoj koordinati.
+"""
 def plot_multivariate_gaussian(mean, cov, N=100):
     # Generisanje vektora koordinata
     xlim = ylim = [-6, 6]
