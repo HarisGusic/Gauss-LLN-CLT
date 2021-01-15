@@ -82,7 +82,7 @@ def plot_lln(X_n, mean, plot_range=[-2, 2], colored=True):
     plt.ylim(mean * array([1, 1]) + plot_range)
     plt.plot(n_multi, S_n.T, c=None if colored else 'k')
     plt.plot([n[0], n[-1]], [mean, mean],
-             label='Ocekivanje $\mu$', c='k' if colored else 'red')
+             label='Očekivanje $\mu$', c='k' if colored else 'red')
     plt.legend(); plt.xlabel('$n$')
 ################################################################################
 """

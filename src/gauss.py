@@ -114,7 +114,7 @@ def plot_multivariate_gaussian(mean, cov, N=100):
     ax.contourf(_X, _Y, p.reshape(N,N), 80, cmap='hot', antialiased=True)
     
     # Srednja vrijednost
-    ax.scatter(mean[0], mean[1], c='k', label='Ocekivanje')
+    ax.scatter(mean[0], mean[1], c='k', label='Očekivanje')
 
     plt.legend(bbox_to_anchor=(1.02,1.02), loc='upper right')
 
