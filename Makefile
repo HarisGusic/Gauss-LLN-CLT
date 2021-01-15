@@ -11,7 +11,7 @@ pdf:
 	for i in {1,2}; do \
 		pdflatex -interaction=nonstopmode -output-directory _build main.tex; \
 	done
-	mv _build/main.pdf _build/"$(PDF_NAME)"
+	mv _build/main.pdf _build/$(PDF_NAME)
 
 img-gauss:
 	mkdir -p _build/img/
