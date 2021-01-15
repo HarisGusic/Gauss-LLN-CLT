@@ -1,44 +1,12 @@
 #+TITLE: Jednodimenzionalne i višedimenzionalne normalne raspodjele, zakon velikih brojeva i centralna granična teorema
 
-* Upute
-  - U formi tutorijala/predavanja
-  - Da približi tematiku nekome ko bi se htio baviti time
-  - Možda će biti uključeno u materijale
-  - Neka kodovi prate ono što je u radu, komentari
-  - Izbjegavajte korištenje prvog lica
-  - Za sve navoditi primjere iz prakse
-
-  - Kombinacije raspodjela. Zbir normalno raspodijeljenih varijabli je normalno raspodijeljen.
-
 * Bilješke
   - [[https://www.sciencedirect.com/topics/mathematics/central-limit-theorem][Izvor info]]
-  - CLT: Konvolucija pulse-like signala samog sa sobom mnogo puta, nastaje
-    Gaussov signal [[https://www.sciencedirect.com/topics/engineering/central-limit-theorem][ref]]
-  - CLT: Raspodjela, simulator konvergencije sume uzoraka ka vrijednosti.
-  - Možda navesti osobinu da suma ima raspodjelu koja je konvolucija raspodjela
-    ulaznih varijabli.
-  - Dodati primjer sa binomnim koeficijentima (Možda)
+  - TODO CLT: Raspodjela, simulator konvergencije sume uzoraka ka vrijednosti.
+  - Prilog: primjer estimacije pouzdanosti mjerenja korištenjem CLT
   - Tendencija ka Gaussovoj raspodjeli se dešava nezavisno od oblika raspodjele
     populacije. Parametri granične raspodjele zavise samo od $\mu$ i $\sigma$
     (TODO provjeriti).
-  - Možda spomenuti Levy i druge CLT
-  - Spomenuti osobinu razvoja karakteristične funkcije u Taylora oko nule
   - [[https://www.sciencedirect.com/topics/engineering/moving-average-filter][Primjene CLT u signal processingu]]
   - [[https://projecteuclid.org/euclid.dmj/1077475030][CLT for dependent variables]]
   - Additional sources (CLT): [[https://rd.springer.com/article/10.1007/BF01240790][a]] [[https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php][b]] [[https://projecteuclid.org/euclid.dmj/1077475030][c]]
-  - Law of large numbers and CLT connection: limit of gaussian to dirac delta (check)
-
-** Sadržaj
-   - Gaussova raspodjela
-   - Multivarijabilna
-   - CLT
-   - Multivar. CLT
-   - Zakon velikih brojeva
-   - Slabi zakon
-   - Strogi zakon
-
-** Uslovi CLT
-   
-   - Nijedna varijabla u sumi ne odudara previše od ostalih
-   - Varijable su razumno nezavisne
-   - Varijable imaju konačnu varijansu

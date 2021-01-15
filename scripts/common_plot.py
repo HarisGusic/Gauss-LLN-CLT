@@ -5,4 +5,4 @@ rc('font', size=20)
 
 def savefig(path):
     plt.savefig('_build/img/' + path + '.pdf', format='pdf', pad_inches=0,
-        bbox_inches='tight')
+        bbox_inches='tight', transparent=True)
