@@ -1,7 +1,8 @@
 
 PY=PYTHONPATH=src python
+PDF_NAME="Haris_Gusic_Gauss_LLN_CLT.pdf"
 
-.PHONY: img src
+.PHONY: all img src presentation
 
 all: img src pdf
 
@@ -10,6 +11,7 @@ pdf:
 	for i in {1,2}; do \
 		pdflatex -interaction=nonstopmode -output-directory _build main.tex; \
 	done
+	mv _build/main.pdf _build/"$(PDF_NAME)"
 
 img-gauss:
 	mkdir -p _build/img/
@@ -36,11 +38,8 @@ src:
 	cd src/; ../scripts/split-file.sh src/lln.py ../_build/src
 	cd src/; ../scripts/split-file.sh src/clt.py ../_build/src
 
-clean-img:
-	rm -rf _build/img/
-
-clean: 
-	rm -rf _build/
+presentation:
+	cd presentation/ && $(MAKE)
 
 zip: all zip-only
 
@@ -49,3 +48,9 @@ zip-only:
 	zip -r HarisGusic_SIS2_Seminarski.zip main.tex literature.bib IEEEtranETF.bst \
 		Makefile contents/ scripts/ src/*.py src/*.ipynb  \
 		_build/img/ _build/main.pdf _build/src/
+
+clean-img:
+	rm -rf _build/img/
+
+clean: 
+	rm -rf _build/
