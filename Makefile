@@ -8,9 +8,10 @@ all: img src pdf
 
 pdf:
 	mkdir -p _build/
-	for i in {1,2}; do \
-		pdflatex -interaction=nonstopmode -output-directory _build main.tex; \
-	done
+	@function ltx { \
+		pdflatex -interaction=nonstopmode -output-directory _build/ main; \
+	}; \
+	ltx && bibtex _build/main && ltx && ltx
 	mv _build/main.pdf _build/$(PDF_NAME)
 
 img-gauss:
